@@ -6,6 +6,7 @@ import by.tc.epam.model.service.exception.ServerOverloadException;
 
 public interface OddService {
 
-    void createOdd(int eventId, OddType oddType, double koef, double param) throws ServerOverloadException, DBWorkingException;
+    void createOdd(int eventId, OddType oddType, double koef, double param)
+            throws ServerOverloadException, DBWorkingException;
 
 }

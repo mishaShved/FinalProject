@@ -16,4 +16,8 @@ public final class FinalStringsContainer {
     public static final String SPORT = "sport";
     public static final String TEAM1 = "team1";
     public static final String TEAM2 = "team2";
+    public static final String ODD_TYPE = "oddType";
+    public static final String KOEF = "koef";
+    public static final String PARAMETER = "param";
+    public static final String EVENT_ID = "eventId";
 }
