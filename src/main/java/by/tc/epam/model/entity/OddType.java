@@ -32,16 +32,6 @@ public enum OddType {
         }
     },
 
-    NOTX {
-        @Override
-        boolean isWon(int score1, int score2, double param) {
-            if (score1 != score2){
-                return true;
-            }
-            return false;
-        }
-    },
-
     X1 {
         @Override
         boolean isWon(int score1, int score2, double param) {
@@ -62,20 +52,10 @@ public enum OddType {
         }
     },
 
-    TM {
+    NOTX {
         @Override
         boolean isWon(int score1, int score2, double param) {
-            if (score1 + score2 > param){
-                return true;
-            }
-            return false;
-        }
-    },
-
-    TL {
-        @Override
-        boolean isWon(int score1, int score2, double param) {
-            if (score1 + score2 < param){
+            if (score1 != score2){
                 return true;
             }
             return false;
@@ -96,6 +76,26 @@ public enum OddType {
         @Override
         boolean isWon(int score1, int score2, double param) {
             if (score1 > score2 + param){
+                return true;
+            }
+            return false;
+        }
+    },
+
+    TM {
+        @Override
+        boolean isWon(int score1, int score2, double param) {
+            if (score1 + score2 > param){
+                return true;
+            }
+            return false;
+        }
+    },
+
+    TL {
+        @Override
+        boolean isWon(int score1, int score2, double param) {
+            if (score1 + score2 < param){
                 return true;
             }
             return false;

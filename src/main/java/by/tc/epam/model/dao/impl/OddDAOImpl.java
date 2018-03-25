@@ -31,7 +31,7 @@ public class OddDAOImpl implements OddDAO {
 
             statement.setString(1, null);
             statement.setInt(2, eventId);
-            statement.setInt(3, oddType.ordinal() - 1);
+            statement.setInt(3, oddType.ordinal() + 1);
             statement.setDouble(4, koef);
             statement.setDouble(5, param);
 
