@@ -19,4 +19,6 @@ public class EntityBuilder {
         return new Event();
     }
 
+    public Odd createOdd(){ return new Odd();}
+
 }

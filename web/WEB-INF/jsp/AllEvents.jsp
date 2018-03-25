@@ -15,13 +15,22 @@
         <td>Sport</td>
     </tr>
     <c:forEach var="i" begin="0" end="${events.size() - 1}" step="1">
-        <tr>
-            <td><c:out value="${events.get(i).id}"/> </td>
-            <td><c:out value="${events.get(i).startTime}"/></td>
-            <td><c:out value="${events.get(i).team1}"/></td>
-            <td><c:out value="${events.get(i).team2}"/></td>
-            <td><c:out value="${events.get(i).sportType}"/></td>
-        </tr>
+
+            <tr>
+                <td><c:out value="${events.get(i).id}"/> </td>
+                <td><c:out value="${events.get(i).startTime}"/></td>
+                <td><c:out value="${events.get(i).team1}"/></td>
+                <td><c:out value="${events.get(i).team2}"/></td>
+                <td><c:out value="${events.get(i).sportType}"/></td>
+                <td>
+                    <form action="/MishaBet" method="post">
+                        <input type="hidden" name="eventId" value="${events.get(i).id}">
+                        <input type="hidden" name="command" value="showOdds">
+                        <input type="submit" value="showOdds">
+                    </form>
+            </tr>
+
+
     </c:forEach>
 
 

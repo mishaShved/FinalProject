@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Odd {
 
+    private String team1;
+    private String team2;
     private OddType oddType;
     private Double koef;
     private Double param;
@@ -11,7 +13,9 @@ public class Odd {
     public Odd() {
     }
 
-    public Odd(OddType oddType, Double koef, Double param) {
+    public Odd(String team1, String team2, OddType oddType, Double koef, Double param) {
+        this.team1 = team1;
+        this.team2 = team2;
         this.oddType = oddType;
         this.koef = koef;
         this.param = param;
@@ -41,30 +45,47 @@ public class Odd {
         this.param = param;
     }
 
+    public String getTeam1() {
+        return team1;
+    }
+
+    public void setTeam1(String team1) {
+        this.team1 = team1;
+    }
+
+    public String getTeam2() {
+        return team2;
+    }
+
+    public void setTeam2(String team2) {
+        this.team2 = team2;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Odd odd = (Odd) o;
-        return oddType == odd.oddType &&
+        return Objects.equals(team1, odd.team1) &&
+                Objects.equals(team2, odd.team2) &&
+                oddType == odd.oddType &&
                 Objects.equals(koef, odd.koef) &&
                 Objects.equals(param, odd.param);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(oddType, koef, param);
+        return Objects.hash(team1, team2, oddType, koef, param);
     }
 
     @Override
     public String toString() {
         return "Odd{" +
-                "oddType=" + oddType +
+                "team1='" + team1 + '\'' +
+                ", team2='" + team2 + '\'' +
+                ", oddType=" + oddType +
                 ", koef=" + koef +
                 ", param=" + param +
                 '}';
     }
-
-
 }

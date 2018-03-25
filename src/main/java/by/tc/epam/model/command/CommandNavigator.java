@@ -26,6 +26,7 @@ public class CommandNavigator {
         navigator.put("showEventsBySport", new GetEventsBySportTypeCommand());
         navigator.put("createOdd", new CreateOddCommand());
         navigator.put("goToCreateOddPage", new GoToCreateOddPageCommand());
+        navigator.put("showOdds", new GetOddsByEventCommand());
     }
 
     public Command getCommand(String commandName){
