@@ -15,32 +15,17 @@ import java.sql.SQLException;
 
 public class UserDAOImpl implements UserDAO {
 
-    private static final String USER_ADD_REQUEST =
-            "INSERT INTO `bukmaker`.`user` (`id`, `name`, `password`, `balance`, `user_type_id`, `email`)" +
-                    " VALUES (?, ?, ?, '0', '2', ?);";
-
-    private static final String GET_USER_REQUEST =
-            "SELECT u.id, u.name, u.balance, u.email, t.type AS userType FROM bukmaker.user AS u\n" +
-                    "JOIN user_type AS t ON u.user_type_id = t.id\n" +
-                    "WHERE u.id = ? AND u.password = ?";
-
-    private static final String SET_BALANCE_REQUEST =
-            "UPDATE `bukmaker`.`user` SET `balance`=? WHERE `id`=?;";
-
-    private static final String GET_BALANCE_REQUEST =
-            "SELECT `user`.`balance` FROM `bukmaker`.`user` WHERE `id`=?;";
-
-
-
     @Override
     public void registration(String name, String email, String password)
-            throws DBLoginException, JDBCDriverNotFoundException, ConnectionPollIsEmptyException,
-            DublicateUserException, DAOSQLException {
+            throws DBLoginException, JDBCDriverNotFoundException,
+            ConnectionPollIsEmptyException, DublicateUserException,
+            DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
 
-        try (PreparedStatement statement = conn.prepareStatement(USER_ADD_REQUEST)){
+        try (PreparedStatement statement =
+                     conn.prepareStatement(RequestContainer.USER_ADD_REQUEST)){
 
             statement.setString(1, null);
             statement.setString(2, name);
@@ -71,7 +56,8 @@ public class UserDAOImpl implements UserDAO {
         User user = new User();
 
 
-        try (PreparedStatement statement = conn.prepareStatement(GET_USER_REQUEST)) {
+        try (PreparedStatement statement =
+                     conn.prepareStatement(RequestContainer.GET_USER_REQUEST)) {
 
             statement.setInt(1, id);
             statement.setString(2, password);
@@ -119,7 +105,8 @@ public class UserDAOImpl implements UserDAO {
         Connection conn = pool.getConnection();
         double balance = 0;
 
-        try (PreparedStatement withdrawStatment = conn.prepareStatement(SET_BALANCE_REQUEST)) {
+        try (PreparedStatement withdrawStatement =
+                     conn.prepareStatement(RequestContainer.SET_BALANCE_REQUEST)) {
 
             balance += getUserBalance(id);
 
@@ -127,10 +114,10 @@ public class UserDAOImpl implements UserDAO {
                 throw new NotEnoughMoneyException();
             }
 
-            withdrawStatment.setDouble(1, balance - money);
-            withdrawStatment.setInt(2, id);
+            withdrawStatement.setDouble(1, balance - money);
+            withdrawStatement.setInt(2, id);
 
-            withdrawStatment.executeUpdate();
+            withdrawStatement.executeUpdate();
 
         } catch (SQLException e){
             throw new DAOSQLException(e);
@@ -142,20 +129,22 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void deposit(int id, double money)
-            throws DBLoginException, JDBCDriverNotFoundException, ConnectionPollIsEmptyException, DAOSQLException {
+            throws DBLoginException, JDBCDriverNotFoundException,
+            ConnectionPollIsEmptyException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
         double balance = 0;
 
-        try (PreparedStatement depositStatment = conn.prepareStatement(SET_BALANCE_REQUEST)) {
+        try (PreparedStatement preparedStatement =
+                     conn.prepareStatement(RequestContainer.SET_BALANCE_REQUEST)) {
 
             balance += getUserBalance(id);
 
-            depositStatment.setDouble(1, balance + money);
-            depositStatment.setInt(2, id);
+            preparedStatement.setDouble(1, balance + money);
+            preparedStatement.setInt(2, id);
 
-            depositStatment.executeUpdate();
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e){
             throw new DAOSQLException(e);
@@ -170,13 +159,15 @@ public class UserDAOImpl implements UserDAO {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
+
         double balance = 0;
 
-        try (PreparedStatement getBalanceStatment = conn.prepareStatement(GET_BALANCE_REQUEST)) {
+        try (PreparedStatement getBalanceStatement =
+                     conn.prepareStatement(RequestContainer.GET_BALANCE_REQUEST)) {
 
-            getBalanceStatment.setInt(1, id);
+            getBalanceStatement.setInt(1, id);
 
-            ResultSet rs = getBalanceStatment.executeQuery();
+            ResultSet rs = getBalanceStatement.executeQuery();
 
             if (rs.next()){
                 balance += rs.getDouble("balance");

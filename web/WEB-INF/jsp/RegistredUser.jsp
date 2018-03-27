@@ -57,9 +57,10 @@ you = <c:out value="${sessionScope.user.name}"/>
 
     </select>
 
-    <\br>
-    <input type="text" name="team1" value="">
-    <input type="text" name="team2" value="">
+    </br>
+    team 1 - <input type="text" name="team1" value="">
+    </br>
+    team 2 - <input type="text" name="team2" value="">
 
 </form>
 
@@ -111,6 +112,16 @@ you = <c:out value="${sessionScope.user.name}"/>
     <input type="submit" value="CreateOdd">
 
 </form>
+
+
+
+<form action="showStakes" method="post">
+
+    <input type="hidden" name="command" value="showStakes">
+    <input type="submit" value="Show Stakes">
+
+</form>
+
 
 
 

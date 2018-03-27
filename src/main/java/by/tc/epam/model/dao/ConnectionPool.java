@@ -1,6 +1,7 @@
 package by.tc.epam.model.dao;
 
 import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
+import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
 
@@ -64,7 +65,16 @@ public class ConnectionPool {
         return pool.pop();
     }
 
-    public synchronized void returnConnection(Connection connection){
+    public synchronized void returnConnection(Connection connection) throws DAOSQLException {
+
+        try {
+
+            connection.setAutoCommit(true);
+
+        } catch (SQLException e) {
+            throw new DAOSQLException(e);
+        }
+
         pool.push(connection);
     }
 

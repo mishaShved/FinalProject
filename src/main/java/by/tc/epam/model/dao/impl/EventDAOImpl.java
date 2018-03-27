@@ -18,30 +18,16 @@ import java.util.List;
 
 public class EventDAOImpl implements EventDAO {
 
-    private static final String ADD_EVENT_REQUEST =
-            "INSERT INTO `bukmaker`.`event` (`id`, `time`, `team1`, `team2`, `sport_id`)" +
-                    " VALUES (?, ?, ?, ?, ?);";
-
-    private static final String SELECT_ALL_EVENTS_REQUEST =
-            "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
-                    "join bukmaker.sport as s on b.sport_id = s.id " +
-                    "where b.time > curdate();";
-
-
-    private static final String SELECT_PART_EVENTS_REQUEST =
-            "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
-                    "join bukmaker.sport as s on b.sport_id = s.id " +
-                    "where s.sport_type = ? " +
-                    "and b.time > curdate();";
-
     @Override
-    public void createEvent(String date, String team1, String team2, Sport sportType) throws ConnectionPollIsEmptyException,
+    public void createEvent(String date, String team1, String team2, Sport sportType)
+            throws ConnectionPollIsEmptyException,
             DBLoginException, JDBCDriverNotFoundException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
 
-        try(PreparedStatement statement = conn.prepareStatement(ADD_EVENT_REQUEST)){
+        try(PreparedStatement statement =
+                    conn.prepareStatement(RequestContainer.ADD_EVENT_REQUEST)){
 
             statement.setString(1, null);
             statement.setString(2, date);
@@ -79,7 +65,7 @@ public class EventDAOImpl implements EventDAO {
 
         try(Statement statement = conn.createStatement()){
 
-            ResultSet rs = statement.executeQuery(SELECT_ALL_EVENTS_REQUEST);
+            ResultSet rs = statement.executeQuery(RequestContainer.SELECT_ALL_EVENTS_REQUEST);
 
             allEvents = createEventList(rs);
 
@@ -106,7 +92,8 @@ public class EventDAOImpl implements EventDAO {
 
         List<Event> partEvent;
 
-        try(PreparedStatement statement = conn.prepareStatement(SELECT_PART_EVENTS_REQUEST)){
+        try(PreparedStatement statement =
+                    conn.prepareStatement(RequestContainer.SELECT_PART_EVENTS_REQUEST)){
 
             statement.setString(1, sportType.name());
 

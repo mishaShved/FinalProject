@@ -27,6 +27,7 @@ public class CommandNavigator {
         navigator.put("createOdd", new CreateOddCommand());
         navigator.put("goToCreateOddPage", new GoToCreateOddPageCommand());
         navigator.put("showOdds", new GetOddsByEventCommand());
+        navigator.put("createStacke", new CreateStackeCommand());
     }
 
     public Command getCommand(String commandName){

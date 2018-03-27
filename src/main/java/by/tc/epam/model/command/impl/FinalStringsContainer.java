@@ -20,4 +20,6 @@ public final class FinalStringsContainer {
     public static final String KOEF = "koef";
     public static final String PARAMETER = "param";
     public static final String EVENT_ID = "eventId";
+    public static final String ODD_ID = "oddId";
+    public static final String MONEY = "money";
 }

@@ -20,15 +20,7 @@ import java.util.List;
 
 public class OddDAOImpl implements OddDAO {
 
-    private static final String CREATE_ODD =
-            "INSERT INTO `bukmaker`.`odd` (`id`, `event_id`, `type_id`, `coefficient`, `param`) " +
-                    "VALUES (?, ?, ?, ?, ?);";
 
-    private static final String GET_ODD_BY_EVENT =
-            "SELECT e.team1, e.team2, t.type, o.coefficient, o.param FROM bukmaker.odd as o\n" +
-            "join bukmaker.event as e on o.event_id = e.id\n" +
-            "join bukmaker.odd_type as t on o.type_id = t.id\n" +
-            "where o.event_id = ?;";
 
     @Override
     public void createOdd(int eventId, OddType oddType, double koef, double param)
@@ -38,7 +30,7 @@ public class OddDAOImpl implements OddDAO {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
 
-        try(PreparedStatement statement = conn.prepareStatement(CREATE_ODD)){
+        try(PreparedStatement statement = conn.prepareStatement(RequestContainer.CREATE_ODD)){
 
             statement.setString(1, null);
             statement.setInt(2, eventId);
@@ -76,7 +68,8 @@ public class OddDAOImpl implements OddDAO {
         Connection conn = pool.getConnection();
         List<Odd> odds = new ArrayList<>();
 
-        try(PreparedStatement statement = conn.prepareStatement(GET_ODD_BY_EVENT)){
+        try(PreparedStatement statement =
+                    conn.prepareStatement(RequestContainer.GET_ODD_BY_EVENT)){
 
             statement.setInt(1, eventId);
 
@@ -87,6 +80,7 @@ public class OddDAOImpl implements OddDAO {
 
                 Odd odd = builder.createOdd();
 
+                odd.setId(rs.getInt("id"));
                 odd.setTeam1(rs.getString("team1"));
                 odd.setTeam2(rs.getString("team2"));
                 odd.setKoef(rs.getDouble("coefficient"));

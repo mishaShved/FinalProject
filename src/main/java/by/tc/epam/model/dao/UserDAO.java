@@ -3,6 +3,8 @@ package by.tc.epam.model.dao;
 import by.tc.epam.model.dao.exception.*;
 import by.tc.epam.model.entity.User;
 
+import java.sql.Connection;
+
 public interface UserDAO {
 
     void registration(String name, String email, String password)
