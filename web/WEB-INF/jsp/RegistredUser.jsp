@@ -115,7 +115,7 @@ you = <c:out value="${sessionScope.user.name}"/>
 
 
 
-<form action="showStakes" method="post">
+<form action="/MishaBet" method="post">
 
     <input type="hidden" name="command" value="showStakes">
     <input type="submit" value="Show Stakes">

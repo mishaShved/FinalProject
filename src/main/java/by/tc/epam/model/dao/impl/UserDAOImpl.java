@@ -94,7 +94,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void placeBet(int id, int oddId, double money) {
+    public void logOut() {
 
     }
 

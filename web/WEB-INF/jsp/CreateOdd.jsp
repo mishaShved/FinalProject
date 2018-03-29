@@ -37,9 +37,9 @@ spisok var stavok
 
         </select>
 
-        <input type="text" name="koef" value="">
+        koef - <input type="text" name="koef" value="">
 
-        <input type="text" name="param" value="">
+        param - <input type="text" name="param" value="">
 
         <input type="hidden" name="command" value="createOdd">
 

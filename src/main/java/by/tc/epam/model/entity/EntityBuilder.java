@@ -21,4 +21,6 @@ public class EntityBuilder {
 
     public Odd createOdd(){ return new Odd();}
 
+    public Stacke createStacke(){return new Stacke();}
+
 }

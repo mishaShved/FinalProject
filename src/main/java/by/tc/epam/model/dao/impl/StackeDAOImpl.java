@@ -3,11 +3,17 @@ package by.tc.epam.model.dao.impl;
 import by.tc.epam.model.dao.ConnectionPool;
 import by.tc.epam.model.dao.StackeDAO;
 import by.tc.epam.model.dao.exception.*;
+import by.tc.epam.model.entity.EntityBuilder;
+import by.tc.epam.model.entity.OddType;
+import by.tc.epam.model.entity.Sport;
+import by.tc.epam.model.entity.Stacke;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StackeDAOImpl implements StackeDAO {
 
@@ -20,14 +26,9 @@ public class StackeDAOImpl implements StackeDAO {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
 
-        try {
-            conn.setAutoCommit(false);
-        } catch (SQLException e) {
-            throw new DAOSQLException(e);
-        }
-
-
         try{
+
+            conn.setAutoCommit(false);
 
             PreparedStatement getUserBalanceStatement =
                     conn.prepareStatement(RequestContainer.GET_BALANCE_REQUEST);
@@ -59,7 +60,6 @@ public class StackeDAOImpl implements StackeDAO {
             createStackeStatement.executeUpdate();
 
 
-
             PreparedStatement setBalanceStatement =
                     conn.prepareStatement(RequestContainer.SET_BALANCE_REQUEST);
 
@@ -85,6 +85,60 @@ public class StackeDAOImpl implements StackeDAO {
             pool.returnConnection(conn);
         }
 
+
+    }
+
+    @Override
+    public List<Stacke> getStackesByUserId(int userId)
+            throws DBLoginException, JDBCDriverNotFoundException,
+            ConnectionPollIsEmptyException, DAOSQLException {
+
+        List<Stacke> foundRes = new ArrayList<>();
+        EntityBuilder entityBuilder = EntityBuilder.getInstance();
+
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection conn = pool.getConnection();
+
+        try(PreparedStatement statement =
+                    conn.prepareStatement(RequestContainer.GET_ALL_USER_STAKES)){
+
+
+            statement.setInt(1, userId);
+
+            ResultSet rs = statement.executeQuery();
+
+            while(rs.next()){
+
+
+                Stacke stacke = entityBuilder.createStacke();
+
+                stacke.setTeam1(rs.getString("team1"));
+                stacke.setTeam2(rs.getString("team2"));
+                stacke.setSportType(Sport.valueOf(rs.getString("sport_type")));
+                stacke.setStakeType(OddType.valueOf(rs.getString("odd_type")));
+                stacke.setBetSum(rs.getDouble("money"));
+                stacke.setKoef(rs.getDouble("coefficient"));
+                stacke.setScore1(rs.getInt("score1"));
+                stacke.setScore2(rs.getInt("score2"));
+                stacke.setParam(rs.getDouble("param"));
+
+
+                stacke.setWon
+                        (stacke.getStakeType().isWon
+                                (stacke.getScore1(), stacke.getScore2(), stacke.getParam()));
+
+
+                foundRes.add(stacke);
+
+            }
+
+        } catch (SQLException e) {
+            throw new DAOSQLException(e);
+        } finally {
+            pool.returnConnection(conn);
+        }
+
+        return foundRes;
 
     }
 }

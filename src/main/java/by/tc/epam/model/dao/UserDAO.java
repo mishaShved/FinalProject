@@ -22,7 +22,7 @@ public interface UserDAO {
 
     void setName(int id, String newName);
 
-    void placeBet(int id, int oddId, double money);
+    void logOut();
 
     void withdraw(int id, double money)
             throws DBLoginException, JDBCDriverNotFoundException,

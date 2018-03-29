@@ -5,8 +5,8 @@ public final class RequestContainer {
     private RequestContainer(){};
 
     public static final String ADD_EVENT_REQUEST =
-            "INSERT INTO `bukmaker`.`event` (`id`, `time`, `team1`, `team2`, `sport_id`)" +
-                    " VALUES (?, ?, ?, ?, ?);";
+            "INSERT INTO `bukmaker`.`event` (`id`, `time`, `team1`, `team2`, `sport_id`, `score1`, `score2`)" +
+                    " VALUES (?, ?, ?, ?, ?, -1, -1);";
 
     public static final String SELECT_ALL_EVENTS_REQUEST =
             "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
@@ -48,4 +48,13 @@ public final class RequestContainer {
 
     public static final String GET_BALANCE_REQUEST =
             "SELECT `user`.`balance` FROM `bukmaker`.`user` WHERE `id`=?;";
+
+    public static final String GET_ALL_USER_STAKES =
+            "select e.team1, e.team2, ot.type as odd_type, o.param," +
+                    " sp.sport_type, s.money, s.coefficient, e.score1, e.score2 from stake as s\n" +
+            "join odd as o on s.odd_id = o.id\n" +
+            "join odd_type as ot on o.type_id = ot.id\n" +
+            "join event as e on o.event_id = e.id\n" +
+            "join sport as sp on e.sport_id = sp.id\n" +
+            "where s.user_id = ?";
 }

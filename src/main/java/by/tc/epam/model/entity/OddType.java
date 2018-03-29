@@ -4,7 +4,7 @@ public enum OddType {
 
     W1{
         @Override
-        boolean isWon(int score1, int score2, double param) {
+        public boolean isWon(int score1, int score2, double param) {
             if (score1 > score2){
                 return true;
             }
@@ -14,7 +14,7 @@ public enum OddType {
 
     W2{
         @Override
-        boolean isWon(int score1, int score2, double param) {
+        public boolean isWon(int score1, int score2, double param) {
             if (score1 < score2){
                 return true;
             }
@@ -24,7 +24,7 @@ public enum OddType {
 
     X {
         @Override
-        boolean isWon(int score1, int score2, double param) {
+        public boolean isWon(int score1, int score2, double param) {
             if (score1 == score2){
                 return true;
             }
@@ -34,7 +34,7 @@ public enum OddType {
 
     X1 {
         @Override
-        boolean isWon(int score1, int score2, double param) {
+        public boolean isWon(int score1, int score2, double param) {
             if (score1 >= score2){
                 return true;
             }
@@ -44,7 +44,7 @@ public enum OddType {
 
     X2 {
         @Override
-        boolean isWon(int score1, int score2, double param) {
+        public boolean isWon(int score1, int score2, double param) {
             if (score1 <= score2){
                 return true;
             }
@@ -54,7 +54,7 @@ public enum OddType {
 
     NOTX {
         @Override
-        boolean isWon(int score1, int score2, double param) {
+        public boolean isWon(int score1, int score2, double param) {
             if (score1 != score2){
                 return true;
             }
@@ -64,7 +64,7 @@ public enum OddType {
 
     F1 {
         @Override
-        boolean isWon(int score1, int score2, double param) {
+        public boolean isWon(int score1, int score2, double param) {
             if (score1 + param > score2){
                 return true;
             }
@@ -74,8 +74,8 @@ public enum OddType {
 
     F2 {
         @Override
-        boolean isWon(int score1, int score2, double param) {
-            if (score1 > score2 + param){
+        public boolean isWon(int score1, int score2, double param) {
+            if (score1 < score2 + param){
                 return true;
             }
             return false;
@@ -84,7 +84,7 @@ public enum OddType {
 
     TM {
         @Override
-        boolean isWon(int score1, int score2, double param) {
+        public boolean isWon(int score1, int score2, double param) {
             if (score1 + score2 > param){
                 return true;
             }
@@ -94,7 +94,7 @@ public enum OddType {
 
     TL {
         @Override
-        boolean isWon(int score1, int score2, double param) {
+        public boolean isWon(int score1, int score2, double param) {
             if (score1 + score2 < param){
                 return true;
             }
@@ -102,6 +102,6 @@ public enum OddType {
         }
     };
 
-    abstract boolean isWon(int score1, int score2, double param);
+    abstract public boolean isWon(int score1, int score2, double param);
 
 }

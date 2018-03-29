@@ -28,6 +28,8 @@ public class CommandNavigator {
         navigator.put("goToCreateOddPage", new GoToCreateOddPageCommand());
         navigator.put("showOdds", new GetOddsByEventCommand());
         navigator.put("createStacke", new CreateStackeCommand());
+        navigator.put("showStakes", new ShowStakesCommand());
+        navigator.put("setScore", new SetScoreCommand());
     }
 
     public Command getCommand(String commandName){
