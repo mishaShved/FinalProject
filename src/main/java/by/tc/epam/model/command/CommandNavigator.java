@@ -30,6 +30,7 @@ public class CommandNavigator {
         navigator.put("createStacke", new CreateStackeCommand());
         navigator.put("showStakes", new ShowStakesCommand());
         navigator.put("setScore", new SetScoreCommand());
+        navigator.put("goToSetScorePage", new GoToSetScorePage());
     }
 
     public Command getCommand(String commandName){

@@ -6,11 +6,10 @@ import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
-import by.tc.epam.model.entity.EntityBuilder;
-import by.tc.epam.model.entity.Event;
-import by.tc.epam.model.entity.Odd;
-import by.tc.epam.model.entity.Sport;
+import by.tc.epam.model.entity.*;
+import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
 
+import javax.print.attribute.standard.ReferenceUriSchemesSupported;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,8 +45,77 @@ public class EventDAOImpl implements EventDAO {
 
 
     @Override
-    public void setScore(int score1, int score2) {
+    public void setScore(int eventId, int score1, int score2)
+            throws DBLoginException, JDBCDriverNotFoundException,
+            ConnectionPollIsEmptyException, DAOSQLException {
 
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection conn = pool.getConnection();
+
+        OddType oddType;
+        double param;
+        int userId;
+        double wonSum;
+        double oldSumValue;
+        double newSumValue = 0;
+
+        try(PreparedStatement setScoreStatement = conn.prepareStatement(RequestContainer.SET_SCORE_REQUEST);
+            PreparedStatement setUserBalanceStatement = conn.prepareStatement(RequestContainer.SET_BALANCE_REQUEST);
+            PreparedStatement getUserBalanceStatement = conn.prepareStatement(RequestContainer.GET_BALANCE_REQUEST);
+            PreparedStatement getStakesByEvent = conn.prepareStatement(RequestContainer.GET_ALL_STAKES_BY_EVENT_REQUEST)) {
+
+            conn.setAutoCommit(false);
+
+            setScoreStatement.setInt(1, score1);
+            setScoreStatement.setInt(2, score2);
+            setScoreStatement.setInt(3, eventId);
+
+            setScoreStatement.executeUpdate();
+
+            getStakesByEvent.setInt(1, eventId);
+
+            ResultSet stakesResSet = getStakesByEvent.executeQuery();
+
+            while(stakesResSet.next()){
+
+                oddType = OddType.valueOf(stakesResSet.getString("type"));
+                param = stakesResSet.getDouble("param");
+                userId = stakesResSet.getInt("user_id");
+                wonSum = stakesResSet.getDouble("res");
+
+                if(oddType.isWon(score1, score2, param)){
+
+                    getUserBalanceStatement.setInt(1, userId);
+
+                    ResultSet userResSet = getUserBalanceStatement.executeQuery();
+
+                    while(userResSet.next()){
+
+                        oldSumValue = userResSet.getInt("balance");
+                        newSumValue = wonSum + oldSumValue;
+
+                    }
+
+                    setUserBalanceStatement.setDouble(1, newSumValue);
+                    setUserBalanceStatement.setInt(2, userId);
+
+                    setUserBalanceStatement.executeUpdate();
+
+                }
+            }
+
+        conn.commit();
+
+        } catch (SQLException e) {
+
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                throw new DAOSQLException(e);
+            }
+
+            throw new DAOSQLException(e);
+        }
     }
 
 

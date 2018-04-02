@@ -100,7 +100,7 @@ public class StackeDAOImpl implements StackeDAO {
         Connection conn = pool.getConnection();
 
         try(PreparedStatement statement =
-                    conn.prepareStatement(RequestContainer.GET_ALL_USER_STAKES)){
+                    conn.prepareStatement(RequestContainer.GET_ALL_USER_STAKES_REQUEST)){
 
 
             statement.setInt(1, userId);

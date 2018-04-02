@@ -13,8 +13,13 @@ public interface EventService {
     void createEvent(String date, String time, String team1, String team2, Sport sportType)
             throws ServiceSQLException, ServerOverloadException, DBWorkingException;
 
-    List<Event> getAllEvents() throws DBWorkingException, ServerOverloadException, ServiceSQLException;
+    List<Event> getAllEvents()
+            throws DBWorkingException, ServerOverloadException, ServiceSQLException;
 
-    List<Event> getEventsBySport(Sport sport) throws ServiceSQLException, DBWorkingException, ServerOverloadException;
+    List<Event> getEventsBySport(Sport sport)
+            throws ServiceSQLException, DBWorkingException, ServerOverloadException;
+
+    void setScore(int eventId, int score1, int score2)
+            throws ServiceSQLException, ServerOverloadException, DBWorkingException;
 
 }

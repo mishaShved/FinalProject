@@ -17,7 +17,7 @@ public interface EventDAO {
             throws ConnectionPollIsEmptyException, DBLoginException,
             JDBCDriverNotFoundException, DAOSQLException;
 
-    void setScore(int score1, int score2);
+    void setScore(int eventId, int score1, int score2) throws DBLoginException, JDBCDriverNotFoundException, ConnectionPollIsEmptyException, DAOSQLException;
 
     List<Event> getAllEvents()
             throws DBLoginException, JDBCDriverNotFoundException,

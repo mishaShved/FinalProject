@@ -49,7 +49,7 @@ public final class RequestContainer {
     public static final String GET_BALANCE_REQUEST =
             "SELECT `user`.`balance` FROM `bukmaker`.`user` WHERE `id`=?;";
 
-    public static final String GET_ALL_USER_STAKES =
+    public static final String GET_ALL_USER_STAKES_REQUEST =
             "select e.team1, e.team2, ot.type as odd_type, o.param," +
                     " sp.sport_type, s.money, s.coefficient, e.score1, e.score2 from stake as s\n" +
             "join odd as o on s.odd_id = o.id\n" +
@@ -57,4 +57,16 @@ public final class RequestContainer {
             "join event as e on o.event_id = e.id\n" +
             "join sport as sp on e.sport_id = sp.id\n" +
             "where s.user_id = ?";
+
+    public static final String GET_ALL_STAKES_BY_EVENT_REQUEST =
+            "select st.money * st.coefficient as res, st.user_id, o.param, ot.type from stake as st\n" +
+                    "join odd as o on st.odd_id = o.id\n" +
+                    "join event as e on o.event_id = e.id \n" +
+                    "join odd_type as ot on ot.id = o.type_id    \n" +
+                    "where e.id = ?;";
+
+    public static final String SET_SCORE_REQUEST =
+            "UPDATE `bukmaker`.`event` SET `score1`=?, `score2`=? WHERE `id`=?;\n";
+
+
 }

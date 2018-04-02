@@ -85,4 +85,20 @@ public class EventServiceImpl implements EventService{
 
     }
 
+    @Override
+    public void setScore(int eventId, int score1, int score2)
+            throws ServiceSQLException, ServerOverloadException, DBWorkingException {
+
+        try {
+            eventDAO.setScore(eventId, score1, score2);
+        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+            throw new DBWorkingException(e);
+        } catch (ConnectionPollIsEmptyException e) {
+            throw new ServerOverloadException(e);
+        } catch (DAOSQLException e) {
+            throw new ServiceSQLException(e);
+        }
+
+    }
+
 }
