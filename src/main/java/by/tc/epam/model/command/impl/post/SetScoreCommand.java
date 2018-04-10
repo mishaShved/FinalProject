@@ -1,4 +1,4 @@
-package by.tc.epam.model.command.impl;
+package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
 import by.tc.epam.model.service.EventService;

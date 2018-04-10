@@ -1,6 +1,7 @@
-package by.tc.epam.model.command.impl;
+package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
+import by.tc.epam.model.command.impl.FinalStringsContainer;
 import by.tc.epam.model.dao.DAOFactory;
 import by.tc.epam.model.dao.UserDAO;
 import by.tc.epam.model.dao.exception.*;

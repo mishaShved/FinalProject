@@ -148,6 +148,22 @@ body {
     box-shadow: 0 15px 7px #ababab;
 }
 
+.teams-on-odds-list{
+    font-family:'Times New Roman', Times, serif;
+    font-weight:bold;
+    font-size: 25px;
+    color: #000000;
+    margin-right: 15px;
+}
+
+.table-odds{
+    width: 60%;
+    margin-left: 275px;
+    margin-top: 100px;
+    font-size: 21px;
+    background-color: #ffffff;
+}
+
 
 
 

@@ -1,6 +1,9 @@
 package by.tc.epam.model.command;
 
-import by.tc.epam.model.command.impl.*;
+import by.tc.epam.model.command.impl.get.GetAllEventsCommand;
+import by.tc.epam.model.command.impl.get.GetEventsBySportTypeCommand;
+import by.tc.epam.model.command.impl.get.GetOddsByEventCommand;
+import by.tc.epam.model.command.impl.get.ShowStakesCommand;
 import by.tc.epam.model.command.impl.go_to_page.*;
 import by.tc.epam.model.command.impl.post.*;
 

@@ -8,6 +8,7 @@ import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
 import by.tc.epam.model.entity.Odd;
 import by.tc.epam.model.entity.OddType;
+import by.tc.epam.model.entity.OddsList;
 import by.tc.epam.model.service.OddService;
 import by.tc.epam.model.service.exception.DBWorkingException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
@@ -39,11 +40,11 @@ public class OddServiceImpl implements OddService{
     }
 
     @Override
-    public List<Odd> getOddsByEvent(int eventId)
+    public OddsList getOddsByEvent(int eventId)
             throws ServiceSQLException, ServerOverloadException,
             DBWorkingException {
 
-        List<Odd> odds;
+        OddsList odds;
 
         try {
             odds = oddDAO.getOddsByEvent(eventId);

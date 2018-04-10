@@ -3,6 +3,7 @@ package by.tc.epam.model.service;
 
 import by.tc.epam.model.entity.Odd;
 import by.tc.epam.model.entity.OddType;
+import by.tc.epam.model.entity.OddsList;
 import by.tc.epam.model.service.exception.DBWorkingException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
@@ -15,6 +16,7 @@ public interface OddService {
             throws ServerOverloadException, DBWorkingException,
             ServiceSQLException;
 
-    List<Odd> getOddsByEvent(int eventId) throws ServiceSQLException, ServerOverloadException, DBWorkingException;
+    OddsList getOddsByEvent(int eventId)
+            throws ServiceSQLException, ServerOverloadException, DBWorkingException;
 
 }

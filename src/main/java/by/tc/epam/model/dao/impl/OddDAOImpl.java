@@ -6,10 +6,7 @@ import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
-import by.tc.epam.model.entity.EntityBuilder;
-import by.tc.epam.model.entity.Odd;
-import by.tc.epam.model.entity.OddType;
-import by.tc.epam.model.entity.Stacke;
+import by.tc.epam.model.entity.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -60,13 +57,13 @@ public class OddDAOImpl implements OddDAO {
     }
 
     @Override
-    public List<Odd> getOddsByEvent(int eventId)
+    public OddsList getOddsByEvent(int eventId)
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPollIsEmptyException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
-        List<Odd> odds = new ArrayList<>();
+        OddsList odds = new OddsList();
 
         try(PreparedStatement statement =
                     conn.prepareStatement(RequestContainer.GET_ODD_BY_EVENT)){
@@ -87,7 +84,7 @@ public class OddDAOImpl implements OddDAO {
                 odd.setParam(rs.getDouble("param"));
                 odd.setOddType(OddType.valueOf(rs.getString("type")));
 
-                odds.add(odd);
+                odds.addOdd(odd);
 
             }
 

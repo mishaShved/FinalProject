@@ -30,8 +30,11 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
+                <td>
                     <p> <c:out value="${stackes.get(i).betSum}"/>$ </p>
+                </td>
+                <td>
+                    <c:out value="${stackes.get(i).koef}"/>
                 </td>
                 <td>
                     <c:if test="${stackes.get(i).score1 != -1 && stackes.get(i).isWon() == true}">
@@ -43,16 +46,13 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td colspan="2">
                     <p>
                         <c:out value="${stackes.get(i).sportType}"/>.
                         <c:out value="${stackes.get(i).team1}"/> :
                         <c:out value="${stackes.get(i).team2}"/>
                         <c:out value="${stackes.get(i).stakeType}"/>(<c:out value="${stackes.get(i).param}"/>)
                     </p>
-                </td>
-                <td>
-                    <c:out value="${stackes.get(i).koef}"/>
                 </td>
                 <td>
                     <c:if test="${stackes.get(i).score1 != -1}">
