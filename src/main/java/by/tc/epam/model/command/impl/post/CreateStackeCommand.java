@@ -1,6 +1,7 @@
-package by.tc.epam.model.command.impl;
+package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
+import by.tc.epam.model.command.impl.FinalStringsContainer;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.StackeService;

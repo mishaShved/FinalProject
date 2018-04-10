@@ -1,11 +1,9 @@
-package by.tc.epam.model.command.impl;
+package by.tc.epam.model.command.impl.go_to_page;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.model.entity.Stacke;
-import by.tc.epam.model.entity.User;
+import by.tc.epam.model.entity.Event;
+import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
-import by.tc.epam.model.service.StackeService;
-import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DBWorkingException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
@@ -17,38 +15,30 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-
-public class ShowStakesCommand implements Command{
-
+public class GoToSetScorePage implements Command{
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
 
         ServiceFactory factory = ServiceFactory.getInstance();
-        StackeService stackeService = factory.getStackeService();
-        UserService userService = factory.getUserService();
+        EventService service = factory.getEventService();
 
-        User user = (User)request.getSession().getAttribute("user");
-        int userId = user.getId();
+        List<Event> events = null;
 
         try {
-            List<Stacke> stackes = stackeService.getStakesByUserId(userId);
-
-            double balance = userService.getUserBalance(userId);
-
-            request.setAttribute("stackes", stackes);
-            request.setAttribute("balance", balance);
-
-            servlet.getServletContext().
-                    getRequestDispatcher("/jsp/AccountHistory.jsp").
-                    forward(request,response);
-
-        } catch (ServiceSQLException e) {
-            e.printStackTrace();
+            events = service.getAllEvents();
         } catch (DBWorkingException e) {
             e.printStackTrace();
         } catch (ServerOverloadException e) {
             e.printStackTrace();
+        } catch (ServiceSQLException e) {
+            e.printStackTrace();
+        }
+
+        request.setAttribute("eventsList", events);
+
+        try {
+            servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/SetScorePage.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -56,5 +46,4 @@ public class ShowStakesCommand implements Command{
         }
 
     }
-
 }

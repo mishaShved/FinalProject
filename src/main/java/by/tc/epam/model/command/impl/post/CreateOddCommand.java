@@ -1,6 +1,7 @@
-package by.tc.epam.model.command.impl;
+package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
+import by.tc.epam.model.command.impl.FinalStringsContainer;
 import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.service.OddService;
 import by.tc.epam.model.service.ServiceFactory;
@@ -11,6 +12,7 @@ import by.tc.epam.model.service.exception.ServiceSQLException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class CreateOddCommand implements Command{
 
@@ -30,13 +32,15 @@ public class CreateOddCommand implements Command{
         try {
 
             service.createOdd(eventId, oddType, koef, param);
-
+            response.sendRedirect("/jsp/admin_page/AdminPage.jsp");
 
         } catch (ServerOverloadException e) {
             e.printStackTrace();
         } catch (DBWorkingException e) {
             e.printStackTrace();
         } catch (ServiceSQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

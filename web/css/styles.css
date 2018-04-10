@@ -1,0 +1,150 @@
+body {
+    background-color: #d3d3d3;
+    height: 100%;
+}
+
+.nav-class {
+    background-color: #2d3163;
+}
+
+.nav-class a{
+    color: #ffffff !important;
+    font-size: 21px;
+}
+
+.nav-class a:hover{
+    color: #567cba !important;
+    font-size: 23px;
+}
+
+.icon-class{
+    font-family:'Times New Roman', Times, serif;
+    font-weight:bold;
+    font-size: 55px;
+    font-style:italic;
+    color: #ffffff;
+    margin: 3px;
+}
+
+.center-table-class{
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #ffffff;
+}
+
+.nav-tabs-center{
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 21px;
+}
+
+.table-thead{
+    color: #ffffff;
+    background-color: #2d3163;
+    font-size: 21px;
+}
+
+.active a{
+    background-color: #2d3163 !important;
+    color: #ffffff !important;
+    border-color: #2d3163 !important;
+}
+
+.table-body-class{
+    font-size: 21px;
+}
+
+.table-body-class > tr > td > a:hover{
+    background-color: #2d3163;
+    color: #ffffff;
+    text-decoration-line: none;
+    border-radius: 3px;
+}
+
+.nav-rigth-class{
+    right: 0;
+    position: absolute;
+    top: 10%;
+}
+
+.login-form {
+    width: 35%;
+    margin: auto;
+    padding-top: 150px;
+}
+
+.registration-form {
+    width: 35%;
+    margin: auto;
+    padding-top: 75px;
+}
+
+.login-background{
+    background: #2d3163;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.form-control:focus{
+    border-color: #ffffff;
+    box-shadow: inset 0 1px 1px #ffffff, 0 0 13px #ffffff;
+}
+
+.content {
+    box-sizing: border-box;
+    min-height: 100%;
+    padding-bottom: 90px;
+}
+
+.footer-class{
+    width: 100%;
+    background-color: #2d3163;
+    font-family:'Times New Roman', Times, serif;
+    font-weight:bold;
+    font-size: 20px;
+    font-style:italic;
+    color: #ffffff;
+    text-align: center;
+    padding-bottom: 15px;
+    padding-top: 20px;
+    height: 80px;
+    margin-top: -80px;
+}
+
+.nav-class p{
+    color: #ffffff;
+    font-size: 23px;
+}
+
+.admin-choice{
+    color: #ffffff;
+    max-width: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 100px;
+
+}
+
+.admin-choice > form > input{
+    background-color: #2d3163;
+    border: none;
+    min-height: 50px;
+    min-width: 100px;
+    border-radius: 5px;
+}
+
+
+.create-event-form {
+    width: 35%;
+    margin: auto;
+    padding-top: 75px;
+}
+
+
+
+
+
+

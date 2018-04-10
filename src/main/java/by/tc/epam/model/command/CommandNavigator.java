@@ -1,6 +1,8 @@
 package by.tc.epam.model.command;
 
 import by.tc.epam.model.command.impl.*;
+import by.tc.epam.model.command.impl.go_to_page.*;
+import by.tc.epam.model.command.impl.post.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +11,7 @@ public class CommandNavigator {
 
     private static CommandNavigator ourInstance = new CommandNavigator();
     private final Map<String, Command> navigator;
+    private final static String DEFAULT_COMMAND = "goToStartPage";
 
     public static CommandNavigator getInstance() {
         return ourInstance;
@@ -31,10 +34,15 @@ public class CommandNavigator {
         navigator.put("showStakes", new ShowStakesCommand());
         navigator.put("setScore", new SetScoreCommand());
         navigator.put("goToSetScorePage", new GoToSetScorePage());
+        navigator.put("goToDepositWithdrawPage", new GoToDepositWithdrawPage());
+        navigator.put("goToCreateEventPage", new GoToCreateEventPage());
+        navigator.put("goToStartPage", new GoToStartPage());
     }
 
     public Command getCommand(String commandName){
-
+        if(commandName == null || commandName.equals("")){
+            commandName = DEFAULT_COMMAND;
+        }
         return navigator.get(commandName);
     }
 }

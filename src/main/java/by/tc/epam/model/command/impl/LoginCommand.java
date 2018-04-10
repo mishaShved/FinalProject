@@ -6,6 +6,7 @@ import by.tc.epam.model.dao.UserDAO;
 import by.tc.epam.model.dao.exception.*;
 import by.tc.epam.model.dao.impl.UserDAOImpl;
 import by.tc.epam.model.entity.User;
+import by.tc.epam.model.entity.UserType;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DBWorkingException;
@@ -42,10 +43,16 @@ public class LoginCommand implements Command {
 
             request.getSession().setAttribute(FinalStringsContainer.USER, user);
 
-            request.setAttribute(FinalStringsContainer.BALANCE, balance);
+            if(user.getUserType() == UserType.USER) {
 
-            servlet.getServletContext().getRequestDispatcher
-                    ("/WEB-INF/jsp/RegistredUser.jsp").forward(request,response);
+                request.setAttribute(FinalStringsContainer.BALANCE, balance);
+
+                servlet.getServletContext().getRequestDispatcher
+                        ("/jsp/StartPage.jsp").forward(request, response);
+            }else{
+                servlet.getServletContext().getRequestDispatcher
+                        ("/jsp/admin_page/AdminPage.jsp").forward(request, response);
+            }
 
 
         } catch (ServerOverloadException | ServiceSQLException

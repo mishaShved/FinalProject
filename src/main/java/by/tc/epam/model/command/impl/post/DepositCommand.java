@@ -1,6 +1,7 @@
-package by.tc.epam.model.command.impl;
+package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
+import by.tc.epam.model.command.impl.FinalStringsContainer;
 import by.tc.epam.model.dao.DAOFactory;
 import by.tc.epam.model.dao.UserDAO;
 import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
@@ -39,15 +40,9 @@ public class DepositCommand implements Command {
             service.deposit(user.getId(), money);
             value = service.getUserBalance(user.getId());
 
-            request.setAttribute(FinalStringsContainer.BALANCE, value);
 
+            response.sendRedirect("/MishaBet");
 
-            try {
-                servlet.getServletContext().getRequestDispatcher
-                        ("/WEB-INF/jsp/RegistredUser.jsp").forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            }
 
 
         } catch (ServerOverloadException | ServiceSQLException

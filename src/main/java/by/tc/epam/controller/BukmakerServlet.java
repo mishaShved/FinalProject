@@ -22,16 +22,20 @@ public class BukmakerServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        processRequest(request, response);
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response){
         String command = request.getParameter("command");
 
         CommandNavigator commandNavigator = CommandNavigator.getInstance();
         Command concreteCommand = commandNavigator.getCommand(command);
 
         concreteCommand.execute(this, request, response);
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

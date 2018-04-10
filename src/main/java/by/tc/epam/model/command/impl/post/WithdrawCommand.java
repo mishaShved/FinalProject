@@ -1,6 +1,7 @@
-package by.tc.epam.model.command.impl;
+package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
+import by.tc.epam.model.command.impl.FinalStringsContainer;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
@@ -30,16 +31,8 @@ public class WithdrawCommand implements Command{
             service.withdraw(user.getId(), money);
             double value = service.getUserBalance(user.getId());
 
-            request.setAttribute(FinalStringsContainer.BALANCE, value);
 
-            try {
-                servlet.getServletContext().getRequestDispatcher
-                        ("/WEB-INF/jsp/RegistredUser.jsp").forward(request, response);
-            } catch (ServletException e1) {
-                e1.printStackTrace();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+            response.sendRedirect("/MishaBet");
 
 
 
@@ -56,6 +49,8 @@ public class WithdrawCommand implements Command{
                 e1.printStackTrace();
             }
 
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
 
