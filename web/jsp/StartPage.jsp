@@ -9,8 +9,6 @@
 
     <title>MBet</title>
 
-
-
 </head>
 
 

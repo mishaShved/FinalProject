@@ -143,6 +143,11 @@ body {
     padding-top: 75px;
 }
 
+.clickable-row:hover{
+    background-color: #f1f0ff;
+    box-shadow: 0 15px 7px #ababab;
+}
+
 
 
 
