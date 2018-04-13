@@ -36,9 +36,15 @@
                     <td>W2</td>
                 </tr>
                 <tr>
-                    <td><c:out value="${odds.getOdd('W1').koef}"/></td>
-                    <td><c:out value="${odds.getOdd('X').koef}"/></td>
-                    <td><c:out value="${odds.getOdd('W2').koef}"/></td>
+                    <td>
+                        <c:out value="${odds.getOdd('W1').koef}"/>
+                    </td>
+                    <td>
+                        <c:out value="${odds.getOdd('X').koef}"/>
+                    </td>
+                    <td>
+                        <c:out value="${odds.getOdd('W2').koef}"/>
+                    </td>
                 </tr>
 
                 <tr>

@@ -13,11 +13,17 @@ public final class RequestContainer {
                     "join bukmaker.sport as s on b.sport_id = s.id " +
                     "where b.time > curdate();";
 
-    public static final String SELECT_PART_EVENTS_REQUEST =
+    public static final String SELECT_EVENTS_REQUEST_BY_SPORT =
             "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
                     "join bukmaker.sport as s on b.sport_id = s.id " +
                     "where s.sport_type = ? " +
                     "and b.time > curdate();";
+
+    public static final String SELECT_EVENTS_REQUEST_FOR_SET_SCORE =
+            "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
+                    "join bukmaker.sport as s on b.sport_id = s.id " +
+                    "where b.score1 = -1 " +
+                    "and b.time < curdate();";
 
     public static final String CREATE_ODD =
             "INSERT INTO `bukmaker`.`odd` (`id`, `event_id`, `type_id`, `coefficient`, `param`) " +
@@ -56,7 +62,8 @@ public final class RequestContainer {
             "join odd_type as ot on o.type_id = ot.id\n" +
             "join event as e on o.event_id = e.id\n" +
             "join sport as sp on e.sport_id = sp.id\n" +
-            "where s.user_id = ?";
+                    "where s.user_id = ?\n" +
+            "order by e.time desc";
 
     public static final String GET_ALL_STAKES_BY_EVENT_REQUEST =
             "select st.money * st.coefficient as res, st.user_id, o.param, ot.type from stake as st\n" +
@@ -67,6 +74,24 @@ public final class RequestContainer {
 
     public static final String SET_SCORE_REQUEST =
             "UPDATE `bukmaker`.`event` SET `score1`=?, `score2`=? WHERE `id`=?;\n";
+
+    public static final String GET_INFO_ABOUT_ODD =
+            "SELECT concat(s.sport_type, \".\", e.team1 ,\"-\", e.team2) as info FROM bukmaker.event as e\n" +
+                    "join sport as s on e.sport_id = s.id\n" +
+                    "join odd as o on o.event_id = e.id\n" +
+                    "where o.id = ?";
+
+    public static final String GET_ODD_COEF =
+            "select coefficient from odd\n" +
+                    "where id = ?";
+
+
+    public static final String GET_ODD_OUTCOME =
+            "SELECT concat(ot.type, \"(\", o.param ,\")\") as info FROM bukmaker.odd as o\n" +
+                    "join odd_type as ot on ot.id = o.type_id\n" +
+                    "where o.id = ?";
+
+
 
 
 }

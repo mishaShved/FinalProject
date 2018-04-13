@@ -12,16 +12,18 @@ import java.util.List;
 
 public interface OddDAO {
 
-    void createOdd(int eventId, OddType oddType, double koef, double param)
+    void createOdd(int eventId, OddType oddType, double coef, double param)
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPollIsEmptyException, DAOSQLException;
-
-    void setKoef();
-    void setParam();
-
 
     OddsList getOddsByEvent(int eventId)
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPollIsEmptyException, DAOSQLException;
+
+    String getInfoAboutOdd(int oddId) throws DBLoginException, JDBCDriverNotFoundException, ConnectionPollIsEmptyException, DAOSQLException;
+
+    String getOddType(int oddId) throws DAOSQLException, ConnectionPollIsEmptyException, DBLoginException, JDBCDriverNotFoundException;
+
+    double getCoef(int oddId) throws ConnectionPollIsEmptyException, DBLoginException, JDBCDriverNotFoundException, DAOSQLException;
 
 }

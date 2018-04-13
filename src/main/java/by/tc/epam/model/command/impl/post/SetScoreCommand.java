@@ -10,6 +10,7 @@ import by.tc.epam.model.service.exception.ServiceSQLException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class SetScoreCommand implements Command{
 
@@ -28,6 +29,7 @@ public class SetScoreCommand implements Command{
 
 
             service.setScore(eventId, score1, score2);
+            response.sendRedirect("/jsp/admin_page/AdminPage.jsp");
 
 
         } catch (ServiceSQLException e) {
@@ -35,6 +37,8 @@ public class SetScoreCommand implements Command{
         } catch (ServerOverloadException e) {
             e.printStackTrace();
         } catch (DBWorkingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

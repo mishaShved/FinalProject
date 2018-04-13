@@ -19,7 +19,7 @@ public class StackeDAOImpl implements StackeDAO {
 
 
     @Override
-    public void createStake(int userId, int oddId, double money, double koef)
+    public void createStake(int userId, int oddId, double money, double coef)
             throws ConnectionPollIsEmptyException, DBLoginException,
             JDBCDriverNotFoundException, DAOSQLException, NotEnoughMoneyException {
 
@@ -55,7 +55,7 @@ public class StackeDAOImpl implements StackeDAO {
             createStackeStatement.setInt(2, oddId);
             createStackeStatement.setInt(3, userId);
             createStackeStatement.setDouble(4, money);
-            createStackeStatement.setDouble(5, koef);
+            createStackeStatement.setDouble(5, coef);
 
             createStackeStatement.executeUpdate();
 

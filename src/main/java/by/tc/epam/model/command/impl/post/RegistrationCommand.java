@@ -30,15 +30,17 @@ public class RegistrationCommand implements Command{
         UserService service = serviceFactory.getUserService();
 
         try {
+
+
             service.registration(name, email, password);
-            servlet.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+            response.sendRedirect("/MishaBet");
+
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ServerOverloadException e) {
             e.printStackTrace();
         } catch (DBWorkingException e) {
-            e.printStackTrace();
-        } catch (ServletException e) {
             e.printStackTrace();
         } catch (UserAlreadyExistException e) {
             e.printStackTrace();

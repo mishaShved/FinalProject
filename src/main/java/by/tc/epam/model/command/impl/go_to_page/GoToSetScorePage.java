@@ -23,25 +23,26 @@ public class GoToSetScorePage implements Command{
         ServiceFactory factory = ServiceFactory.getInstance();
         EventService service = factory.getEventService();
 
-        List<Event> events = null;
+        List<Event> events;
 
         try {
             events = service.getAllEvents();
-        } catch (DBWorkingException e) {
+
+            request.setAttribute("eventsList", events);
+
+            servlet.getServletContext().
+                    getRequestDispatcher("/jsp/admin_page/SetScorePage.jsp").
+                    forward(request, response);
+
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         } catch (ServerOverloadException e) {
             e.printStackTrace();
         } catch (ServiceSQLException e) {
             e.printStackTrace();
-        }
-
-        request.setAttribute("eventsList", events);
-
-        try {
-            servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/SetScorePage.jsp").forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (DBWorkingException e) {
             e.printStackTrace();
         }
 

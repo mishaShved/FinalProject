@@ -1,7 +1,6 @@
 package by.tc.epam.model.service;
 
 
-import by.tc.epam.model.entity.Odd;
 import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.entity.OddsList;
 import by.tc.epam.model.service.exception.DBWorkingException;
@@ -18,5 +17,11 @@ public interface OddService {
 
     OddsList getOddsByEvent(int eventId)
             throws ServiceSQLException, ServerOverloadException, DBWorkingException;
+
+    String getInfoAboutOdd(int oddId) throws DBWorkingException, ServerOverloadException, ServiceSQLException;
+
+    String getOddType(int oddId) throws DBWorkingException, ServerOverloadException, ServiceSQLException;
+
+    double getCoef(int oddId) throws DBWorkingException, ServerOverloadException, ServiceSQLException;
 
 }

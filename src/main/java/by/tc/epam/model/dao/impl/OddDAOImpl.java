@@ -18,7 +18,6 @@ import java.util.List;
 public class OddDAOImpl implements OddDAO {
 
 
-
     @Override
     public void createOdd(int eventId, OddType oddType, double koef, double param)
             throws DBLoginException, JDBCDriverNotFoundException,
@@ -43,16 +42,6 @@ public class OddDAOImpl implements OddDAO {
             pool.returnConnection(conn);
         }
 
-
-    }
-
-    @Override
-    public void setKoef() {
-
-    }
-
-    @Override
-    public void setParam() {
 
     }
 
@@ -94,6 +83,90 @@ public class OddDAOImpl implements OddDAO {
 
 
         return odds;
+    }
+
+    @Override
+    public String getInfoAboutOdd(int oddId)
+            throws DBLoginException, JDBCDriverNotFoundException,
+            ConnectionPollIsEmptyException, DAOSQLException {
+
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection conn = pool.getConnection();
+        String oddInfo = "";
+
+        try(PreparedStatement statement =
+                    conn.prepareStatement(RequestContainer.GET_INFO_ABOUT_ODD)){
+
+            statement.setInt(1, oddId);
+
+            ResultSet rs = statement.executeQuery();
+
+            if(rs.next()){
+                oddInfo = rs.getString("info");
+            }
+
+        } catch (SQLException e) {
+            throw new DAOSQLException(e);
+        }
+
+        return oddInfo;
+
+    }
+
+    @Override
+    public String getOddType(int oddId)
+            throws DAOSQLException, ConnectionPollIsEmptyException,
+            DBLoginException, JDBCDriverNotFoundException {
+
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection conn = pool.getConnection();
+        String oddOutcome = "";
+
+        try(PreparedStatement statement =
+                    conn.prepareStatement(RequestContainer.GET_ODD_OUTCOME)){
+
+            statement.setInt(1, oddId);
+
+            ResultSet rs = statement.executeQuery();
+
+            if(rs.next()){
+                oddOutcome = rs.getString("info");
+            }
+
+        } catch (SQLException e) {
+            throw new DAOSQLException(e);
+        }
+
+        return oddOutcome;
+    }
+
+    @Override
+    public double getCoef(int oddId)
+            throws ConnectionPollIsEmptyException, DBLoginException,
+            JDBCDriverNotFoundException, DAOSQLException {
+
+
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection conn = pool.getConnection();
+        double coef = 0;
+
+        try(PreparedStatement statement =
+                    conn.prepareStatement(RequestContainer.GET_ODD_COEF)){
+
+            statement.setInt(1, oddId);
+
+            ResultSet rs = statement.executeQuery();
+
+            if(rs.next()){
+                coef = rs.getDouble("coefficient");
+            }
+
+        } catch (SQLException e) {
+            throw new DAOSQLException(e);
+        }
+
+        return coef;
+
     }
 
 }

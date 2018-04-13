@@ -7,12 +7,9 @@ import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
 import by.tc.epam.model.entity.*;
-import org.omg.PortableServer.REQUEST_PROCESSING_POLICY_ID;
 
-import javax.print.attribute.standard.ReferenceUriSchemesSupported;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class EventDAOImpl implements EventDAO {
@@ -133,7 +130,7 @@ public class EventDAOImpl implements EventDAO {
 
         try(Statement statement = conn.createStatement()){
 
-            ResultSet rs = statement.executeQuery(RequestContainer.SELECT_ALL_EVENTS_REQUEST);
+            ResultSet rs = statement.executeQuery(RequestContainer.SELECT_EVENTS_REQUEST_FOR_SET_SCORE);
 
             allEvents = createEventList(rs);
 
@@ -161,7 +158,7 @@ public class EventDAOImpl implements EventDAO {
         List<Event> partEvent;
 
         try(PreparedStatement statement =
-                    conn.prepareStatement(RequestContainer.SELECT_PART_EVENTS_REQUEST)){
+                    conn.prepareStatement(RequestContainer.SELECT_EVENTS_REQUEST_BY_SPORT)){
 
             statement.setString(1, sportType.name());
 

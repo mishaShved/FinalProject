@@ -58,4 +58,66 @@ public class OddServiceImpl implements OddService{
 
         return odds;
     }
+
+    @Override
+    public String getInfoAboutOdd(int oddId)
+            throws DBWorkingException, ServerOverloadException,
+            ServiceSQLException {
+
+        String oddInfo;
+
+        try{
+            oddInfo = oddDAO.getInfoAboutOdd(oddId);
+        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+            throw new DBWorkingException(e);
+        } catch (ConnectionPollIsEmptyException e) {
+            throw new ServerOverloadException(e);
+        } catch (DAOSQLException e) {
+            throw new ServiceSQLException(e);
+        }
+
+        return oddInfo;
+
+
+    }
+
+    @Override
+    public String getOddType(int oddId)
+            throws DBWorkingException, ServerOverloadException,
+            ServiceSQLException {
+
+        String oddType;
+
+        try{
+            oddType = oddDAO.getOddType(oddId);
+        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+            throw new DBWorkingException(e);
+        } catch (ConnectionPollIsEmptyException e) {
+            throw new ServerOverloadException(e);
+        } catch (DAOSQLException e) {
+            throw new ServiceSQLException(e);
+        }
+
+        return oddType;
+    }
+
+    @Override
+    public double getCoef(int oddId)
+            throws DBWorkingException, ServerOverloadException,
+            ServiceSQLException {
+
+        double coef;
+
+        try{
+            coef = oddDAO.getCoef(oddId);
+        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+            throw new DBWorkingException(e);
+        } catch (ConnectionPollIsEmptyException e) {
+            throw new ServerOverloadException(e);
+        } catch (DAOSQLException e) {
+            throw new ServiceSQLException(e);
+        }
+
+        return coef;
+    }
 }

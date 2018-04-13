@@ -26,11 +26,13 @@ public class GoToCreateOddPageCommand implements Command{
         EventService service = factory.getEventService();
 
         try {
+
             List<Event> events = service.getAllEvents();
 
             request.setAttribute("eventsList", events);
             request.setAttribute("oddTypes", OddType.values());
             request.setAttribute("oddTypesCount", OddType.values().length - 1);
+
             servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/CreateOddPage.jsp")
                     .forward(request, response);
 
