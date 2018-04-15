@@ -1,12 +1,11 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.FinalStringsContainer;
+import by.tc.epam.util.FinalStringsContainer;
 import by.tc.epam.model.entity.User;
-import by.tc.epam.model.service.OddService;
 import by.tc.epam.model.service.ServiceFactory;
-import by.tc.epam.model.service.StackeService;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.StakeService;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.model.service.exception.SmallBalanceException;
@@ -19,8 +18,7 @@ import java.io.IOException;
 public class CreateStackeCommand implements Command{
 
     ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    StackeService stackeService = serviceFactory.getStackeService();
-    OddService oddService = serviceFactory.getOddService();
+    StakeService stackeService = serviceFactory.getStackeService();
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
@@ -28,21 +26,18 @@ public class CreateStackeCommand implements Command{
         User user = (User) request.getSession().getAttribute(FinalStringsContainer.USER);
         int oddId = Integer.parseInt(request.getParameter(FinalStringsContainer.ODD_ID));
         double money =  Double.parseDouble(request.getParameter(FinalStringsContainer.MONEY));
-        double coef;
 
 
         try {
 
-            coef = oddService.getCoef(oddId);
-
-            stackeService.createStake(user.getId(), oddId, money, coef);
+            stackeService.createStake(user.getId(), oddId, money);
 
             response.sendRedirect("/MishaBet");
 
 
         } catch (ServerOverloadException e) {
             e.printStackTrace();
-        } catch (DBWorkingException e) {
+        } catch (DataSourceException e) {
             e.printStackTrace();
         } catch (ServiceSQLException e) {
             e.printStackTrace();

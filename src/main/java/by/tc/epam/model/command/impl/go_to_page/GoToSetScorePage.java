@@ -4,9 +4,10 @@ import by.tc.epam.model.command.Command;
 import by.tc.epam.model.entity.Event;
 import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
+import by.tc.epam.util.FinalStringsContainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +29,7 @@ public class GoToSetScorePage implements Command{
         try {
             events = service.getAllEvents();
 
-            request.setAttribute("eventsList", events);
+            request.setAttribute(FinalStringsContainer.EVENTS_LIST, events);
 
             servlet.getServletContext().
                     getRequestDispatcher("/jsp/admin_page/SetScorePage.jsp").
@@ -42,7 +43,7 @@ public class GoToSetScorePage implements Command{
             e.printStackTrace();
         } catch (ServiceSQLException e) {
             e.printStackTrace();
-        } catch (DBWorkingException e) {
+        } catch (DataSourceException e) {
             e.printStackTrace();
         }
 

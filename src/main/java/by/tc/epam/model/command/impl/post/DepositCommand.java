@@ -1,23 +1,14 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.FinalStringsContainer;
-import by.tc.epam.model.dao.DAOFactory;
-import by.tc.epam.model.dao.UserDAO;
-import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
-import by.tc.epam.model.dao.exception.DAOSQLException;
-import by.tc.epam.model.dao.exception.DBLoginException;
-import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
-import by.tc.epam.model.dao.impl.UserDAOImpl;
+import by.tc.epam.util.FinalStringsContainer;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,7 +37,7 @@ public class DepositCommand implements Command {
 
 
         } catch (ServerOverloadException | ServiceSQLException
-                | DBWorkingException | IOException e) {
+                | DataSourceException | IOException e) {
 
             e.printStackTrace();
         }

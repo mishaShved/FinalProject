@@ -5,9 +5,10 @@ import by.tc.epam.model.entity.Event;
 import by.tc.epam.model.entity.Sport;
 import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
+import by.tc.epam.util.FinalStringsContainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,19 +26,19 @@ public class GetEventsBySportTypeCommand implements Command {
         ServiceFactory factory = ServiceFactory.getInstance();
         EventService service = factory.getEventService();
 
-        Sport sportType = Sport.valueOf(request.getParameter("sportType"));
+        Sport sportType = Sport.valueOf(request.getParameter(FinalStringsContainer.SPORT_TYPE));
 
         try {
 
             List<Event> events = service.getEventsBySport(sportType);
-            request.setAttribute("events", events);
+            request.setAttribute(FinalStringsContainer.EVENTS, events);
 
             servlet.getServletContext().getRequestDispatcher("/jsp/TableBody.jsp")
                     .forward(request,response);
 
         } catch (ServiceSQLException e) {
             e.printStackTrace();
-        } catch (DBWorkingException e) {
+        } catch (DataSourceException e) {
             e.printStackTrace();
         } catch (ServerOverloadException e) {
             e.printStackTrace();

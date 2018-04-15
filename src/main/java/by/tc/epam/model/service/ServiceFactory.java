@@ -2,7 +2,7 @@ package by.tc.epam.model.service;
 
 import by.tc.epam.model.service.impl.EventServiceImpl;
 import by.tc.epam.model.service.impl.OddServiceImpl;
-import by.tc.epam.model.service.impl.StackeServiceImpl;
+import by.tc.epam.model.service.impl.StakeServiceImpl;
 import by.tc.epam.model.service.impl.UserServiceImpl;
 
 public class ServiceFactory {
@@ -11,7 +11,7 @@ public class ServiceFactory {
     private final UserService userService = new UserServiceImpl();
     private final EventService eventService = new EventServiceImpl();
     private final OddService oddService = new OddServiceImpl();
-    private final StackeService stackeService = new StackeServiceImpl();
+    private final StakeService stackeService = new StakeServiceImpl();
 
     public static ServiceFactory getInstance() {
         return ourInstance;
@@ -32,7 +32,7 @@ public class ServiceFactory {
         return oddService;
     }
 
-    public StackeService getStackeService() {
+    public StakeService getStackeService() {
         return stackeService;
     }
 }

@@ -3,10 +3,14 @@ package by.tc.epam.model.dao.impl;
 import by.tc.epam.model.dao.ConnectionPool;
 import by.tc.epam.model.dao.UserDAO;
 import by.tc.epam.model.dao.exception.*;
+import by.tc.epam.model.dao.transaction_dao.TransactionDAOFactory;
+import by.tc.epam.model.dao.transaction_dao.UserTransactionDAO;
+import by.tc.epam.model.dao.transaction_dao.impl.RequestContainer;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.entity.UserType;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
+import javax.jws.soap.SOAPBinding;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,59 +28,38 @@ public class UserDAOImpl implements UserDAO {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
 
-        try (PreparedStatement statement =
-                     conn.prepareStatement(RequestContainer.USER_ADD_REQUEST)){
+        TransactionDAOFactory transactionDAOFactory = TransactionDAOFactory.getInstance();
+        UserTransactionDAO transactionDAO = transactionDAOFactory.getUserTransactionDAO();
 
-            statement.setString(1, null);
-            statement.setString(2, name);
-            statement.setString(3, password);
-            statement.setString(4, email);
+        try{
 
-            statement.executeUpdate();
+            transactionDAO.registration(conn, name, email, password);
 
-
-        } catch (MySQLIntegrityConstraintViolationException e) {
-            throw new DublicateUserException(e);
-        } catch (SQLException e){
-            throw new DAOSQLException(e);
-        } finally {
+        }finally {
             pool.returnConnection(conn);
         }
 
     }
 
     @Override
-    public User login(int id, String password) throws DBLoginException,
+    public User login(int userId, String password) throws DBLoginException,
             JDBCDriverNotFoundException, ConnectionPollIsEmptyException,
             DAOSQLException, IncorrectLoginException {
 
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
-        User user = new User();
 
+        TransactionDAOFactory transactionDAOFactory = TransactionDAOFactory.getInstance();
+        UserTransactionDAO transactionDAO = transactionDAOFactory.getUserTransactionDAO();
 
-        try (PreparedStatement statement =
-                     conn.prepareStatement(RequestContainer.GET_USER_REQUEST)) {
+        User user;
 
-            statement.setInt(1, id);
-            statement.setString(2, password);
+        try{
 
-            ResultSet rs = statement.executeQuery();
+            user = transactionDAO.login(conn, userId, password);
 
-            if (!rs.next()){
-                throw new IncorrectLoginException();
-            }
-
-            user.setId(rs.getInt("id"));
-            user.setBalance(rs.getDouble("balance"));
-            user.setUserType(UserType.valueOf(rs.getString("userType").toUpperCase()));
-            user.setEmail(rs.getString("email"));
-            user.setName(rs.getString("name"));
-
-        } catch (SQLException e){
-            throw new DAOSQLException(e);
-        } finally {
+        }finally {
             pool.returnConnection(conn);
         }
 
@@ -94,88 +77,76 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void logOut() {
-
-    }
-
-    @Override
-    public void withdraw(int id, double money) throws DBLoginException, JDBCDriverNotFoundException, ConnectionPollIsEmptyException, DAOSQLException, NotEnoughMoneyException {
+    public void withdraw(int userId, double money)
+            throws DBLoginException, JDBCDriverNotFoundException,
+            ConnectionPollIsEmptyException, DAOSQLException, NotEnoughMoneyException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
-        double balance = 0;
 
-        try (PreparedStatement withdrawStatement =
-                     conn.prepareStatement(RequestContainer.SET_BALANCE_REQUEST)) {
+        TransactionDAOFactory transactionDAOFactory = TransactionDAOFactory.getInstance();
+        UserTransactionDAO transactionDAO = transactionDAOFactory.getUserTransactionDAO();
 
-            balance += getUserBalance(id);
+        double currentBalance;
 
-            if(balance < money){
+        try{
+
+            currentBalance = transactionDAO.getUserBalance(conn, userId);
+
+            if (currentBalance < money) {
                 throw new NotEnoughMoneyException();
             }
 
-            withdrawStatement.setDouble(1, balance - money);
-            withdrawStatement.setInt(2, id);
+            transactionDAO.setBalance(conn, userId, currentBalance - money);
 
-            withdrawStatement.executeUpdate();
-
-        } catch (SQLException e){
-            throw new DAOSQLException(e);
-        } finally {
+        }finally {
             pool.returnConnection(conn);
         }
 
     }
 
     @Override
-    public void deposit(int id, double money)
+    public void deposit(int userId, double money)
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPollIsEmptyException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
-        double balance = 0;
 
-        try (PreparedStatement preparedStatement =
-                     conn.prepareStatement(RequestContainer.SET_BALANCE_REQUEST)) {
+        TransactionDAOFactory transactionDAOFactory = TransactionDAOFactory.getInstance();
+        UserTransactionDAO transactionDAO = transactionDAOFactory.getUserTransactionDAO();
 
-            balance += getUserBalance(id);
+        double currentBalance = 0;
 
-            preparedStatement.setDouble(1, balance + money);
-            preparedStatement.setInt(2, id);
+        try{
 
-            preparedStatement.executeUpdate();
+            currentBalance = transactionDAO.getUserBalance(conn, userId);
+            transactionDAO.setBalance(conn, userId, currentBalance + money);
 
-        } catch (SQLException e){
-            throw new DAOSQLException(e);
-        } finally {
+        }finally {
             pool.returnConnection(conn);
         }
 
     }
 
     @Override
-    public double getUserBalance(int id) throws DAOSQLException, ConnectionPollIsEmptyException, DBLoginException, JDBCDriverNotFoundException {
+    public double getUserBalance(int userId)
+            throws DAOSQLException, ConnectionPollIsEmptyException,
+            DBLoginException, JDBCDriverNotFoundException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
 
-        double balance = 0;
+        TransactionDAOFactory transactionDAOFactory = TransactionDAOFactory.getInstance();
+        UserTransactionDAO transactionDAO = transactionDAOFactory.getUserTransactionDAO();
 
-        try (PreparedStatement getBalanceStatement =
-                     conn.prepareStatement(RequestContainer.GET_BALANCE_REQUEST)) {
+        double balance;
 
-            getBalanceStatement.setInt(1, id);
+        try{
 
-            ResultSet rs = getBalanceStatement.executeQuery();
+            balance = transactionDAO.getUserBalance(conn, userId);
 
-            if (rs.next()){
-                balance += rs.getDouble("balance");
-            }
-
-        } catch (SQLException e){
-            throw new DAOSQLException(e);
-        } finally {
+        }finally {
             pool.returnConnection(conn);
         }
 

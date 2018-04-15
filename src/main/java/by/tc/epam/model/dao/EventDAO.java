@@ -5,7 +5,6 @@ import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
 import by.tc.epam.model.entity.Event;
-import by.tc.epam.model.entity.Odd;
 import by.tc.epam.model.entity.Sport;
 
 import java.util.Date;
@@ -17,7 +16,9 @@ public interface EventDAO {
             throws ConnectionPollIsEmptyException, DBLoginException,
             JDBCDriverNotFoundException, DAOSQLException;
 
-    void setScore(int eventId, int score1, int score2) throws DBLoginException, JDBCDriverNotFoundException, ConnectionPollIsEmptyException, DAOSQLException;
+    void setScore(int eventId, int score1, int score2)
+            throws DBLoginException, JDBCDriverNotFoundException,
+            ConnectionPollIsEmptyException, DAOSQLException;
 
     List<Event> getAllEvents()
             throws DBLoginException, JDBCDriverNotFoundException,
@@ -27,5 +28,8 @@ public interface EventDAO {
             throws DAOSQLException, DBLoginException,
             JDBCDriverNotFoundException, ConnectionPollIsEmptyException;
 
+    List<Event> getEventsForAddOdd()
+            throws DBLoginException, JDBCDriverNotFoundException,
+            ConnectionPollIsEmptyException, DAOSQLException;
 
 }

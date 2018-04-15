@@ -1,11 +1,11 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.FinalStringsContainer;
+import by.tc.epam.util.FinalStringsContainer;
 import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.service.OddService;
 import by.tc.epam.model.service.ServiceFactory;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 
@@ -36,7 +36,7 @@ public class CreateOddCommand implements Command{
 
         } catch (ServerOverloadException e) {
             e.printStackTrace();
-        } catch (DBWorkingException e) {
+        } catch (DataSourceException e) {
             e.printStackTrace();
         } catch (ServiceSQLException e) {
             e.printStackTrace();

@@ -14,8 +14,10 @@ public class GoToCreateEventPage implements Command {
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
 
         try {
+
             servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/CreateEventPage.jsp")
                     .forward(request, response);
+
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

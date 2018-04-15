@@ -1,4 +1,4 @@
-package by.tc.epam.model.dao.impl;
+package by.tc.epam.model.dao.transaction_dao.impl;
 
 public final class RequestContainer {
 
@@ -8,7 +8,7 @@ public final class RequestContainer {
             "INSERT INTO `bukmaker`.`event` (`id`, `time`, `team1`, `team2`, `sport_id`, `score1`, `score2`)" +
                     " VALUES (?, ?, ?, ?, ?, -1, -1);";
 
-    public static final String SELECT_ALL_EVENTS_REQUEST =
+    public static final String SELECT_EVENTS_REQUEST_FOR_ADD_ODD =
             "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
                     "join bukmaker.sport as s on b.sport_id = s.id " +
                     "where b.time > curdate();";

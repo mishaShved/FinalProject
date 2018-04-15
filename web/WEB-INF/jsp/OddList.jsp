@@ -30,7 +30,6 @@
 
                     <input type="hidden" name="command" value="createStacke">
                     <input type="submit" value="Place bet">
-                    <input type="hidden" name="koef" value="${odds.get(i).koef}">
                     <input type="number" name="money" value="">
                     <input type="hidden" name="oddId" value="${odds.get(i).id}">
 

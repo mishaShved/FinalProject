@@ -1,27 +1,21 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.FinalStringsContainer;
-import by.tc.epam.model.dao.DAOFactory;
-import by.tc.epam.model.dao.UserDAO;
-import by.tc.epam.model.dao.exception.*;
-import by.tc.epam.model.dao.impl.UserDAOImpl;
+import by.tc.epam.util.FinalStringsContainer;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.entity.UserType;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.LoginFailedException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class LoginCommand implements Command {
 
@@ -57,7 +51,7 @@ public class LoginCommand implements Command {
 
 
         } catch (ServerOverloadException | ServiceSQLException
-                | DBWorkingException | LoginFailedException e) {
+                | DataSourceException | LoginFailedException e) {
 
             try {
 

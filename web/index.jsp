@@ -45,8 +45,6 @@
 
     <c:redirect url="/MishaBet"/>
 
-    <%--<c:redirect url="/jsp/StartPage.jsp"/>--%>
-
 
 
   </body>

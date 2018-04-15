@@ -19,7 +19,39 @@
             </jsp:include>
 
 
+            <table class="table table-condensed center-table-class">
 
+                <thead class="table-thead">
+
+                   <tr>
+                       <th>Event</th>
+                       <th>Outcome</th>
+                       <th>Coefficient</th>
+                       <th>Money</th>
+                   </tr>
+
+                </thead>
+                <tbody class="table-body-class">
+
+                    <tr>
+
+                        <td> <c:out value="${oddInfo}"/> </td>
+                        <td> <c:out value="${oddOutcome}"/></td>
+                        <td> <c:out value="${coef}"/></td>
+                        <td>
+                            <form action="/MishaBet" method="post">
+                                <input type="number" required="required" name="money" value=""/>
+                                <input type="hidden" name="command" value="createStake"/>
+                                <input type="hidden" name="oddId" value="${oddId}"/>
+                                <button type="submit" class="btn btn-primary">Make bet</button>
+                            </form>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
 
 
         </div>

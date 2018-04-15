@@ -1,14 +1,13 @@
 package by.tc.epam.model.command.impl.get;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.FinalStringsContainer;
-import by.tc.epam.model.entity.Odd;
+import by.tc.epam.util.FinalStringsContainer;
 import by.tc.epam.model.entity.OddsList;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.OddService;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 public class GetOddsByEventCommand implements Command{
 
@@ -32,38 +30,33 @@ public class GetOddsByEventCommand implements Command{
 
         int eventId = Integer.parseInt(request.getParameter(FinalStringsContainer.EVENT_ID));
 
-        User user = (User)request.getSession().getAttribute("user");
+        User user = (User)request.getSession().getAttribute(FinalStringsContainer.USER);
         int userId = 0;
-        double balance = 0;
+        double balance;
 
         if(user != null) {
             userId = user.getId();
         }
 
-
         try {
-
 
             OddsList odds = oddService.getOddsByEvent(eventId);
 
             if(user != null){
                 balance = userService.getUserBalance(userId);
-                request.setAttribute("balance", balance);
+                request.setAttribute(FinalStringsContainer.BALANCE, balance);
             }
 
-
-            request.setAttribute("odds", odds);
-
+            request.setAttribute(FinalStringsContainer.ODDS, odds);
 
             servlet.getServletContext().getRequestDispatcher("/jsp/ShowOdds.jsp").
                     forward(request, response);
-
 
         } catch (ServiceSQLException e) {
             e.printStackTrace();
         } catch (ServerOverloadException e) {
             e.printStackTrace();
-        } catch (DBWorkingException e) {
+        } catch (DataSourceException e) {
             e.printStackTrace();
         } catch (ServletException e) {
             e.printStackTrace();

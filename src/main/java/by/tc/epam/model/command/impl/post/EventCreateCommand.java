@@ -1,11 +1,11 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.FinalStringsContainer;
+import by.tc.epam.util.FinalStringsContainer;
 import by.tc.epam.model.entity.Sport;
 import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 
@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
-import java.util.Enumeration;
 
 public class EventCreateCommand implements Command {
     @Override
@@ -38,7 +36,7 @@ public class EventCreateCommand implements Command {
             e.printStackTrace();
         } catch (ServerOverloadException e) {
             e.printStackTrace();
-        } catch (DBWorkingException e) {
+        } catch (DataSourceException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();

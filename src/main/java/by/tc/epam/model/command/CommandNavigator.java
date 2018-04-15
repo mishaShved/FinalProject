@@ -33,13 +33,14 @@ public class CommandNavigator {
         navigator.put("createOdd", new CreateOddCommand());
         navigator.put("goToCreateOddPage", new GoToCreateOddPageCommand());
         navigator.put("showOdds", new GetOddsByEventCommand());
-        navigator.put("createStacke", new CreateStackeCommand());
+        navigator.put("createStake", new CreateStackeCommand());
         navigator.put("showStakes", new ShowStakesCommand());
         navigator.put("setScore", new SetScoreCommand());
         navigator.put("goToSetScorePage", new GoToSetScorePage());
         navigator.put("goToDepositWithdrawPage", new GoToDepositWithdrawPage());
         navigator.put("goToCreateEventPage", new GoToCreateEventPage());
         navigator.put("goToStartPage", new GoToStartPage());
+        navigator.put("goToCreateStakePage", new GoToCreateStakePage());
     }
 
     public Command getCommand(String commandName){

@@ -3,8 +3,6 @@ package by.tc.epam.model.dao;
 import by.tc.epam.model.dao.exception.*;
 import by.tc.epam.model.entity.User;
 
-import java.sql.Connection;
-
 public interface UserDAO {
 
     void registration(String name, String email, String password)
@@ -21,8 +19,6 @@ public interface UserDAO {
     void setPassword(int id, String oldPassword, String newPassword);
 
     void setName(int id, String newName);
-
-    void logOut();
 
     void withdraw(int id, double money)
             throws DBLoginException, JDBCDriverNotFoundException,

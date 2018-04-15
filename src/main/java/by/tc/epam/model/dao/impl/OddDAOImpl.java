@@ -6,14 +6,15 @@ import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
+import by.tc.epam.model.dao.transaction_dao.OddTransactionDAO;
+import by.tc.epam.model.dao.transaction_dao.TransactionDAOFactory;
+import by.tc.epam.model.dao.transaction_dao.impl.RequestContainer;
 import by.tc.epam.model.entity.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class OddDAOImpl implements OddDAO {
 
@@ -26,22 +27,16 @@ public class OddDAOImpl implements OddDAO {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
 
-        try(PreparedStatement statement = conn.prepareStatement(RequestContainer.CREATE_ODD)){
+        TransactionDAOFactory transactionDAOFactory = TransactionDAOFactory.getInstance();
+        OddTransactionDAO transactionDAO = transactionDAOFactory.getOddTransactionDAO();
 
-            statement.setString(1, null);
-            statement.setInt(2, eventId);
-            statement.setInt(3, oddType.ordinal() + 1);
-            statement.setDouble(4, koef);
-            statement.setDouble(5, param);
+        try{
 
-            statement.executeUpdate();
+            transactionDAO.createOdd(conn, eventId, oddType, koef, param);
 
-        } catch (SQLException e) {
-            throw new DAOSQLException(e);
         } finally {
             pool.returnConnection(conn);
         }
-
 
     }
 
@@ -52,35 +47,19 @@ public class OddDAOImpl implements OddDAO {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
-        OddsList odds = new OddsList();
 
-        try(PreparedStatement statement =
-                    conn.prepareStatement(RequestContainer.GET_ODD_BY_EVENT)){
+        TransactionDAOFactory transactionDAOFactory = TransactionDAOFactory.getInstance();
+        OddTransactionDAO transactionDAO = transactionDAOFactory.getOddTransactionDAO();
 
-            statement.setInt(1, eventId);
+        OddsList odds;
 
-            ResultSet rs = statement.executeQuery();
-            EntityBuilder builder = EntityBuilder.getInstance();
+        try{
 
-            while(rs.next()){
+            odds = transactionDAO.getOddsByEvent(conn, eventId);
 
-                Odd odd = builder.createOdd();
-
-                odd.setId(rs.getInt("id"));
-                odd.setTeam1(rs.getString("team1"));
-                odd.setTeam2(rs.getString("team2"));
-                odd.setKoef(rs.getDouble("coefficient"));
-                odd.setParam(rs.getDouble("param"));
-                odd.setOddType(OddType.valueOf(rs.getString("type")));
-
-                odds.addOdd(odd);
-
-            }
-
-        } catch (SQLException e) {
-            throw new DAOSQLException(e);
+        }finally {
+            pool.returnConnection(conn);
         }
-
 
         return odds;
     }
@@ -92,21 +71,18 @@ public class OddDAOImpl implements OddDAO {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
-        String oddInfo = "";
 
-        try(PreparedStatement statement =
-                    conn.prepareStatement(RequestContainer.GET_INFO_ABOUT_ODD)){
+        TransactionDAOFactory transactionDAOFactory = TransactionDAOFactory.getInstance();
+        OddTransactionDAO transactionDAO = transactionDAOFactory.getOddTransactionDAO();
 
-            statement.setInt(1, oddId);
+        String oddInfo;
 
-            ResultSet rs = statement.executeQuery();
+        try{
 
-            if(rs.next()){
-                oddInfo = rs.getString("info");
-            }
+            oddInfo = transactionDAO.getInfoAboutOdd(conn, oddId);
 
-        } catch (SQLException e) {
-            throw new DAOSQLException(e);
+        }finally {
+            pool.returnConnection(conn);
         }
 
         return oddInfo;
@@ -120,21 +96,18 @@ public class OddDAOImpl implements OddDAO {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
-        String oddOutcome = "";
 
-        try(PreparedStatement statement =
-                    conn.prepareStatement(RequestContainer.GET_ODD_OUTCOME)){
+        TransactionDAOFactory transactionDAOFactory = TransactionDAOFactory.getInstance();
+        OddTransactionDAO transactionDAO = transactionDAOFactory.getOddTransactionDAO();
 
-            statement.setInt(1, oddId);
+        String oddOutcome;
 
-            ResultSet rs = statement.executeQuery();
+        try{
 
-            if(rs.next()){
-                oddOutcome = rs.getString("info");
-            }
+            oddOutcome = transactionDAO.getOddType(conn, oddId);
 
-        } catch (SQLException e) {
-            throw new DAOSQLException(e);
+        }finally {
+            pool.returnConnection(conn);
         }
 
         return oddOutcome;
@@ -148,21 +121,18 @@ public class OddDAOImpl implements OddDAO {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
-        double coef = 0;
 
-        try(PreparedStatement statement =
-                    conn.prepareStatement(RequestContainer.GET_ODD_COEF)){
+        TransactionDAOFactory transactionDAOFactory = TransactionDAOFactory.getInstance();
+        OddTransactionDAO transactionDAO = transactionDAOFactory.getOddTransactionDAO();
 
-            statement.setInt(1, oddId);
+        double coef;
 
-            ResultSet rs = statement.executeQuery();
+        try{
 
-            if(rs.next()){
-                coef = rs.getDouble("coefficient");
-            }
+            coef = transactionDAO.getCoef(conn, oddId);
 
-        } catch (SQLException e) {
-            throw new DAOSQLException(e);
+        }finally {
+            pool.returnConnection(conn);
         }
 
         return coef;

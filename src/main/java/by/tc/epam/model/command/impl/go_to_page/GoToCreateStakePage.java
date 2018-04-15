@@ -5,9 +5,10 @@ import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.OddService;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
+import by.tc.epam.util.FinalStringsContainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,10 +26,10 @@ public class GoToCreateStakePage implements Command{
         OddService oddService = factory.getOddService();
         UserService userService = factory.getUserService();
 
-        User user = (User)request.getSession().getAttribute("user");
+        User user = (User)request.getSession().getAttribute(FinalStringsContainer.USER);
 
         int userId = user.getId();
-        int oddId = Integer.parseInt(request.getParameter("oddId"));
+        int oddId = Integer.parseInt(request.getParameter(FinalStringsContainer.ODD_ID));
 
         String oddInfo;
         String oddOutcome;
@@ -42,14 +43,15 @@ public class GoToCreateStakePage implements Command{
             oddOutcome = oddService.getOddType(oddId);
             coef = oddService.getCoef(oddId);
 
-            request.setAttribute("oddInfo", oddInfo);
-            request.setAttribute("oddOutcome", oddOutcome);
-            request.setAttribute("coef", coef);
-            request.setAttribute("balance", balance);
+            request.setAttribute(FinalStringsContainer.ODD_INFO, oddInfo);
+            request.setAttribute(FinalStringsContainer.ODD_OUTCOME, oddOutcome);
+            request.setAttribute(FinalStringsContainer.COEF, coef);
+            request.setAttribute(FinalStringsContainer.BALANCE, balance);
+            request.setAttribute(FinalStringsContainer.ODD_ID, oddId);
 
-            servlet.getServletContext().getRequestDispatcher("/jsp/CreateStake.jsp").forward(request, response);
+            servlet.getServletContext().getRequestDispatcher("/jsp/CreateStakePage.jsp").forward(request, response);
 
-        } catch (DBWorkingException e) {
+        } catch (DataSourceException e) {
             e.printStackTrace();
         } catch (ServerOverloadException e) {
             e.printStackTrace();
@@ -60,8 +62,6 @@ public class GoToCreateStakePage implements Command{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
 
     }
 }

@@ -1,17 +1,14 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.FinalStringsContainer;
-import by.tc.epam.model.dao.UserDAO;
-import by.tc.epam.model.dao.exception.*;
+import by.tc.epam.util.FinalStringsContainer;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.model.service.exception.UserAlreadyExistException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,7 +37,7 @@ public class RegistrationCommand implements Command{
             e.printStackTrace();
         } catch (ServerOverloadException e) {
             e.printStackTrace();
-        } catch (DBWorkingException e) {
+        } catch (DataSourceException e) {
             e.printStackTrace();
         } catch (UserAlreadyExistException e) {
             e.printStackTrace();

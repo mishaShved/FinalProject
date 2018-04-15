@@ -6,15 +6,12 @@ import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
-import by.tc.epam.model.entity.Odd;
 import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.entity.OddsList;
 import by.tc.epam.model.service.OddService;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
-
-import java.util.List;
 
 public class OddServiceImpl implements OddService{
 
@@ -23,13 +20,13 @@ public class OddServiceImpl implements OddService{
 
     @Override
     public void createOdd(int eventId, OddType oddType, double koef, double param)
-            throws ServerOverloadException, DBWorkingException,
+            throws ServerOverloadException, DataSourceException,
             ServiceSQLException {
 
         try {
             oddDAO.createOdd(eventId, oddType, koef, param);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
-            throw new DBWorkingException(e);
+            throw new DataSourceException(e);
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
@@ -42,14 +39,14 @@ public class OddServiceImpl implements OddService{
     @Override
     public OddsList getOddsByEvent(int eventId)
             throws ServiceSQLException, ServerOverloadException,
-            DBWorkingException {
+            DataSourceException {
 
         OddsList odds;
 
         try {
             odds = oddDAO.getOddsByEvent(eventId);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
-            throw new DBWorkingException(e);
+            throw new DataSourceException(e);
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
@@ -61,7 +58,7 @@ public class OddServiceImpl implements OddService{
 
     @Override
     public String getInfoAboutOdd(int oddId)
-            throws DBWorkingException, ServerOverloadException,
+            throws DataSourceException, ServerOverloadException,
             ServiceSQLException {
 
         String oddInfo;
@@ -69,7 +66,7 @@ public class OddServiceImpl implements OddService{
         try{
             oddInfo = oddDAO.getInfoAboutOdd(oddId);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
-            throw new DBWorkingException(e);
+            throw new DataSourceException(e);
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
@@ -83,7 +80,7 @@ public class OddServiceImpl implements OddService{
 
     @Override
     public String getOddType(int oddId)
-            throws DBWorkingException, ServerOverloadException,
+            throws DataSourceException, ServerOverloadException,
             ServiceSQLException {
 
         String oddType;
@@ -91,7 +88,7 @@ public class OddServiceImpl implements OddService{
         try{
             oddType = oddDAO.getOddType(oddId);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
-            throw new DBWorkingException(e);
+            throw new DataSourceException(e);
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
@@ -103,7 +100,7 @@ public class OddServiceImpl implements OddService{
 
     @Override
     public double getCoef(int oddId)
-            throws DBWorkingException, ServerOverloadException,
+            throws DataSourceException, ServerOverloadException,
             ServiceSQLException {
 
         double coef;
@@ -111,7 +108,7 @@ public class OddServiceImpl implements OddService{
         try{
             coef = oddDAO.getCoef(oddId);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
-            throw new DBWorkingException(e);
+            throw new DataSourceException(e);
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {

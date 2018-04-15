@@ -14,13 +14,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registration(String name, String email, String password)
-            throws ServiceSQLException, DBWorkingException,
+            throws ServiceSQLException, DataSourceException,
             ServerOverloadException, UserAlreadyExistException {
 
         try {
             userDAO.registration(name, email, password);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
-            throw new DBWorkingException(e);
+            throw new DataSourceException(e);
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException(e);
         } catch (DublicateUserException e) {
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(int id, String password)
-            throws DBWorkingException, ServerOverloadException,
+            throws DataSourceException, ServerOverloadException,
             ServiceSQLException, LoginFailedException {
 
         User user;
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         try {
             user = userDAO.login(id, password);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
-            throw new DBWorkingException(e);
+            throw new DataSourceException(e);
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
@@ -69,13 +69,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void withdraw(int id, double money)
-            throws DBWorkingException, ServiceSQLException,
+            throws DataSourceException, ServiceSQLException,
             ServerOverloadException, SmallBalanceException {
 
         try {
             userDAO.withdraw(id, money);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
-            throw new DBWorkingException(e);
+            throw new DataSourceException(e);
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
@@ -88,13 +88,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deposit(int id, double money)
-            throws DBWorkingException, ServerOverloadException,
+            throws DataSourceException, ServerOverloadException,
             ServiceSQLException {
 
         try {
             userDAO.deposit(id, money);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
-            throw new DBWorkingException(e);
+            throw new DataSourceException(e);
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public double getUserBalance(int id)
             throws ServiceSQLException, ServerOverloadException,
-            DBWorkingException {
+            DataSourceException {
 
         double balance;
 
@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService {
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException(e);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
-            throw new DBWorkingException(e);
+            throw new DataSourceException(e);
         }
 
         return balance;

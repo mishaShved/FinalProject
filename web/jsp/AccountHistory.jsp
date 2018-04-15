@@ -24,23 +24,23 @@
         </tr>
         </thead>
         <tbody class="table-body-class">
-        <c:forEach var="i" begin="0" end="${stackes.size() - 1}">
+        <c:forEach var="i" begin="0" end="${stakes.size() - 1}">
             <tr bgcolor="#d3d3d3">
                 <td colspan="3">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <p> <c:out value="${stackes.get(i).betSum}"/>$ </p>
+                    <p> <c:out value="${stakes.get(i).betSum}"/>$ </p>
                 </td>
                 <td>
-                    <c:out value="${stackes.get(i).koef}"/>
+                    <c:out value="${stakes.get(i).koef}"/>
                 </td>
                 <td>
-                    <c:if test="${stackes.get(i).score1 != -1 && stackes.get(i).isWon() == true}">
-                        <p style="color: limegreen"> <c:out value="${stackes.get(i).betSum * stackes.get(i).koef}"/>$</p>
+                    <c:if test="${stakes.get(i).score1 != -1 && stakes.get(i).isWon() == true}">
+                        <p style="color: limegreen"> <c:out value="${stakes.get(i).betSum * stakes.get(i).koef}"/>$</p>
                     </c:if>
-                    <c:if test="${stackes.get(i).score1 != -1 && stackes.get(i).isWon() == false}">
+                    <c:if test="${stakes.get(i).score1 != -1 && stakes.get(i).isWon() == false}">
                         <p style="color: red"> 0.00$ </p>
                     </c:if>
                 </td>
@@ -48,15 +48,15 @@
             <tr>
                 <td colspan="2">
                     <p>
-                        <c:out value="${stackes.get(i).sportType}"/>.
-                        <c:out value="${stackes.get(i).team1}"/> :
-                        <c:out value="${stackes.get(i).team2}"/>
-                        <c:out value="${stackes.get(i).stakeType}"/>(<c:out value="${stackes.get(i).param}"/>)
+                        <c:out value="${stakes.get(i).sportType}"/>.
+                        <c:out value="${stakes.get(i).team1}"/> :
+                        <c:out value="${stakes.get(i).team2}"/>
+                        <c:out value="${stakes.get(i).stakeType}"/>(<c:out value="${stakes.get(i).param}"/>)
                     </p>
                 </td>
                 <td>
-                    <c:if test="${stackes.get(i).score1 != -1}">
-                        <c:out value="${stackes.get(i).score1}"/> :  <c:out value="${stackes.get(i).score2}"/>
+                    <c:if test="${stakes.get(i).score1 != -1}">
+                        <c:out value="${stakes.get(i).score1}"/> :  <c:out value="${stakes.get(i).score2}"/>
                     </c:if>
                 </td>
             </tr>

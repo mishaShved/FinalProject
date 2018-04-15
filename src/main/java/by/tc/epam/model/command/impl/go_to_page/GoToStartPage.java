@@ -4,9 +4,10 @@ import by.tc.epam.model.command.Command;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
-import by.tc.epam.model.service.exception.DBWorkingException;
+import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
+import by.tc.epam.util.FinalStringsContainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,17 +26,16 @@ public class GoToStartPage implements Command{
 
         int userId = 0;
 
-        User user = (User)request.getSession().getAttribute("user");
+        User user = (User)request.getSession().getAttribute(FinalStringsContainer.USER);
         if(user != null) {
             userId = user.getId();
         }
-
 
         try{
 
             if(user != null) {
                 double balance = service.getUserBalance(userId);
-                request.setAttribute("balance", balance);
+                request.setAttribute(FinalStringsContainer.BALANCE, balance);
             }
 
             servlet.getServletContext().
@@ -46,7 +46,7 @@ public class GoToStartPage implements Command{
             e.printStackTrace();
         } catch (ServiceSQLException e) {
             e.printStackTrace();
-        } catch (DBWorkingException e) {
+        } catch (DataSourceException e) {
             e.printStackTrace();
         } catch (ServletException e) {
             e.printStackTrace();
