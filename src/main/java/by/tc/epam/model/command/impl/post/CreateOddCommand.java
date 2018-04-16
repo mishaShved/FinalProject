@@ -1,7 +1,7 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.service.OddService;
 import by.tc.epam.model.service.ServiceFactory;
@@ -23,10 +23,10 @@ public class CreateOddCommand implements Command{
         ServiceFactory factory = ServiceFactory.getInstance();
         OddService service = factory.getOddService();
 
-        int eventId = Integer.parseInt(request.getParameter(FinalStringsContainer.EVENT_ID));
-        OddType oddType = OddType.valueOf(request.getParameter(FinalStringsContainer.ODD_TYPE));
-        double koef = Double.parseDouble(request.getParameter(FinalStringsContainer.KOEF));
-        double param = Double.parseDouble(request.getParameter(FinalStringsContainer.PARAMETER));
+        int eventId = Integer.parseInt(request.getParameter(ConstantContainer.EVENT_ID));
+        OddType oddType = OddType.valueOf(request.getParameter(ConstantContainer.ODD_TYPE));
+        double koef = Double.parseDouble(request.getParameter(ConstantContainer.KOEF));
+        double param = Double.parseDouble(request.getParameter(ConstantContainer.PARAMETER));
 
 
         try {

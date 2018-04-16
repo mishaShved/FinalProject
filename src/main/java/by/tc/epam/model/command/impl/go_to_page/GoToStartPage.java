@@ -7,7 +7,7 @@ import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +26,7 @@ public class GoToStartPage implements Command{
 
         int userId = 0;
 
-        User user = (User)request.getSession().getAttribute(FinalStringsContainer.USER);
+        User user = (User)request.getSession().getAttribute(ConstantContainer.USER);
         if(user != null) {
             userId = user.getId();
         }
@@ -35,7 +35,7 @@ public class GoToStartPage implements Command{
 
             if(user != null) {
                 double balance = service.getUserBalance(userId);
-                request.setAttribute(FinalStringsContainer.BALANCE, balance);
+                request.setAttribute(ConstantContainer.BALANCE, balance);
             }
 
             servlet.getServletContext().

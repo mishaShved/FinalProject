@@ -6,7 +6,7 @@ import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +21,9 @@ public class SetScoreCommand implements Command{
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
 
-        int eventId = Integer.parseInt(request.getParameter(FinalStringsContainer.EVENT_ID));
-        int score1 = Integer.parseInt(request.getParameter(FinalStringsContainer.SCORE1));
-        int score2 = Integer.parseInt(request.getParameter(FinalStringsContainer.SCORE2));
+        int eventId = Integer.parseInt(request.getParameter(ConstantContainer.EVENT_ID));
+        int score1 = Integer.parseInt(request.getParameter(ConstantContainer.SCORE1));
+        int score2 = Integer.parseInt(request.getParameter(ConstantContainer.SCORE2));
 
 
         try {

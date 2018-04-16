@@ -8,7 +8,7 @@ import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,9 +30,9 @@ public class GoToCreateOddPageCommand implements Command{
 
             List<Event> events = service.getEventsForAddOdd();
 
-            request.setAttribute(FinalStringsContainer.EVENTS_LIST, events);
-            request.setAttribute(FinalStringsContainer.ODD_TYPES, OddType.values());
-            request.setAttribute(FinalStringsContainer.ODD_TYPES_COUNT, OddType.values().length - 1);
+            request.setAttribute(ConstantContainer.EVENTS_LIST, events);
+            request.setAttribute(ConstantContainer.ODD_TYPES, OddType.values());
+            request.setAttribute(ConstantContainer.ODD_TYPES_COUNT, OddType.values().length - 1);
 
             servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/CreateOddPage.jsp")
                     .forward(request, response);

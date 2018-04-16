@@ -7,7 +7,7 @@ import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +28,7 @@ public class GetAllEventsCommand implements Command {
 
 
             List<Event> allEvents = service.getAllEvents();
-            request.setAttribute(FinalStringsContainer.EVENTS, allEvents);
+            request.setAttribute(ConstantContainer.EVENTS, allEvents);
 
             servlet.getServletContext().getRequestDispatcher("/WEB-INF/jsp/AllEvents.jsp").
                     forward(request,response);

@@ -6,8 +6,7 @@ import by.tc.epam.model.entity.EntityBuilder;
 import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.entity.Sport;
 import by.tc.epam.model.entity.Stacke;
-import by.tc.epam.util.FinalStringsContainer;
-import jdk.internal.org.objectweb.asm.tree.FieldInsnNode;
+import by.tc.epam.util.ConstantContainer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -59,15 +58,15 @@ public class StakeTransactionDAOImpl implements StakeTransactionDAO {
 
                 Stacke stacke = entityBuilder.createStacke();
 
-                stacke.setTeam1(rs.getString(FinalStringsContainer.TEAM1));
-                stacke.setTeam2(rs.getString(FinalStringsContainer.TEAM2));
-                stacke.setSportType(Sport.valueOf(rs.getString(FinalStringsContainer.SPORT_TYPE_2)));
-                stacke.setStakeType(OddType.valueOf(rs.getString(FinalStringsContainer.ODD_TYPE_2)));
-                stacke.setBetSum(rs.getDouble(FinalStringsContainer.MONEY));
-                stacke.setKoef(rs.getDouble(FinalStringsContainer.COEFFICIENT));
-                stacke.setScore1(rs.getInt(FinalStringsContainer.SCORE1));
-                stacke.setScore2(rs.getInt(FinalStringsContainer.SCORE2));
-                stacke.setParam(rs.getDouble(FinalStringsContainer.PARAMETER));
+                stacke.setTeam1(rs.getString(ConstantContainer.TEAM1));
+                stacke.setTeam2(rs.getString(ConstantContainer.TEAM2));
+                stacke.setSportType(Sport.valueOf(rs.getString(ConstantContainer.SPORT_TYPE_2)));
+                stacke.setStakeType(OddType.valueOf(rs.getString(ConstantContainer.ODD_TYPE_2)));
+                stacke.setBetSum(rs.getDouble(ConstantContainer.MONEY));
+                stacke.setKoef(rs.getDouble(ConstantContainer.COEFFICIENT));
+                stacke.setScore1(rs.getInt(ConstantContainer.SCORE1));
+                stacke.setScore2(rs.getInt(ConstantContainer.SCORE2));
+                stacke.setParam(rs.getDouble(ConstantContainer.PARAMETER));
 
 
                 stacke.setWon

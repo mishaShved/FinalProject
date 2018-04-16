@@ -4,7 +4,7 @@ import by.tc.epam.model.dao.exception.*;
 import by.tc.epam.model.dao.transaction_dao.UserTransactionDAO;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.entity.UserType;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import java.sql.Connection;
@@ -55,11 +55,11 @@ public class UserTransactionDAOImpl implements UserTransactionDAO {
                 throw new IncorrectLoginException();
             }
 
-            user.setId(rs.getInt(FinalStringsContainer.ID));
-            user.setBalance(rs.getDouble(FinalStringsContainer.BALANCE));
-            user.setUserType(UserType.valueOf(rs.getString(FinalStringsContainer.USER_TYPE).toUpperCase()));
-            user.setEmail(rs.getString(FinalStringsContainer.EMAIL));
-            user.setName(rs.getString(FinalStringsContainer.NAME));
+            user.setId(rs.getInt(ConstantContainer.ID));
+            user.setBalance(rs.getDouble(ConstantContainer.BALANCE));
+            user.setUserType(UserType.valueOf(rs.getString(ConstantContainer.USER_TYPE).toUpperCase()));
+            user.setEmail(rs.getString(ConstantContainer.EMAIL));
+            user.setName(rs.getString(ConstantContainer.NAME));
 
         } catch (SQLException e){
             throw new DAOSQLException(e);
@@ -110,7 +110,7 @@ public class UserTransactionDAOImpl implements UserTransactionDAO {
             ResultSet rs = getBalanceStatement.executeQuery();
 
             if (rs.next()){
-                balance += rs.getDouble(FinalStringsContainer.BALANCE);
+                balance += rs.getDouble(ConstantContainer.BALANCE);
             }
 
         } catch (SQLException e){

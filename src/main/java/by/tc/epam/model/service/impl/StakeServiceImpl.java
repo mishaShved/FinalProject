@@ -9,6 +9,7 @@ import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.model.service.exception.SmallBalanceException;
+import by.tc.epam.util.ConstantContainer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,42 @@ public class StakeServiceImpl implements StakeService {
         }
 
         return foundRes;
+    }
+
+    @Override
+    public int getPageCount(int userId)
+            throws ServerOverloadException,
+            DataSourceException, ServiceSQLException{
+
+        List<Stacke> allStakes;
+        int pageCount;
+
+        try{
+
+            allStakes = dao.getStakesByUserId(userId);
+
+            pageCount = getPageCount(allStakes, ConstantContainer.COUNT_STAKE_ON_PAGE);
+
+        } catch (ConnectionPollIsEmptyException e) {
+            throw new ServerOverloadException();
+        } catch (JDBCDriverNotFoundException | DBLoginException e) {
+            throw new DataSourceException(e);
+        } catch (DAOSQLException e) {
+            throw new ServiceSQLException(e);
+        }
+
+        return pageCount;
+    }
+
+    private int getPageCount(List<?> stake, int countStakesOnPage){
+
+        int pageCount = stake.size() / countStakesOnPage;
+
+        if(stake.size() % countStakesOnPage != 0){
+            pageCount ++;
+        }
+
+        return pageCount;
     }
 
 

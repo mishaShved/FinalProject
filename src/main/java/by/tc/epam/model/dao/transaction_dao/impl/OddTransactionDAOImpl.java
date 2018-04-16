@@ -6,7 +6,7 @@ import by.tc.epam.model.entity.EntityBuilder;
 import by.tc.epam.model.entity.Odd;
 import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.entity.OddsList;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -52,12 +52,12 @@ public class OddTransactionDAOImpl implements OddTransactionDAO {
 
                 Odd odd = builder.createOdd();
 
-                odd.setId(rs.getInt(FinalStringsContainer.ID));
-                odd.setTeam1(rs.getString(FinalStringsContainer.TEAM1));
-                odd.setTeam2(rs.getString(FinalStringsContainer.TEAM2));
-                odd.setKoef(rs.getDouble(FinalStringsContainer.COEFFICIENT));
-                odd.setParam(rs.getDouble(FinalStringsContainer.PARAMETER));
-                odd.setOddType(OddType.valueOf(rs.getString(FinalStringsContainer.TYPE)));
+                odd.setId(rs.getInt(ConstantContainer.ID));
+                odd.setTeam1(rs.getString(ConstantContainer.TEAM1));
+                odd.setTeam2(rs.getString(ConstantContainer.TEAM2));
+                odd.setKoef(rs.getDouble(ConstantContainer.COEFFICIENT));
+                odd.setParam(rs.getDouble(ConstantContainer.PARAMETER));
+                odd.setOddType(OddType.valueOf(rs.getString(ConstantContainer.TYPE)));
 
                 odds.addOdd(odd);
 
@@ -85,7 +85,7 @@ public class OddTransactionDAOImpl implements OddTransactionDAO {
             ResultSet rs = statement.executeQuery();
 
             if(rs.next()){
-                info = rs.getString(FinalStringsContainer.INFO);
+                info = rs.getString(ConstantContainer.INFO);
             }
 
         } catch (SQLException e) {
@@ -109,7 +109,7 @@ public class OddTransactionDAOImpl implements OddTransactionDAO {
             ResultSet rs = statement.executeQuery();
 
             if(rs.next()){
-                oddOutcome = rs.getString(FinalStringsContainer.INFO);
+                oddOutcome = rs.getString(ConstantContainer.INFO);
             }
 
         } catch (SQLException e) {
@@ -133,7 +133,7 @@ public class OddTransactionDAOImpl implements OddTransactionDAO {
             ResultSet rs = statement.executeQuery();
 
             if(rs.next()){
-                coef = rs.getDouble(FinalStringsContainer.COEFFICIENT);
+                coef = rs.getDouble(ConstantContainer.COEFFICIENT);
             }
 
         } catch (SQLException e) {

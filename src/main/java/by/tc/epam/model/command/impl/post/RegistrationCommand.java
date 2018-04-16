@@ -1,7 +1,7 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
@@ -19,9 +19,9 @@ public class RegistrationCommand implements Command{
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
 
-        String name = request.getParameter(FinalStringsContainer.NAME);
-        String password = request.getParameter(FinalStringsContainer.PASSWORD);
-        String email = request.getParameter(FinalStringsContainer.EMAIL);
+        String name = request.getParameter(ConstantContainer.NAME);
+        String password = request.getParameter(ConstantContainer.PASSWORD);
+        String email = request.getParameter(ConstantContainer.EMAIL);
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         UserService service = serviceFactory.getUserService();

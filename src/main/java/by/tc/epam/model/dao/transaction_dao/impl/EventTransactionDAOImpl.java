@@ -5,7 +5,7 @@ import by.tc.epam.model.dao.transaction_dao.EventTransactionDAO;
 import by.tc.epam.model.dao.transaction_dao.TransactionDAOFactory;
 import by.tc.epam.model.dao.transaction_dao.UserTransactionDAO;
 import by.tc.epam.model.entity.*;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -138,10 +138,10 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
 
             while(stakesResSet.next()){
 
-                oddType = OddType.valueOf(stakesResSet.getString(FinalStringsContainer.TYPE));
-                param = stakesResSet.getDouble(FinalStringsContainer.PARAMETER);
-                userId = stakesResSet.getInt(FinalStringsContainer.USER_ID);
-                wonSum = stakesResSet.getDouble(FinalStringsContainer.RES);
+                oddType = OddType.valueOf(stakesResSet.getString(ConstantContainer.TYPE));
+                param = stakesResSet.getDouble(ConstantContainer.PARAMETER);
+                userId = stakesResSet.getInt(ConstantContainer.USER_ID);
+                wonSum = stakesResSet.getDouble(ConstantContainer.RES);
 
                 if(oddType.isWon(score1, score2, param)){
 
@@ -167,11 +167,11 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
 
             Event event = entityBuilder.createEvent();
 
-            event.setId(rs.getInt(FinalStringsContainer.ID));
-            event.setTeam1(rs.getString(FinalStringsContainer.TEAM1));
-            event.setTeam2(rs.getString(FinalStringsContainer.TEAM2));
-            event.setSportType(Sport.valueOf(rs.getString(FinalStringsContainer.SPORT_TYPE_2)));
-            event.setStartTime(rs.getString(FinalStringsContainer.TIME));
+            event.setId(rs.getInt(ConstantContainer.ID));
+            event.setTeam1(rs.getString(ConstantContainer.TEAM1));
+            event.setTeam2(rs.getString(ConstantContainer.TEAM2));
+            event.setSportType(Sport.valueOf(rs.getString(ConstantContainer.SPORT_TYPE_2)));
+            event.setStartTime(rs.getString(ConstantContainer.TIME));
 
             eventList.add(event);
         }

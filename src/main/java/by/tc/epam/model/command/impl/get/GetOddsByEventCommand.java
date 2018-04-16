@@ -1,7 +1,7 @@
 package by.tc.epam.model.command.impl.get;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.entity.OddsList;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.OddService;
@@ -28,9 +28,9 @@ public class GetOddsByEventCommand implements Command{
         OddService oddService = factory.getOddService();
         UserService userService = factory.getUserService();
 
-        int eventId = Integer.parseInt(request.getParameter(FinalStringsContainer.EVENT_ID));
+        int eventId = Integer.parseInt(request.getParameter(ConstantContainer.EVENT_ID));
 
-        User user = (User)request.getSession().getAttribute(FinalStringsContainer.USER);
+        User user = (User)request.getSession().getAttribute(ConstantContainer.USER);
         int userId = 0;
         double balance;
 
@@ -44,10 +44,10 @@ public class GetOddsByEventCommand implements Command{
 
             if(user != null){
                 balance = userService.getUserBalance(userId);
-                request.setAttribute(FinalStringsContainer.BALANCE, balance);
+                request.setAttribute(ConstantContainer.BALANCE, balance);
             }
 
-            request.setAttribute(FinalStringsContainer.ODDS, odds);
+            request.setAttribute(ConstantContainer.ODDS, odds);
 
             servlet.getServletContext().getRequestDispatcher("/jsp/ShowOdds.jsp").
                     forward(request, response);

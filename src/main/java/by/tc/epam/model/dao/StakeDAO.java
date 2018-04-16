@@ -16,5 +16,4 @@ public interface StakeDAO {
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPollIsEmptyException, DAOSQLException;
 
-
 }

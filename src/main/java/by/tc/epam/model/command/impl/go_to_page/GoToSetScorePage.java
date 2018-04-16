@@ -7,7 +7,7 @@ import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +29,7 @@ public class GoToSetScorePage implements Command{
         try {
             events = service.getAllEvents();
 
-            request.setAttribute(FinalStringsContainer.EVENTS_LIST, events);
+            request.setAttribute(ConstantContainer.EVENTS_LIST, events);
 
             servlet.getServletContext().
                     getRequestDispatcher("/jsp/admin_page/SetScorePage.jsp").

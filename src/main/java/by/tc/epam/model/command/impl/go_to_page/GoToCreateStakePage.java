@@ -8,7 +8,7 @@ import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,10 +26,10 @@ public class GoToCreateStakePage implements Command{
         OddService oddService = factory.getOddService();
         UserService userService = factory.getUserService();
 
-        User user = (User)request.getSession().getAttribute(FinalStringsContainer.USER);
+        User user = (User)request.getSession().getAttribute(ConstantContainer.USER);
 
         int userId = user.getId();
-        int oddId = Integer.parseInt(request.getParameter(FinalStringsContainer.ODD_ID));
+        int oddId = Integer.parseInt(request.getParameter(ConstantContainer.ODD_ID));
 
         String oddInfo;
         String oddOutcome;
@@ -43,11 +43,11 @@ public class GoToCreateStakePage implements Command{
             oddOutcome = oddService.getOddType(oddId);
             coef = oddService.getCoef(oddId);
 
-            request.setAttribute(FinalStringsContainer.ODD_INFO, oddInfo);
-            request.setAttribute(FinalStringsContainer.ODD_OUTCOME, oddOutcome);
-            request.setAttribute(FinalStringsContainer.COEF, coef);
-            request.setAttribute(FinalStringsContainer.BALANCE, balance);
-            request.setAttribute(FinalStringsContainer.ODD_ID, oddId);
+            request.setAttribute(ConstantContainer.ODD_INFO, oddInfo);
+            request.setAttribute(ConstantContainer.ODD_OUTCOME, oddOutcome);
+            request.setAttribute(ConstantContainer.COEF, coef);
+            request.setAttribute(ConstantContainer.BALANCE, balance);
+            request.setAttribute(ConstantContainer.ODD_ID, oddId);
 
             servlet.getServletContext().getRequestDispatcher("/jsp/CreateStakePage.jsp").forward(request, response);
 

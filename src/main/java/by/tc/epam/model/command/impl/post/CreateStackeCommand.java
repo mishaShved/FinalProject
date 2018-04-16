@@ -1,7 +1,7 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.StakeService;
@@ -23,9 +23,9 @@ public class CreateStackeCommand implements Command{
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
 
-        User user = (User) request.getSession().getAttribute(FinalStringsContainer.USER);
-        int oddId = Integer.parseInt(request.getParameter(FinalStringsContainer.ODD_ID));
-        double money =  Double.parseDouble(request.getParameter(FinalStringsContainer.MONEY));
+        User user = (User) request.getSession().getAttribute(ConstantContainer.USER);
+        int oddId = Integer.parseInt(request.getParameter(ConstantContainer.ODD_ID));
+        double money =  Double.parseDouble(request.getParameter(ConstantContainer.MONEY));
 
 
         try {

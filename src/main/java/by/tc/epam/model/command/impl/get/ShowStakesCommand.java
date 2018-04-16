@@ -9,7 +9,7 @@ import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,10 +29,10 @@ public class ShowStakesCommand implements Command{
         StakeService stackeService = factory.getStackeService();
         UserService userService = factory.getUserService();
 
-        User user = (User)request.getSession().getAttribute(FinalStringsContainer.USER);
+        User user = (User)request.getSession().getAttribute(ConstantContainer.USER);
 
         int userId = user.getId();
-        int page = Integer.parseInt(request.getParameter(FinalStringsContainer.PAGE));
+        int page = Integer.parseInt(request.getParameter(ConstantContainer.PAGE));
 
 
         List<Stacke> stakes;
@@ -43,8 +43,8 @@ public class ShowStakesCommand implements Command{
 
             double balance = userService.getUserBalance(userId);
 
-            request.setAttribute(FinalStringsContainer.STAKES, stakes);
-            request.setAttribute(FinalStringsContainer.BALANCE, balance);
+            request.setAttribute(ConstantContainer.STAKES, stakes);
+            request.setAttribute(ConstantContainer.BALANCE, balance);
 
             servlet.getServletContext().
                     getRequestDispatcher("/jsp/AccountHistory.jsp").

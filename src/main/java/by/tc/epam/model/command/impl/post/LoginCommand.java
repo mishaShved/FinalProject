@@ -1,7 +1,7 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.entity.UserType;
 import by.tc.epam.model.service.ServiceFactory;
@@ -22,8 +22,8 @@ public class LoginCommand implements Command {
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
 
-        int id = Integer.parseInt(request.getParameter(FinalStringsContainer.ID));
-        String password = request.getParameter(FinalStringsContainer.PASSWORD);
+        int id = Integer.parseInt(request.getParameter(ConstantContainer.ID));
+        String password = request.getParameter(ConstantContainer.PASSWORD);
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         UserService service = serviceFactory.getUserService();
@@ -36,11 +36,11 @@ public class LoginCommand implements Command {
             user = service.login(id, password);
             balance = service.getUserBalance(id);
 
-            request.getSession().setAttribute(FinalStringsContainer.USER, user);
+            request.getSession().setAttribute(ConstantContainer.USER, user);
 
             if(user.getUserType() == UserType.USER) {
 
-                request.setAttribute(FinalStringsContainer.BALANCE, balance);
+                request.setAttribute(ConstantContainer.BALANCE, balance);
 
                 servlet.getServletContext().getRequestDispatcher
                         ("/jsp/StartPage.jsp").forward(request, response);

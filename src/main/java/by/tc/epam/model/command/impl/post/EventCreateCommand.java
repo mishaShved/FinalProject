@@ -1,7 +1,7 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.entity.Sport;
 import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
@@ -21,11 +21,11 @@ public class EventCreateCommand implements Command {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         EventService service = serviceFactory.getEventService();
 
-        String time = request.getParameter(FinalStringsContainer.TIME);
-        String date = request.getParameter(FinalStringsContainer.DATE);
-        Sport sportType = Sport.valueOf(request.getParameter(FinalStringsContainer.SPORT));
-        String team1 = request.getParameter(FinalStringsContainer.TEAM1);
-        String team2 = request.getParameter(FinalStringsContainer.TEAM2);
+        String time = request.getParameter(ConstantContainer.TIME);
+        String date = request.getParameter(ConstantContainer.DATE);
+        Sport sportType = Sport.valueOf(request.getParameter(ConstantContainer.SPORT));
+        String team1 = request.getParameter(ConstantContainer.TEAM1);
+        String team2 = request.getParameter(ConstantContainer.TEAM2);
 
         try {
             service.createEvent(date, time, team1, team2, sportType);

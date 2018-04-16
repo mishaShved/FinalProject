@@ -7,7 +7,7 @@ import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +24,7 @@ public class GoToDepositWithdrawPage implements Command{
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         UserService service = serviceFactory.getUserService();
 
-        User user = (User)request.getSession().getAttribute(FinalStringsContainer.USER);
+        User user = (User)request.getSession().getAttribute(ConstantContainer.USER);
 
         int userId = user.getId();
         double userBalance = 0;
@@ -34,7 +34,7 @@ public class GoToDepositWithdrawPage implements Command{
 
             userBalance = service.getUserBalance(userId);
 
-            request.setAttribute(FinalStringsContainer.BALANCE, userBalance);
+            request.setAttribute(ConstantContainer.BALANCE, userBalance);
 
             servlet.getServletContext().
                     getRequestDispatcher("/jsp/DepositWithdrawPage.jsp").forward(request, response);

@@ -1,7 +1,7 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.util.FinalStringsContainer;
+import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
@@ -23,8 +23,8 @@ public class WithdrawCommand implements Command{
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         UserService service = serviceFactory.getUserService();
 
-        double money = Double.parseDouble(request.getParameter(FinalStringsContainer.VALUE));
-        User user = (User)request.getSession().getAttribute(FinalStringsContainer.USER);
+        double money = Double.parseDouble(request.getParameter(ConstantContainer.VALUE));
+        User user = (User)request.getSession().getAttribute(ConstantContainer.USER);
 
         try {
 
