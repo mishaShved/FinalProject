@@ -25,6 +25,9 @@
         </tr>
         </thead>
         <tbody class="table-body-class">
+
+        <c:if test="${stakes.size() > 0}">
+
         <c:forEach var="i" begin="0" end="${stakes.size() - 1}">
             <tr bgcolor="#d3d3d3">
                 <td colspan="3">
@@ -62,6 +65,9 @@
                 </td>
             </tr>
         </c:forEach>
+
+        </c:if>
+
         </tbody>
     </table>
 

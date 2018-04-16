@@ -26,6 +26,21 @@ body {
     margin: 3px;
 }
 
+nav > div.container-fluid > div.icon-class > a{
+    font-family:'Times New Roman', Times, serif;
+    font-weight:bold;
+    font-size: 55px;
+    font-style:italic;
+    color: #ffffff;
+    margin: 3px;
+}
+
+nav > div.container-fluid > div.icon-class > a:hover{
+    color: #ffffff;
+    text-decoration-line: none;
+}
+
+
 .center-table-class{
     width: 60%;
     margin-right: auto;

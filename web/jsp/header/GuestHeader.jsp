@@ -10,7 +10,9 @@
 <nav class="navbar navbar-default nav-class">
     <div class="container-fluid">
         <div class="navbar-header icon-class">
-            MBET
+            <a href="/MishaBet">
+                MBET
+            </a>
         </div>
         <ul class="nav navbar-nav nav-rigth-class">
             <li><a href="/jsp/LoginPage.jsp">Login</a></li>

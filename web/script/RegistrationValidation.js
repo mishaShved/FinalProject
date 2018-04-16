@@ -9,6 +9,8 @@ const emailFailed = document.getElementById("email-failed");
 const passwordFailed = document.getElementById("password-failed");
 const repeatPasswordFailed = document.getElementById("repeat-password-failed");
 
+const regExp = ".+@.+\..+";
+
 submitButton.onclick = function(event) {
 
     accountField.style.boxShadow = "none";
@@ -17,6 +19,8 @@ submitButton.onclick = function(event) {
     passwordField.style.borderColor = "#ffffff";
     repeatPasswordField.style.boxShadow = "none";
     repeatPasswordField.style.borderColor = "#ffffff";
+    emailField.style.boxShadow = "none";
+    emailField.style.borderColor = "#ffffff";
     nameFailed.innerText = "";
     emailFailed.innerText = "";
     passwordFailed.innerText = "";
@@ -39,6 +43,12 @@ submitButton.onclick = function(event) {
         repeatPasswordField.style.boxShadow = "inset 0 1px 1px #fc2a2a, 0 0 13px #fc2a2a";
         repeatPasswordField.style.borderColor = "#fc2a2a";
         repeatPasswordFailed.innerText = "Passwords do not match";
+        event.preventDefault();
+    }
+    if(emailField.value.search(regExp) === -1){
+        emailField.style.boxShadow = "inset 0 1px 1px #fc2a2a, 0 0 13px #fc2a2a";
+        emailField.style.borderColor = "#fc2a2a";
+        emailFailed.innerText = "It isn't correct e-mail";
         event.preventDefault();
     }
 

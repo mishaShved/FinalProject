@@ -38,8 +38,12 @@ public class Pagination extends SimpleTagSupport {
         out.print(createPageLink(1));
 
         if(currentPage <= 2){
-            out.print(createPageLink(2));
-            out.print(createPageLink(3));
+            if(maxPage > 1){
+                out.print(createPageLink(2));
+            }
+            if (maxPage > 2) {
+                out.print(createPageLink(3));
+            }
         }
 
         if(currentPage > 3){
@@ -61,8 +65,12 @@ public class Pagination extends SimpleTagSupport {
         }
 
         if(currentPage >= maxPage - 1){
-            out.print(createPageLink(maxPage - 2));
-            out.print(createPageLink(maxPage - 1));
+            if(maxPage > 2) {
+                out.print(createPageLink(maxPage - 2));
+            }
+            if(maxPage > 3) {
+                out.print(createPageLink(maxPage - 1));
+            }
         }
 
         if(currentPage < maxPage - 2){
@@ -77,7 +85,9 @@ public class Pagination extends SimpleTagSupport {
             out.print("<ul class=\"pagination\">");
         }
 
-        out.print(createPageLink(maxPage));
+        if(maxPage > 3) {
+            out.print(createPageLink(maxPage));
+        }
 
         out.print("</ul>");
         out.print("</nav>");

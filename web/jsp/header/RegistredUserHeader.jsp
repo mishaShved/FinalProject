@@ -11,27 +11,23 @@
 <nav class="navbar navbar-default nav-class">
     <div class="container-fluid">
         <div class="navbar-header icon-class">
-            MBET
+            <a href="/MishaBet">
+                MBET
+            </a>
         </div>
         <ul class="nav navbar-nav nav-rigth-class">
             <li><a href="#">Settings</a></li>
             <li>
-                <form action="/MishaBet" method="get">
-
-                <input type="hidden" name="command" value="showStakes">
-                <input type="hidden" name="page" value="1">
-                <input type="submit" value="Show Stakes">
-
-                </form>
+                <a href="/MishaBet?command=showStakes&page=1">Account history</a>
             </li>
             <li>
-                <form action="/MishaBet" method="get">
-                    <input type="submit" value="Deposit/Withdraw">
-                    <input type="hidden" name="command" value="goToDepositWithdrawPage">
-                </form>
+                <a href="/MishaBet?command=goToDepositWithdrawPage">Deposit/Withdraw</a>
             </li>
-            <li><p><c:out value="${sessionScope.user.name}"/> <br/>Balance : <c:out value="${balance}"/></p></li>
-            <li><a href="/MishaBet?command=logout">Logout</a></li>
+            <li><p><c:out value="${sessionScope.user.name}"/>
+                    Account number:<c:out value="${sessionScope.user.id}"/>
+                    <br/>Balance : <c:out value="${balance}"/></p></li>
+            <li>
+    <a href="/MishaBet?command=logout">Logout</a></li>
         </ul>
     </div>
 </nav>
