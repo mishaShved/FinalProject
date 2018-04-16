@@ -6,6 +6,8 @@ import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
+import by.tc.epam.model.entity.BukmakerDate;
+import by.tc.epam.model.entity.EntityBuilder;
 import by.tc.epam.model.entity.Event;
 import by.tc.epam.model.entity.Sport;
 import by.tc.epam.model.service.EventService;
@@ -23,10 +25,14 @@ public class EventServiceImpl implements EventService{
     public void createEvent(String date, String time, String team1, String team2, Sport sportType)
             throws ServiceSQLException, ServerOverloadException, DataSourceException {
 
-        String fullDate = date + " " +  time;
+        EntityBuilder builder = EntityBuilder.getInstance();
+        BukmakerDate fullDate = builder.createDate();
+
+        fullDate.setDate(date);
+        fullDate.setTime(time);
 
         try {
-            eventDAO.createEvent(fullDate, team1, team2, sportType);
+            eventDAO.createEvent(fullDate.getFullDate(), team1, team2, sportType);
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException();
         } catch (DBLoginException | JDBCDriverNotFoundException e) {

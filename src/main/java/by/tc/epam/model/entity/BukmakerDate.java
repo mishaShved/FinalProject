@@ -27,7 +27,7 @@ public class BukmakerDate {
     }
 
     public String getFullDate(){
-        return this.date + this.time;
+        return this.date + " " + this.time;
     }
 
     @Override

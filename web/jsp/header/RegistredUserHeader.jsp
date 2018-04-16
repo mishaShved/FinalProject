@@ -19,6 +19,7 @@
                 <form action="/MishaBet" method="get">
 
                 <input type="hidden" name="command" value="showStakes">
+                <input type="hidden" name="page" value="1">
                 <input type="submit" value="Show Stakes">
 
                 </form>

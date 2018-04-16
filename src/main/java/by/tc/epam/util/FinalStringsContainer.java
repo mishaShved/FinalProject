@@ -43,6 +43,7 @@ public final class FinalStringsContainer {
     public static final String INFO = "info";
     public static final String ODD_TYPE_2 = "odd_type";
     public static final String USER_TYPE = "userType";
+    public static final String PAGE = "page";
 
 
 

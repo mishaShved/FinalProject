@@ -14,6 +14,6 @@ public interface StakeService {
             throws ServerOverloadException, DataSourceException,
             ServiceSQLException, SmallBalanceException;
 
-    List<Stacke> getStakesByUserId(int userId)
+    List<Stacke> getStakesByUserId(int userId, int page)
             throws ServiceSQLException, DataSourceException, ServerOverloadException;
 }

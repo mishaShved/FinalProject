@@ -10,6 +10,7 @@ import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.model.service.exception.SmallBalanceException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,7 +21,8 @@ public class StakeServiceImpl implements StakeService {
 
     @Override
     public void createStake(int userId, int oddId, double money)
-            throws ServerOverloadException, DataSourceException, ServiceSQLException, SmallBalanceException {
+            throws ServerOverloadException, DataSourceException,
+            ServiceSQLException, SmallBalanceException {
 
         try {
             dao.createStake(userId, oddId, money);
@@ -37,12 +39,21 @@ public class StakeServiceImpl implements StakeService {
     }
 
     @Override
-    public List<Stacke> getStakesByUserId(int userId) throws ServiceSQLException, DataSourceException, ServerOverloadException {
+    public List<Stacke> getStakesByUserId(int userId, int page)
+            throws ServiceSQLException, DataSourceException,
+            ServerOverloadException {
 
-        List<Stacke> foundRes;
+        List<Stacke> allStakes;
+        List<Stacke> foundRes = new ArrayList<>();
 
         try{
-            foundRes = dao.getStakesByUserId(userId);
+
+            allStakes = dao.getStakesByUserId(userId);
+
+            for(int i = (page - 1) * 5, j = 0; j < 5 && allStakes.size() > i; i++, j++){
+                foundRes.add(allStakes.get(i));
+            }
+
         } catch (ConnectionPollIsEmptyException e) {
             throw new ServerOverloadException();
         } catch (JDBCDriverNotFoundException | DBLoginException e) {

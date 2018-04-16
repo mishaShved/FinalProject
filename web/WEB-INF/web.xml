@@ -16,4 +16,11 @@
         </session-timeout>
     </session-config>
 
+    <jsp-config>
+        <taglib>
+            <taglib-uri>pagination</taglib-uri>
+            <taglib-location>/WEB-INF/tld/Pagination.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+
 </web-app>

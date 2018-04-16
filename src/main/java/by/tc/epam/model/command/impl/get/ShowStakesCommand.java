@@ -30,12 +30,16 @@ public class ShowStakesCommand implements Command{
         UserService userService = factory.getUserService();
 
         User user = (User)request.getSession().getAttribute(FinalStringsContainer.USER);
+
         int userId = user.getId();
+        int page = Integer.parseInt(request.getParameter(FinalStringsContainer.PAGE));
+
+
         List<Stacke> stakes;
 
         try {
 
-            stakes = stackeService.getStakesByUserId(userId);
+            stakes = stackeService.getStakesByUserId(userId, page);
 
             double balance = userService.getUserBalance(userId);
 

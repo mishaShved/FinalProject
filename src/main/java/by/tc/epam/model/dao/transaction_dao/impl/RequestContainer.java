@@ -42,12 +42,12 @@ public final class RequestContainer {
 
     public static final String USER_ADD_REQUEST =
             "INSERT INTO `bukmaker`.`user` (`id`, `name`, `password`, `balance`, `user_type_id`, `email`)" +
-                    " VALUES (?, ?, ?, '0', '2', ?);";
+                    " VALUES (?, ?, md5(?), '0', '2', ?);";
 
     public static final String GET_USER_REQUEST =
             "SELECT u.id, u.name, u.balance, u.email, t.type AS userType FROM bukmaker.user AS u\n" +
                     "JOIN user_type AS t ON u.user_type_id = t.id\n" +
-                    "WHERE u.id = ? AND u.password = ?";
+                    "WHERE u.id = ? AND u.password = md5(?)";
 
     public static final String SET_BALANCE_REQUEST =
             "UPDATE `bukmaker`.`user` SET `balance`=? WHERE `id`=?;";

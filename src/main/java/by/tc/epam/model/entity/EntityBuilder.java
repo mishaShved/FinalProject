@@ -1,6 +1,6 @@
 package by.tc.epam.model.entity;
 
-public class EntityBuilder {
+public final class EntityBuilder {
 
     private static EntityBuilder ourInstance = new EntityBuilder();
 
@@ -19,8 +19,16 @@ public class EntityBuilder {
         return new Event();
     }
 
-    public Odd createOdd(){ return new Odd();}
+    public Odd createOdd(){
+        return new Odd();
+    }
 
-    public Stacke createStacke(){return new Stacke();}
+    public Stacke createStacke(){
+        return new Stacke();
+    }
+
+    public BukmakerDate createDate(){
+        return new BukmakerDate();
+    }
 
 }
