@@ -21,7 +21,7 @@
         <div class="login-background">
             <div class="form-group">
                 <label for="deposit">Account</label>
-                <input type="number" name="value" class="form-control" id="deposit" placeholder="Account Number">
+                <input pattern="\d+(\.\d{2})?" name="value" class="form-control" id="deposit" placeholder="Account Number">
             </div>
             <input type="hidden" name="command" value="deposit">
             <button type="submit" class="btn btn-primary">Deposit</button>
@@ -34,7 +34,7 @@
         <div class="login-background">
             <div class="form-group">
                 <label for="withdraw">Account</label>
-                <input type="number" name="value" class="form-control" id="withdraw" placeholder="Account Number">
+                <input pattern="\d+(\.\d{2})?" name="value" class="form-control" id="withdraw" placeholder="Account Number">
             </div>
             <input type="hidden" name="command" value="withdraw">
             <button type="submit" class="btn btn-primary">Withdraw</button>

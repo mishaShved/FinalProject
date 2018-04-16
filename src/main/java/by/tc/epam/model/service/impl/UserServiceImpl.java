@@ -63,11 +63,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void placeBet(int id, int oddId, double money) {
-
-    }
-
-    @Override
     public void withdraw(int id, double money)
             throws DataSourceException, ServiceSQLException,
             ServerOverloadException, SmallBalanceException {

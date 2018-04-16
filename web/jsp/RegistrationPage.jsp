@@ -30,21 +30,25 @@
                 <div class="form-group">
                     <label for="input-name">Name</label>
                     <input type="text" name="name" class="form-control" id="input-name" placeholder="Name">
+                    <p id="name-failed"></p>
                 </div>
                 <div class="form-group">
                     <label for="input-email">E-Mail</label>
                     <input type="email" name="email" class="form-control" id="input-email" placeholder="E-Mail">
+                    <p id="email-failed"></p>
                 </div>
                 <div class="form-group">
                     <label for="input-password">Password</label>
                     <input type="password" name="password" class="form-control" id="input-password" placeholder="Password">
+                    <p id="password-failed"></p>
                 </div>
                 <div class="form-group">
                     <label for="repeat-password">Repeat password</label>
                     <input type="password" name="repeatPassword" class="form-control" id="repeat-password" placeholder="Password">
+                    <p id="repeat-password-failed"></p>
                 </div>
                 <input type="hidden" value="registration" name="command">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="button-submit">Submit</button>
             </div>
 
         </form>
@@ -53,6 +57,7 @@
 
         <jsp:include page="footer/Footer.jsp"/>
 
+        <script type="text/javascript" src="../script/RegistrationValidation.js"></script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

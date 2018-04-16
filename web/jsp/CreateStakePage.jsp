@@ -40,7 +40,7 @@
                         <td> <c:out value="${coef}"/></td>
                         <td>
                             <form action="/MishaBet" method="post">
-                                <input type="number" required="required" name="money" value=""/>
+                                <input required pattern="\d+(\.\d{2})?" name="money" value=""/>
                                 <input type="hidden" name="command" value="createStake"/>
                                 <input type="hidden" name="oddId" value="${oddId}"/>
                                 <button type="submit" class="btn btn-primary">Make bet</button>

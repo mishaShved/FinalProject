@@ -6,18 +6,14 @@ public class User {
 
     private int id;
     private String name;
-    private Double balance;
-    private String email;
     private UserType userType;
 
     public User() {
     }
 
-    public User(int id, String name, Double balance, String email, UserType userType) {
+    public User(int id, String name, UserType userType) {
         this.id = id;
         this.name = name;
-        this.balance = balance;
-        this.email = email;
         this.userType = userType;
     }
 
@@ -37,22 +33,6 @@ public class User {
         this.name = name;
     }
 
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public UserType getUserType() {
         return userType;
     }
@@ -68,15 +48,13 @@ public class User {
         User user = (User) o;
         return id == user.id &&
                 Objects.equals(name, user.name) &&
-                Objects.equals(balance, user.balance) &&
-                Objects.equals(email, user.email) &&
                 userType == user.userType;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, balance, email, userType);
+        return Objects.hash(id, name,userType);
     }
 
     @Override
@@ -84,8 +62,6 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", balance=" + balance +
-                ", email='" + email + '\'' +
                 ", userType=" + userType +
                 '}';
     }

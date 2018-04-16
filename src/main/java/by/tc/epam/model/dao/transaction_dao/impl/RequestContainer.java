@@ -45,7 +45,7 @@ public final class RequestContainer {
                     " VALUES (?, ?, md5(?), '0', '2', ?);";
 
     public static final String GET_USER_REQUEST =
-            "SELECT u.id, u.name, u.balance, u.email, t.type AS userType FROM bukmaker.user AS u\n" +
+            "SELECT u.id, u.name, t.type AS userType FROM bukmaker.user AS u\n" +
                     "JOIN user_type AS t ON u.user_type_id = t.id\n" +
                     "WHERE u.id = ? AND u.password = md5(?)";
 

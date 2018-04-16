@@ -169,8 +169,18 @@ body {
     height: 35px;
 }
 
+.pagination-center{
+    font-size: 20px;
+}
 
+.pagination-center > table{
+    margin-left: 45%;
+}
 
-
+div.login-background > div.form-group > p{
+    font-family:'Times New Roman', Times, serif;
+    font-size: 15px;
+    color: #fc2a2a;
+}
 
 

@@ -56,9 +56,7 @@ public class UserTransactionDAOImpl implements UserTransactionDAO {
             }
 
             user.setId(rs.getInt(ConstantContainer.ID));
-            user.setBalance(rs.getDouble(ConstantContainer.BALANCE));
             user.setUserType(UserType.valueOf(rs.getString(ConstantContainer.USER_TYPE).toUpperCase()));
-            user.setEmail(rs.getString(ConstantContainer.EMAIL));
             user.setName(rs.getString(ConstantContainer.NAME));
 
         } catch (SQLException e){

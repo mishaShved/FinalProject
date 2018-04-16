@@ -31,13 +31,14 @@
                 </form>
             </li>
             <li><p><c:out value="${sessionScope.user.name}"/> <br/>Balance : <c:out value="${balance}"/></p></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="/MishaBet?command=logout">Logout</a></li>
         </ul>
     </div>
 </nav>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>

@@ -11,10 +11,6 @@ public final class EntityBuilder {
     private EntityBuilder() {
     }
 
-    public User createUser(int id, String name, Double balance, String email, UserType userType){
-        return new User(id, name, balance, email, userType);
-    }
-
     public Event createEvent(){
         return new Event();
     }

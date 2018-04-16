@@ -44,6 +44,7 @@ public final class ConstantContainer {
     public static final String ODD_TYPE_2 = "odd_type";
     public static final String USER_TYPE = "userType";
     public static final String PAGE = "page";
+    public static final String PAGE_COUNT = "pageCount";
 
     public static final int COUNT_STAKE_ON_PAGE = 5;
 

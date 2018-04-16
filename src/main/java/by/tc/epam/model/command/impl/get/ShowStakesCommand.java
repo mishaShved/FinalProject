@@ -34,17 +34,20 @@ public class ShowStakesCommand implements Command{
         int userId = user.getId();
         int page = Integer.parseInt(request.getParameter(ConstantContainer.PAGE));
 
-
+        int pageCount;
         List<Stacke> stakes;
 
         try {
 
             stakes = stackeService.getStakesByUserId(userId, page);
+            pageCount = stackeService.getPageCount(userId);
 
             double balance = userService.getUserBalance(userId);
 
             request.setAttribute(ConstantContainer.STAKES, stakes);
             request.setAttribute(ConstantContainer.BALANCE, balance);
+            request.setAttribute(ConstantContainer.PAGE_COUNT, pageCount);
+            request.setAttribute(ConstantContainer.PAGE, page);
 
             servlet.getServletContext().
                     getRequestDispatcher("/jsp/AccountHistory.jsp").

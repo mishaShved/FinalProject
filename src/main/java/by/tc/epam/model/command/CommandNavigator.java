@@ -41,6 +41,7 @@ public class CommandNavigator {
         navigator.put("goToCreateEventPage", new GoToCreateEventPage());
         navigator.put("goToStartPage", new GoToStartPage());
         navigator.put("goToCreateStakePage", new GoToCreateStakePage());
+        navigator.put("logout", new LogoutCommand());
     }
 
     public Command getCommand(String commandName){
