@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
             userDAO.registration(name, email, password);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DublicateUserException e) {
             throw new UserAlreadyExistException(e);
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
             user = userDAO.login(id, password);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
             userDAO.withdraw(id, money);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
             userDAO.deposit(id, money);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
             balance = userDAO.getUserBalance(id);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);

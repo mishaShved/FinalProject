@@ -1,20 +1,13 @@
 package by.tc.epam.model.dao.impl;
 
-import by.tc.epam.model.dao.ConnectionPool;
 import by.tc.epam.model.dao.UserDAO;
+import by.tc.epam.model.dao.connection_pool.ConnectionPool;
 import by.tc.epam.model.dao.exception.*;
 import by.tc.epam.model.dao.transaction_dao.TransactionDAOFactory;
 import by.tc.epam.model.dao.transaction_dao.UserTransactionDAO;
-import by.tc.epam.model.dao.transaction_dao.impl.RequestContainer;
 import by.tc.epam.model.entity.User;
-import by.tc.epam.model.entity.UserType;
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
-import javax.jws.soap.SOAPBinding;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 
 public class UserDAOImpl implements UserDAO {
@@ -22,7 +15,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void registration(String name, String email, String password)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DublicateUserException,
+            ConnectionPoolException, DublicateUserException,
             DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -43,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User login(int userId, String password) throws DBLoginException,
-            JDBCDriverNotFoundException, ConnectionPollIsEmptyException,
+            JDBCDriverNotFoundException, ConnectionPoolException,
             DAOSQLException, IncorrectLoginException {
 
 
@@ -79,7 +72,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void withdraw(int userId, double money)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException, NotEnoughMoneyException {
+            ConnectionPoolException, DAOSQLException, NotEnoughMoneyException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -108,7 +101,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void deposit(int userId, double money)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException {
+            ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -131,7 +124,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public double getUserBalance(int userId)
-            throws DAOSQLException, ConnectionPollIsEmptyException,
+            throws DAOSQLException, ConnectionPoolException,
             DBLoginException, JDBCDriverNotFoundException {
 
         ConnectionPool pool = ConnectionPool.getInstance();

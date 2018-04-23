@@ -7,12 +7,12 @@ public interface UserDAO {
 
     void registration(String name, String email, String password)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DublicateUserException, DAOSQLException;
+            ConnectionPoolException, DublicateUserException, DAOSQLException;
 
 
     User login(int id, String password)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException,
+            ConnectionPoolException, DAOSQLException,
             IncorrectLoginException;
 
 
@@ -22,16 +22,16 @@ public interface UserDAO {
 
     void withdraw(int id, double money)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException,
+            ConnectionPoolException, DAOSQLException,
             NotEnoughMoneyException;
 
 
     void deposit(int id, double money)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException;
+            ConnectionPoolException, DAOSQLException;
 
 
     double getUserBalance(int id)
-            throws DAOSQLException, ConnectionPollIsEmptyException,
+            throws DAOSQLException, ConnectionPoolException,
             DBLoginException, JDBCDriverNotFoundException;
 }

@@ -8,12 +8,12 @@ import java.util.List;
 public interface StakeDAO {
 
     void createStake(int userId, int oddId, double money)
-            throws ConnectionPollIsEmptyException,
+            throws ConnectionPoolException,
             DBLoginException, JDBCDriverNotFoundException,
             DAOSQLException, NotEnoughMoneyException;
 
     List<Stacke> getStakesByUserId(int userId)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException;
+            ConnectionPoolException, DAOSQLException;
 
 }

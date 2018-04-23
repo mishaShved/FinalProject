@@ -16,19 +16,19 @@
 
         <div class="admin-choice">
 
-            <form action="/MishaBet" method="get">
+            <form action="/MishaBet" method="post">
                 <input type="hidden" name="command" value="goToSetScorePage">
                 <input type="submit" value="Set score">
             </form>
 
-            <form action="/MishaBet" method="get">
+            <form action="/MishaBet" method="post">
 
                 <input type="hidden" name="command" value="goToCreateOddPage">
                 <input type="submit" value="Create Odd">
 
             </form>
 
-            <form action="/MishaBet" method="get">
+            <form action="/MishaBet" method="post">
 
                 <input type="hidden" name="command" value="goToCreateEventPage">
                 <input type="submit" value="Create Event">

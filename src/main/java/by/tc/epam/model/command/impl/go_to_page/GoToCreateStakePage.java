@@ -27,40 +27,52 @@ public class GoToCreateStakePage implements Command{
         UserService userService = factory.getUserService();
 
         User user = (User)request.getSession().getAttribute(ConstantContainer.USER);
-
-        int userId = user.getId();
         int oddId = Integer.parseInt(request.getParameter(ConstantContainer.ODD_ID));
 
-        String oddInfo;
-        String oddOutcome;
-        double coef;
-        double balance;
+        if(user == null){
+            try {
+                request.getSession().setAttribute(ConstantContainer.ODD_ID, oddId);
+                servlet.getServletContext().getRequestDispatcher("/jsp/LoginPage.jsp").forward(request, response);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
+        }else {
 
-        try {
+            int userId = user.getId();
 
-            balance = userService.getUserBalance(userId);
-            oddInfo = oddService.getInfoAboutOdd(oddId);
-            oddOutcome = oddService.getOddType(oddId);
-            coef = oddService.getCoef(oddId);
+            String oddInfo;
+            String oddOutcome;
+            double coef;
+            double balance = 0;
 
-            request.setAttribute(ConstantContainer.ODD_INFO, oddInfo);
-            request.setAttribute(ConstantContainer.ODD_OUTCOME, oddOutcome);
-            request.setAttribute(ConstantContainer.COEF, coef);
-            request.setAttribute(ConstantContainer.BALANCE, balance);
-            request.setAttribute(ConstantContainer.ODD_ID, oddId);
+            try {
 
-            servlet.getServletContext().getRequestDispatcher("/jsp/CreateStakePage.jsp").forward(request, response);
+                balance = userService.getUserBalance(userId);
+                oddInfo = oddService.getInfoAboutOdd(oddId);
+                oddOutcome = oddService.getOddType(oddId);
+                coef = oddService.getCoef(oddId);
 
-        } catch (DataSourceException e) {
-            e.printStackTrace();
-        } catch (ServerOverloadException e) {
-            e.printStackTrace();
-        } catch (ServiceSQLException e) {
-            e.printStackTrace();
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+                request.setAttribute(ConstantContainer.ODD_INFO, oddInfo);
+                request.setAttribute(ConstantContainer.ODD_OUTCOME, oddOutcome);
+                request.setAttribute(ConstantContainer.COEF, coef);
+                request.setAttribute(ConstantContainer.BALANCE, balance);
+                request.setAttribute(ConstantContainer.ODD_ID, oddId);
+
+                servlet.getServletContext().getRequestDispatcher("/jsp/CreateStakePage.jsp").forward(request, response);
+
+            } catch (DataSourceException e) {
+                e.printStackTrace();
+            } catch (ServerOverloadException e) {
+                e.printStackTrace();
+            } catch (ServiceSQLException e) {
+                e.printStackTrace();
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

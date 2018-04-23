@@ -10,6 +10,7 @@
 
 
     <tag>
+
         <name>pagination</name>
         <tag-class>by.tc.epam.tag.Pagination</tag-class>
         <body-content>empty</body-content>
@@ -23,11 +24,7 @@
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
-        <attribute>
-            <name>userId</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
+
     </tag>
 
 </taglib>

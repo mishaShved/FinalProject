@@ -17,6 +17,10 @@ body {
     font-size: 23px;
 }
 
+a:focus {
+    outline: none;
+}
+
 .icon-class{
     font-family:'Times New Roman', Times, serif;
     font-weight:bold;
@@ -39,6 +43,7 @@ nav > div.container-fluid > div.icon-class > a:hover{
     color: #ffffff;
     text-decoration-line: none;
 }
+
 
 
 .center-table-class{

@@ -72,7 +72,7 @@
     </table>
 
     <div class="pagination-center">
-        <p:pagination maxPage="${pageCount}" currentPage="${page}" userId="${sessionScope.user.id}"/>
+        <p:pagination maxPage="${pageCount}" currentPage="${page}"/>
     </div>
 
     </div>

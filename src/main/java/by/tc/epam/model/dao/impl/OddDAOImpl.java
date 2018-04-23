@@ -1,20 +1,16 @@
 package by.tc.epam.model.dao.impl;
 
-import by.tc.epam.model.dao.ConnectionPool;
 import by.tc.epam.model.dao.OddDAO;
-import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
+import by.tc.epam.model.dao.connection_pool.ConnectionPool;
+import by.tc.epam.model.dao.exception.ConnectionPoolException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
 import by.tc.epam.model.dao.transaction_dao.OddTransactionDAO;
 import by.tc.epam.model.dao.transaction_dao.TransactionDAOFactory;
-import by.tc.epam.model.dao.transaction_dao.impl.RequestContainer;
 import by.tc.epam.model.entity.*;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class OddDAOImpl implements OddDAO {
 
@@ -22,7 +18,7 @@ public class OddDAOImpl implements OddDAO {
     @Override
     public void createOdd(int eventId, OddType oddType, double koef, double param)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException {
+            ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -43,7 +39,7 @@ public class OddDAOImpl implements OddDAO {
     @Override
     public OddsList getOddsByEvent(int eventId)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException {
+            ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -67,7 +63,7 @@ public class OddDAOImpl implements OddDAO {
     @Override
     public String getInfoAboutOdd(int oddId)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException {
+            ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -91,7 +87,7 @@ public class OddDAOImpl implements OddDAO {
 
     @Override
     public String getOddType(int oddId)
-            throws DAOSQLException, ConnectionPollIsEmptyException,
+            throws DAOSQLException, ConnectionPoolException,
             DBLoginException, JDBCDriverNotFoundException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -115,7 +111,7 @@ public class OddDAOImpl implements OddDAO {
 
     @Override
     public double getCoef(int oddId)
-            throws ConnectionPollIsEmptyException, DBLoginException,
+            throws ConnectionPoolException, DBLoginException,
             JDBCDriverNotFoundException, DAOSQLException {
 
 

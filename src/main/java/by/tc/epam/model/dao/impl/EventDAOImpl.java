@@ -1,15 +1,13 @@
 package by.tc.epam.model.dao.impl;
 
-import by.tc.epam.model.dao.ConnectionPool;
 import by.tc.epam.model.dao.EventDAO;
-import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
+import by.tc.epam.model.dao.connection_pool.ConnectionPool;
+import by.tc.epam.model.dao.exception.ConnectionPoolException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
 import by.tc.epam.model.dao.transaction_dao.EventTransactionDAO;
 import by.tc.epam.model.dao.transaction_dao.TransactionDAOFactory;
-import by.tc.epam.model.dao.transaction_dao.UserTransactionDAO;
-import by.tc.epam.model.dao.transaction_dao.impl.RequestContainer;
 import by.tc.epam.model.entity.*;
 
 import java.sql.*;
@@ -19,7 +17,7 @@ public class EventDAOImpl implements EventDAO {
 
     @Override
     public void createEvent(String date, String team1, String team2, Sport sportType)
-            throws ConnectionPollIsEmptyException,
+            throws ConnectionPoolException,
             DBLoginException, JDBCDriverNotFoundException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -41,7 +39,7 @@ public class EventDAOImpl implements EventDAO {
     @Override
     public void setScore(int eventId, int score1, int score2)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException {
+            ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -79,7 +77,7 @@ public class EventDAOImpl implements EventDAO {
     @Override
     public List<Event> getAllEvents()
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException {
+            ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -104,7 +102,7 @@ public class EventDAOImpl implements EventDAO {
     @Override
     public List<Event> getEventsBySport(Sport sportType)
             throws DAOSQLException, DBLoginException,
-            JDBCDriverNotFoundException, ConnectionPollIsEmptyException {
+            JDBCDriverNotFoundException, ConnectionPoolException {
 
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -129,7 +127,7 @@ public class EventDAOImpl implements EventDAO {
     @Override
     public List<Event> getEventsForAddOdd()
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException {
+            ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();

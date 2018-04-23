@@ -28,6 +28,8 @@ public class UserTransactionDAOImpl implements UserTransactionDAO {
 
             statement.executeUpdate();
 
+            System.out.println(statement.toString());
+
 
         } catch (MySQLIntegrityConstraintViolationException e) {
             throw new DublicateUserException(e);

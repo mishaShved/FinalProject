@@ -2,7 +2,7 @@ package by.tc.epam.model.service.impl;
 
 import by.tc.epam.model.dao.DAOFactory;
 import by.tc.epam.model.dao.OddDAO;
-import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
+import by.tc.epam.model.dao.exception.ConnectionPoolException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
@@ -27,7 +27,7 @@ public class OddServiceImpl implements OddService{
             oddDAO.createOdd(eventId, oddType, koef, param);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -47,7 +47,7 @@ public class OddServiceImpl implements OddService{
             odds = oddDAO.getOddsByEvent(eventId);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -67,7 +67,7 @@ public class OddServiceImpl implements OddService{
             oddInfo = oddDAO.getInfoAboutOdd(oddId);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -89,7 +89,7 @@ public class OddServiceImpl implements OddService{
             oddType = oddDAO.getOddType(oddId);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -109,7 +109,7 @@ public class OddServiceImpl implements OddService{
             coef = oddDAO.getCoef(oddId);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);

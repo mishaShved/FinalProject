@@ -9,11 +9,6 @@ public class Pagination extends SimpleTagSupport {
 
     int currentPage;
     int maxPage;
-    int userId;
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
@@ -28,65 +23,51 @@ public class Pagination extends SimpleTagSupport {
 
 
         JspWriter out = getJspContext().getOut();
+
         out.print("<table>");
         out.print("<tr>");
         out.print("<td>");
-
         out.print("<nav aria-label=\"Page navigation example\">");
         out.print("<ul class=\"pagination\">");
 
-        out.print(createPageLink(1));
+        if(maxPage == 2){
+            out.print(createPageLink(1));
+            out.print(createPageLink(2));
+        }else if(maxPage == 3){
+            out.print(createPageLink(1));
+            out.print(createPageLink(2));
+            out.print(createPageLink(3));
+        }else {
 
-        if(currentPage <= 2){
-            if(maxPage > 1){
-                out.print(createPageLink(2));
+            if (currentPage >= 3) {
+                out.print(createPageLink(1));
+                if (currentPage > 3) {
+                    createEllipse(out);
+                }
             }
-            if (maxPage > 2) {
-                out.print(createPageLink(3));
+
+            if (currentPage == 1) {
+                for (int i = currentPage, j = 0; j < 3 && j < maxPage; i++, j++) {
+                    out.print(createPageLink(i));
+                }
+            } else if (currentPage == maxPage) {
+                for (int i = currentPage - 2, j = 0; j < 3 && j < maxPage; i++, j++) {
+                    out.print(createPageLink(i));
+                }
+            } else {
+                for (int i = currentPage - 1, j = 0; j < 3 && j < maxPage; i++, j++) {
+                    out.print(createPageLink(i));
+                }
             }
-        }
 
-        if(currentPage > 3){
-            out.print("</ul>");
-            out.print("</nav>");
-            out.print("</td>");
-            out.print("<td>");
-            out.print(" ..... ");
-            out.print("</td>");
-            out.print("<td>");
-            out.print("<nav aria-label=\"Page navigation example\">");
-            out.print("<ul class=\"pagination\">");
-        }
-
-        if(currentPage > 2 && currentPage < maxPage - 1){
-            for(int i = currentPage - 1; i <= currentPage + 1; i++){
-                out.print(createPageLink(i));
+            if (currentPage <= maxPage - 2) {
+                if (currentPage < maxPage - 2) {
+                    createEllipse(out);
+                }
+                out.print(createPageLink(maxPage));
             }
-        }
 
-        if(currentPage >= maxPage - 1){
-            if(maxPage > 2) {
-                out.print(createPageLink(maxPage - 2));
-            }
-            if(maxPage > 3) {
-                out.print(createPageLink(maxPage - 1));
-            }
-        }
 
-        if(currentPage < maxPage - 2){
-            out.print("</ul>");
-            out.print("</nav>");
-            out.print("</td>");
-            out.print("<td>");
-            out.print(" ..... ");
-            out.print("</td>");
-            out.print("<td>");
-            out.print("<nav aria-label=\"Page navigation example\">");
-            out.print("<ul class=\"pagination\">");
-        }
-
-        if(maxPage > 3) {
-            out.print(createPageLink(maxPage));
         }
 
         out.print("</ul>");
@@ -109,5 +90,19 @@ public class Pagination extends SimpleTagSupport {
                 .append("</a></li>");
 
         return form.toString();
+    }
+
+    private void createEllipse(JspWriter out) throws IOException {
+
+        out.print("</ul>");
+        out.print("</nav>");
+        out.print("</td>");
+        out.print("<td>");
+        out.print(" ..... ");
+        out.print("</td>");
+        out.print("<td>");
+        out.print("<nav aria-label=\"Page navigation example\">");
+        out.print("<ul class=\"pagination\">");
+
     }
 }

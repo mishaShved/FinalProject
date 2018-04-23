@@ -27,7 +27,7 @@ public class StakeServiceImpl implements StakeService {
 
         try {
             dao.createStake(userId, oddId, money);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException();
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
@@ -55,7 +55,7 @@ public class StakeServiceImpl implements StakeService {
                 foundRes.add(allStakes.get(i));
             }
 
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException();
         } catch (JDBCDriverNotFoundException | DBLoginException e) {
             throw new DataSourceException(e);
@@ -80,7 +80,7 @@ public class StakeServiceImpl implements StakeService {
 
             pageCount = getPageCount(allStakes, ConstantContainer.COUNT_STAKE_ON_PAGE);
 
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException();
         } catch (JDBCDriverNotFoundException | DBLoginException e) {
             throw new DataSourceException(e);

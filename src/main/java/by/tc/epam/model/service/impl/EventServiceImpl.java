@@ -2,7 +2,7 @@ package by.tc.epam.model.service.impl;
 
 import by.tc.epam.model.dao.DAOFactory;
 import by.tc.epam.model.dao.EventDAO;
-import by.tc.epam.model.dao.exception.ConnectionPollIsEmptyException;
+import by.tc.epam.model.dao.exception.ConnectionPoolException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
@@ -33,7 +33,7 @@ public class EventServiceImpl implements EventService{
 
         try {
             eventDAO.createEvent(fullDate.getFullDate(), team1, team2, sportType);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException();
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
@@ -56,7 +56,7 @@ public class EventServiceImpl implements EventService{
 
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -78,7 +78,7 @@ public class EventServiceImpl implements EventService{
             throw new ServiceSQLException(e);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         }
 
@@ -100,7 +100,7 @@ public class EventServiceImpl implements EventService{
 
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -117,7 +117,7 @@ public class EventServiceImpl implements EventService{
             eventDAO.setScore(eventId, score1, score2);
         } catch (DBLoginException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPollIsEmptyException e) {
+        } catch (ConnectionPoolException e) {
             throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);

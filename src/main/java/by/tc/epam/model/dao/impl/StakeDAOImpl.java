@@ -1,23 +1,16 @@
 package by.tc.epam.model.dao.impl;
 
-import by.tc.epam.model.dao.ConnectionPool;
 import by.tc.epam.model.dao.StakeDAO;
+import by.tc.epam.model.dao.connection_pool.ConnectionPool;
 import by.tc.epam.model.dao.exception.*;
 import by.tc.epam.model.dao.transaction_dao.OddTransactionDAO;
 import by.tc.epam.model.dao.transaction_dao.StakeTransactionDAO;
 import by.tc.epam.model.dao.transaction_dao.TransactionDAOFactory;
 import by.tc.epam.model.dao.transaction_dao.UserTransactionDAO;
-import by.tc.epam.model.dao.transaction_dao.impl.RequestContainer;
-import by.tc.epam.model.entity.EntityBuilder;
-import by.tc.epam.model.entity.OddType;
-import by.tc.epam.model.entity.Sport;
 import by.tc.epam.model.entity.Stacke;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class StakeDAOImpl implements StakeDAO {
@@ -25,7 +18,7 @@ public class StakeDAOImpl implements StakeDAO {
 
     @Override
     public void createStake(int userId, int oddId, double money)
-            throws ConnectionPollIsEmptyException, DBLoginException,
+            throws ConnectionPoolException, DBLoginException,
             JDBCDriverNotFoundException, DAOSQLException, NotEnoughMoneyException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -79,7 +72,7 @@ public class StakeDAOImpl implements StakeDAO {
     @Override
     public List<Stacke> getStakesByUserId(int userId)
             throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPollIsEmptyException, DAOSQLException {
+            ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();

@@ -37,16 +37,22 @@
             <input type="password" name="password" class="form-control" id="input-password" placeholder="Password">
         </div>
         <input type="hidden" value="login" name="command">
-        <button type="submit" class="btn btn-primary" id="button-submit">Submit</button>
+        <button type="submit" class="btn btn-primary" id="button-submit">Login</button>
         </div>
 
     </form>
+
+        <div class="login-background login-form" style=" margin-top: -64px; padding-left: 443px;">
+        <a href="RegistrationPage.jsp">
+            <button class="btn btn-primary">Registration</button>
+        </a>
+        </div>
 
     </div>
 
     <jsp:include page="footer/Footer.jsp"/>
 
-
+    <script src="../script/LoginValidation.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 

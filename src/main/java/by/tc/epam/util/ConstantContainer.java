@@ -45,7 +45,15 @@ public final class ConstantContainer {
     public static final String USER_TYPE = "userType";
     public static final String PAGE = "page";
     public static final String PAGE_COUNT = "pageCount";
+    public static final String CHARACTERS_ENCODING = "characterEncoding";
+    public static final String EMAIL_REG_EXP = ".+@.+\\..+";
 
     public static final int COUNT_STAKE_ON_PAGE = 5;
+    public static final int MIN_LENGTH_PASSWORD = 5;
+    public static final int MAX_LENGTH_PASSWORD = 30;
+    public static final int MIN_ACCOUNT_NUMBER = 0;
+    public static final int MIN_NAME_LENGTH = 3;
+    public static final int MIN_STAKE_SUM = 0;
+    public static final int MIN_COEF = 0;
 
 }
