@@ -14,15 +14,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registration(String name, String email, String password)
-            throws ServiceSQLException, DataSourceException,
-            ServerOverloadException, UserAlreadyExistException {
+            throws ServiceSQLException, UserAlreadyExistException,
+            DataSourceException {
 
         try {
             userDAO.registration(name, email, password);
-        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException(e);
         } catch (DublicateUserException e) {
             throw new UserAlreadyExistException(e);
         } catch (DAOSQLException e) {
@@ -32,17 +30,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(int id, String password)
-            throws DataSourceException, ServerOverloadException,
+            throws DataSourceException,
             ServiceSQLException, LoginFailedException {
 
         User user;
 
         try {
             user = userDAO.login(id, password);
-        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+        } catch (DBLoginException | ConnectionPoolException | JDBCDriverNotFoundException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
         } catch (IncorrectLoginException e) {
@@ -65,14 +61,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void withdraw(int id, double money)
             throws DataSourceException, ServiceSQLException,
-            ServerOverloadException, SmallBalanceException {
+            SmallBalanceException {
 
         try {
             userDAO.withdraw(id, money);
-        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
         } catch (NotEnoughMoneyException e) {
@@ -83,15 +77,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deposit(int id, double money)
-            throws DataSourceException, ServerOverloadException,
-            ServiceSQLException {
+            throws DataSourceException, ServiceSQLException {
 
         try {
             userDAO.deposit(id, money);
-        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
         }
@@ -101,8 +92,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public double getUserBalance(int id)
-            throws ServiceSQLException, ServerOverloadException,
-            DataSourceException {
+            throws ServiceSQLException, DataSourceException {
 
         double balance;
 
@@ -110,9 +100,7 @@ public class UserServiceImpl implements UserService {
             balance = userDAO.getUserBalance(id);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException(e);
-        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
         }
 

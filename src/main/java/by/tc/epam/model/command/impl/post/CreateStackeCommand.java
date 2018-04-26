@@ -1,14 +1,15 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
+import by.tc.epam.model.command.impl.get.GetEventsBySportTypeCommand;
 import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.StakeService;
 import by.tc.epam.model.service.exception.DataSourceException;
-import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.model.service.exception.SmallBalanceException;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CreateStackeCommand implements Command{
+
+    private static final Logger log = Logger.getLogger(CreateStackeCommand.class);
 
     ServiceFactory serviceFactory = ServiceFactory.getInstance();
     StakeService stackeService = serviceFactory.getStackeService();
@@ -35,17 +38,16 @@ public class CreateStackeCommand implements Command{
             response.sendRedirect("/MishaBet");
 
 
-        } catch (ServerOverloadException e) {
-            e.printStackTrace();
         } catch (DataSourceException e) {
-            e.printStackTrace();
+            log.error("Problems with data source", e);
         } catch (ServiceSQLException e) {
-            e.printStackTrace();
+            log.error("SQL error", e);
+        } catch (IOException e) {
+            log.error("Error in pages path", e);
         } catch (SmallBalanceException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
 
     }
 

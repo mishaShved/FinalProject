@@ -1,14 +1,15 @@
 package by.tc.epam.model.command.impl.go_to_page;
 
 import by.tc.epam.model.command.Command;
+import by.tc.epam.model.command.impl.get.GetEventsBySportTypeCommand;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.OddService;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
-import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.util.ConstantContainer;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +19,7 @@ import java.io.IOException;
 
 public class GoToCreateStakePage implements Command{
 
+    private static final Logger log = Logger.getLogger(GoToCreateStakePage.class);
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
@@ -63,16 +65,15 @@ public class GoToCreateStakePage implements Command{
                 servlet.getServletContext().getRequestDispatcher("/jsp/CreateStakePage.jsp").forward(request, response);
 
             } catch (DataSourceException e) {
-                e.printStackTrace();
-            } catch (ServerOverloadException e) {
-                e.printStackTrace();
+                log.error("Problems with data source", e);
             } catch (ServiceSQLException e) {
-                e.printStackTrace();
+                log.error("SQL error", e);
             } catch (ServletException e) {
-                e.printStackTrace();
+                log.error("Servlet error", e);
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("Error in pages path", e);
             }
+
         }
 
     }

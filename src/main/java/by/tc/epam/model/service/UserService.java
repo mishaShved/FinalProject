@@ -7,10 +7,10 @@ public interface UserService {
 
     void registration(String name, String email, String password)
             throws ServiceSQLException, DataSourceException,
-            ServerOverloadException, UserAlreadyExistException;
+            UserAlreadyExistException;
 
     User login(int id, String password)
-            throws DataSourceException, ServerOverloadException,
+            throws DataSourceException,
             ServiceSQLException, LoginFailedException;
 
     void setPassword(int id, String oldPassword, String newPassword);
@@ -19,15 +19,11 @@ public interface UserService {
 
     void withdraw(int id, double money)
             throws DataSourceException, ServiceSQLException,
-            ServerOverloadException, SmallBalanceException;
+            SmallBalanceException;
 
     void deposit(int id, double money)
-            throws DataSourceException, ServerOverloadException,
-            ServiceSQLException;
+            throws DataSourceException, ServiceSQLException;
 
     double getUserBalance(int id)
-            throws ServiceSQLException, ServerOverloadException,
-            DataSourceException;
-
-
+            throws ServiceSQLException, DataSourceException;
 }

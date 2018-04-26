@@ -6,9 +6,9 @@ import by.tc.epam.model.entity.Sport;
 import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.exception.DataSourceException;
-import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.util.ConstantContainer;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+
 public class GetEventsBySportTypeCommand implements Command {
+
+    private static final Logger log = Logger.getLogger(GetEventsBySportTypeCommand.class);
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
@@ -36,17 +39,18 @@ public class GetEventsBySportTypeCommand implements Command {
             servlet.getServletContext().getRequestDispatcher("/jsp/TableBody.jsp")
                     .forward(request,response);
 
-        } catch (ServiceSQLException e) {
-            e.printStackTrace();
+            log.info("sddd");
+
         } catch (DataSourceException e) {
-            e.printStackTrace();
-        } catch (ServerOverloadException e) {
-            e.printStackTrace();
+            log.error("Problems with data source", e);
+        } catch (ServiceSQLException e) {
+            log.error("SQL error", e);
         } catch (ServletException e) {
-            e.printStackTrace();
+            log.error("Servlet error", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error in pages path", e);
         }
+
 
     }
 }

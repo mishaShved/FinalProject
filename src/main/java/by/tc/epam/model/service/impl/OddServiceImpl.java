@@ -10,7 +10,6 @@ import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.entity.OddsList;
 import by.tc.epam.model.service.OddService;
 import by.tc.epam.model.service.exception.DataSourceException;
-import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 
 public class OddServiceImpl implements OddService{
@@ -20,15 +19,13 @@ public class OddServiceImpl implements OddService{
 
     @Override
     public void createOdd(int eventId, OddType oddType, double koef, double param)
-            throws ServerOverloadException, DataSourceException,
+            throws DataSourceException,
             ServiceSQLException {
 
         try {
             oddDAO.createOdd(eventId, oddType, koef, param);
-        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
         }
@@ -38,17 +35,14 @@ public class OddServiceImpl implements OddService{
 
     @Override
     public OddsList getOddsByEvent(int eventId)
-            throws ServiceSQLException, ServerOverloadException,
-            DataSourceException {
+            throws ServiceSQLException, DataSourceException {
 
         OddsList odds;
 
         try {
             odds = oddDAO.getOddsByEvent(eventId);
-        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
         }
@@ -58,17 +52,14 @@ public class OddServiceImpl implements OddService{
 
     @Override
     public String getInfoAboutOdd(int oddId)
-            throws DataSourceException, ServerOverloadException,
-            ServiceSQLException {
+            throws DataSourceException, ServiceSQLException {
 
         String oddInfo;
 
         try{
             oddInfo = oddDAO.getInfoAboutOdd(oddId);
-        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
         }
@@ -80,17 +71,14 @@ public class OddServiceImpl implements OddService{
 
     @Override
     public String getOddType(int oddId)
-            throws DataSourceException, ServerOverloadException,
-            ServiceSQLException {
+            throws DataSourceException, ServiceSQLException {
 
         String oddType;
 
         try{
             oddType = oddDAO.getOddType(oddId);
-        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+        }catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
         }
@@ -100,17 +88,14 @@ public class OddServiceImpl implements OddService{
 
     @Override
     public double getCoef(int oddId)
-            throws DataSourceException, ServerOverloadException,
-            ServiceSQLException {
+            throws DataSourceException, ServiceSQLException {
 
         double coef;
 
         try{
             coef = oddDAO.getCoef(oddId);
-        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
         }

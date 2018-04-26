@@ -13,11 +13,13 @@ public final class ConnectionPool {
 
     private static ConnectionPool instance = new ConnectionPool();
     private BlockingQueue<Connection> connectionQueue;
+    private BlockingQueue<Connection> givenConnections;
     private String driverName;
     private String url;
     private String user;
     private String password;
     private int poolSize;
+    private boolean isBlocked;
 
     private ConnectionPool() {
 
@@ -34,15 +36,20 @@ public final class ConnectionPool {
     }
 
     public void initPoolData() throws ConnectionPoolException {
-        Locale.setDefault(Locale.ENGLISH);
+
+        isBlocked = false;
+
         try {
+
             Class.forName(driverName);
             connectionQueue = new ArrayBlockingQueue<>(poolSize);
+            givenConnections = new ArrayBlockingQueue<>(poolSize);
 
             for (int i = 0; i < poolSize; i++) {
                 Connection conn = DriverManager.getConnection(url, user, password);
                 connectionQueue.add(conn);
             }
+
         } catch (SQLException | ClassNotFoundException e) {
             throw new ConnectionPoolException(e);
         }
@@ -53,8 +60,13 @@ public final class ConnectionPool {
 
         Connection connection;
 
+        if(this.isBlocked){
+            return null;
+        }
+
         try {
             connection = connectionQueue.take();
+            givenConnections.add(connection);
         } catch (InterruptedException e) {
             throw new ConnectionPoolException(e);
         }
@@ -68,18 +80,35 @@ public final class ConnectionPool {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        givenConnections.remove(conn);
         connectionQueue.add(conn);
     }
 
 
-    private void closeConnectionQueue(BlockingQueue<Connection> queue) throws SQLException {
-        Connection connection;
-        while ((connection = queue.poll()) != null) {
-            if (!connection.getAutoCommit()) {
-                connection.commit();
+    public void closeConnections() throws ConnectionPoolException, InterruptedException {
+
+        while(givenConnections.size() != 0) {
+
+            try {
+                givenConnections.take().close();
+
+            } catch (SQLException e) {
+                throw new ConnectionPoolException(e);
             }
-            connection.close();
+
         }
+
+        while(connectionQueue.size() != 0) {
+
+            try {
+                connectionQueue.take().close();
+
+            } catch (SQLException e) {
+                throw new ConnectionPoolException(e);
+            }
+        }
+
+
+
     }
 }

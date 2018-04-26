@@ -1,13 +1,14 @@
 package by.tc.epam.model.command.impl.go_to_page;
 
 import by.tc.epam.model.command.Command;
+import by.tc.epam.model.command.impl.get.GetEventsBySportTypeCommand;
 import by.tc.epam.model.entity.Event;
 import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.exception.DataSourceException;
-import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.util.ConstantContainer;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class GoToSetScorePage implements Command{
+
+    private static final Logger log = Logger.getLogger(GoToSetScorePage.class);
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
@@ -35,17 +38,16 @@ public class GoToSetScorePage implements Command{
                     getRequestDispatcher("/jsp/admin_page/SetScorePage.jsp").
                     forward(request, response);
 
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ServerOverloadException e) {
-            e.printStackTrace();
-        } catch (ServiceSQLException e) {
-            e.printStackTrace();
         } catch (DataSourceException e) {
-            e.printStackTrace();
+            log.error("Problems with data source", e);
+        } catch (ServiceSQLException e) {
+            log.error("SQL error", e);
+        } catch (ServletException e) {
+            log.error("Servlet error", e);
+        } catch (IOException e) {
+            log.error("Error in pages path", e);
         }
+
 
     }
 }

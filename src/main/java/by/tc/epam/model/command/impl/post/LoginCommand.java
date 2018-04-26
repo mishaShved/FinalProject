@@ -1,7 +1,7 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.model.dao.transaction_dao.impl.RequestContainer;
+import by.tc.epam.model.command.impl.get.GetEventsBySportTypeCommand;
 import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.entity.UserType;
@@ -9,10 +9,9 @@ import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.LoginFailedException;
-import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
+import org.apache.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LoginCommand implements Command {
+
+    private static final Logger log = Logger.getLogger(LoginCommand.class);
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
@@ -69,21 +70,17 @@ public class LoginCommand implements Command {
             }
 
 
-        } catch (ServerOverloadException | ServiceSQLException
-                | DataSourceException | LoginFailedException e) {
-
-            try {
-
-                response.sendRedirect("/WEB-INF/jsp/Failed.jsp");
-
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (DataSourceException e) {
+            log.error("Problems with data source", e);
+        } catch (ServiceSQLException e) {
+            log.error("SQL error", e);
         } catch (ServletException e) {
+            log.error("Servlet error", e);
+        } catch (IOException e) {
+            log.error("Error in pages path", e);
+        } catch (LoginFailedException e) {
             e.printStackTrace();
         }
+
     }
 }

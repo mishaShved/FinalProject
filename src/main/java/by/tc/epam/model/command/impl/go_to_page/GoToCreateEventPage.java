@@ -1,6 +1,8 @@
 package by.tc.epam.model.command.impl.go_to_page;
 
 import by.tc.epam.model.command.Command;
+import by.tc.epam.model.command.impl.get.GetEventsBySportTypeCommand;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class GoToCreateEventPage implements Command {
+
+    private static final Logger log = Logger.getLogger(GoToCreateEventPage.class);
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
@@ -19,10 +23,11 @@ public class GoToCreateEventPage implements Command {
                     .forward(request, response);
 
         } catch (ServletException e) {
-            e.printStackTrace();
+            log.error("Servlet error", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error in pages path", e);
         }
+
 
     }
 }

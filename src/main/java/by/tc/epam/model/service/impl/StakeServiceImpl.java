@@ -6,7 +6,6 @@ import by.tc.epam.model.dao.exception.*;
 import by.tc.epam.model.entity.Stacke;
 import by.tc.epam.model.service.StakeService;
 import by.tc.epam.model.service.exception.DataSourceException;
-import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.model.service.exception.SmallBalanceException;
 import by.tc.epam.util.ConstantContainer;
@@ -22,16 +21,14 @@ public class StakeServiceImpl implements StakeService {
 
     @Override
     public void createStake(int userId, int oddId, double money)
-            throws ServerOverloadException, DataSourceException,
+            throws DataSourceException,
             ServiceSQLException, SmallBalanceException {
 
         try {
             dao.createStake(userId, oddId, money);
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException();
-        } catch (DBLoginException | JDBCDriverNotFoundException e) {
+        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
-        } catch (DAOSQLException e) {
+        }catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
         } catch (NotEnoughMoneyException e) {
             throw new SmallBalanceException(e);
@@ -41,8 +38,7 @@ public class StakeServiceImpl implements StakeService {
 
     @Override
     public List<Stacke> getStakesByUserId(int userId, int page)
-            throws ServiceSQLException, DataSourceException,
-            ServerOverloadException {
+            throws ServiceSQLException, DataSourceException{
 
         List<Stacke> allStakes;
         List<Stacke> foundRes = new ArrayList<>();
@@ -55,9 +51,7 @@ public class StakeServiceImpl implements StakeService {
                 foundRes.add(allStakes.get(i));
             }
 
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException();
-        } catch (JDBCDriverNotFoundException | DBLoginException e) {
+        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -68,8 +62,7 @@ public class StakeServiceImpl implements StakeService {
 
     @Override
     public int getPageCount(int userId)
-            throws ServerOverloadException,
-            DataSourceException, ServiceSQLException{
+            throws DataSourceException, ServiceSQLException{
 
         List<Stacke> allStakes;
         int pageCount;
@@ -80,9 +73,7 @@ public class StakeServiceImpl implements StakeService {
 
             pageCount = getPageCount(allStakes, ConstantContainer.COUNT_STAKE_ON_PAGE);
 
-        } catch (ConnectionPoolException e) {
-            throw new ServerOverloadException();
-        } catch (JDBCDriverNotFoundException | DBLoginException e) {
+        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);

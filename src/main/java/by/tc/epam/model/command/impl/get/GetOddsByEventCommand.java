@@ -8,8 +8,8 @@ import by.tc.epam.model.service.OddService;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
-import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class GetOddsByEventCommand implements Command{
 
-
+    private static final Logger log = Logger.getLogger(GetOddsByEventCommand.class);
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
@@ -52,17 +52,16 @@ public class GetOddsByEventCommand implements Command{
             servlet.getServletContext().getRequestDispatcher("/jsp/ShowOdds.jsp").
                     forward(request, response);
 
-        } catch (ServiceSQLException e) {
-            e.printStackTrace();
-        } catch (ServerOverloadException e) {
-            e.printStackTrace();
         } catch (DataSourceException e) {
-            e.printStackTrace();
+            log.error("Problems with data source", e);
+        } catch (ServiceSQLException e) {
+            log.error("SQL error", e);
         } catch (ServletException e) {
-            e.printStackTrace();
+            log.error("Servlet error", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error in pages path", e);
         }
+
 
 
     }

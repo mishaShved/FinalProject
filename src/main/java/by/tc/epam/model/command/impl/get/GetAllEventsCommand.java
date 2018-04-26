@@ -5,9 +5,11 @@ import by.tc.epam.model.entity.Event;
 import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.exception.DataSourceException;
-import by.tc.epam.model.service.exception.ServerOverloadException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.util.ConstantContainer;
+import org.apache.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +19,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class GetAllEventsCommand implements Command {
+
+    private static final Logger log = Logger.getLogger(GetAllEventsCommand.class);
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
@@ -34,15 +38,13 @@ public class GetAllEventsCommand implements Command {
                     forward(request,response);
 
         } catch (DataSourceException e) {
-            e.printStackTrace();
-        } catch (ServerOverloadException e) {
-            e.printStackTrace();
+            log.error("Problems with data source", e);
         } catch (ServiceSQLException e) {
-            e.printStackTrace();
+            log.error("SQL error", e);
         } catch (ServletException e) {
-            e.printStackTrace();
+            log.error("Servlet error", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error in pages path", e);
         }
 
     }
