@@ -1,14 +1,12 @@
 package by.tc.epam.model.command;
 
-import by.tc.epam.model.command.impl.get.GetAllEventsCommand;
-import by.tc.epam.model.command.impl.get.GetEventsBySportTypeCommand;
-import by.tc.epam.model.command.impl.get.GetOddsByEventCommand;
-import by.tc.epam.model.command.impl.get.ShowStakesCommand;
-import by.tc.epam.model.command.impl.go_to_page.*;
-import by.tc.epam.model.command.impl.post.*;
-
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class CommandNavigator {
 
@@ -23,25 +21,37 @@ public class CommandNavigator {
     private CommandNavigator() {
 
         navigator = new HashMap<>();
-        navigator.put("login", new LoginCommand());
-        navigator.put("registration", new RegistrationCommand());
-        navigator.put("deposit", new DepositCommand());
-        navigator.put("withdraw", new WithdrawCommand());
-        navigator.put("createEvent", new EventCreateCommand());
-        navigator.put("showEvents", new GetAllEventsCommand());
-        navigator.put("showEventsBySport", new GetEventsBySportTypeCommand());
-        navigator.put("createOdd", new CreateOddCommand());
-        navigator.put("goToCreateOddPage", new GoToCreateOddPageCommand());
-        navigator.put("showOdds", new GetOddsByEventCommand());
-        navigator.put("createStake", new CreateStackeCommand());
-        navigator.put("showStakes", new ShowStakesCommand());
-        navigator.put("setScore", new SetScoreCommand());
-        navigator.put("goToSetScorePage", new GoToSetScorePage());
-        navigator.put("goToDepositWithdrawPage", new GoToDepositWithdrawPage());
-        navigator.put("goToCreateEventPage", new GoToCreateEventPage());
-        navigator.put("goToStartPage", new GoToStartPage());
-        navigator.put("goToCreateStakePage", new GoToCreateStakePage());
-        navigator.put("logout", new LogoutCommand());
+
+        FileInputStream fis;
+        Properties property = new Properties();
+
+        try {
+            fis = new FileInputStream("/home/misha/Desktop/FinalProject/src/main/resources/command_resource/commandList.properties");
+            property.load(fis);
+
+            Enumeration<?> commandNames = property.propertyNames();
+            String currentCommandClassName;
+            String currentCommandName;
+
+            while(commandNames.hasMoreElements()){
+
+                currentCommandName = (String)commandNames.nextElement();
+                currentCommandClassName = property.getProperty(currentCommandName);
+                navigator.put(currentCommandName, (Command) Class.forName(currentCommandClassName).newInstance());
+
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public Command getCommand(String commandName){

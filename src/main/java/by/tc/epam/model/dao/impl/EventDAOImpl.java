@@ -101,8 +101,7 @@ public class EventDAOImpl implements EventDAO {
 
     @Override
     public List<Event> getEventsBySport(Sport sportType)
-            throws DAOSQLException, DBLoginException,
-            JDBCDriverNotFoundException, ConnectionPoolException {
+            throws DAOSQLException, ConnectionPoolException {
 
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -126,8 +125,7 @@ public class EventDAOImpl implements EventDAO {
 
     @Override
     public List<Event> getEventsForAddOdd()
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DAOSQLException {
+            throws ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();

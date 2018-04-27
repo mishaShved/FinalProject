@@ -39,8 +39,6 @@ public class GetEventsBySportTypeCommand implements Command {
             servlet.getServletContext().getRequestDispatcher("/jsp/TableBody.jsp")
                     .forward(request,response);
 
-            log.info("sddd");
-
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);
         } catch (ServiceSQLException e) {

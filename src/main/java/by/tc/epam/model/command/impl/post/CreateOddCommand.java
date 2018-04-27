@@ -1,7 +1,6 @@
 package by.tc.epam.model.command.impl.post;
 
 import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.get.GetEventsBySportTypeCommand;
 import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.service.OddService;

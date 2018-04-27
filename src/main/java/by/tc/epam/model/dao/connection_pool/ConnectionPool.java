@@ -2,6 +2,7 @@ package by.tc.epam.model.dao.connection_pool;
 
 import by.tc.epam.model.dao.connection_pool.util.DBProperty;
 import by.tc.epam.model.dao.exception.ConnectionPoolException;
+import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.Locale;
@@ -9,7 +10,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public final class ConnectionPool {
-
 
     private static ConnectionPool instance = new ConnectionPool();
     private BlockingQueue<Connection> connectionQueue;

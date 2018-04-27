@@ -29,7 +29,7 @@ public class AdminPagesFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest)request;
         User user = (User)httpRequest.getSession().getAttribute(ConstantContainer.USER);
 
-        if (user.getUserType() != UserType.ADMIN){
+        if (user == null || user.getUserType() != UserType.ADMIN){
             httpResponse.sendRedirect("/jsp/error_page/IsNotAdminPage.jsp");
         }
 
