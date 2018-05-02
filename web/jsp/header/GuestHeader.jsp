@@ -1,6 +1,15 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../css/styles.css">
+
+<fmt:bundle basename="locale">
+    <fmt:message key="local.header.login" var="login"/>
+    <fmt:message key="local.header.registration" var="registration"/>
+</fmt:bundle>
+
+
+
 <html>
 <head>
     <title>Title</title>
@@ -15,8 +24,8 @@
             </a>
         </div>
         <ul class="nav navbar-nav nav-rigth-class">
-            <li><a href="/jsp/LoginPage.jsp">Login</a></li>
-            <li><a href="/jsp/RegistrationPage.jsp">Registration</a></li>
+            <li><a href="/jsp/LoginPage.jsp">${login}</a></li>
+            <li><a href="/jsp/RegistrationPage.jsp">${registration}</a></li>
         </ul>
     </div>
 </nav>

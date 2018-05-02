@@ -1,7 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/styles.css">
+
+<fmt:bundle basename="locale">
+    <fmt:message key="local.loginPage.accountNumber" var="account"/>
+    <fmt:message key="local.loginPage.password" var="password"/>
+    <fmt:message key="local.loginPage.loginButton" var="login"/>
+    <fmt:message key="local.loginPage.registrationButton" var="registration"/>
+    <fmt:message key="local.loginPage.back" var="back"/>
+</fmt:bundle>
+
 
 <html>
 

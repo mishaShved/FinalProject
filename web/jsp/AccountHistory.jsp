@@ -1,8 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="p" uri="pagination" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/styles.css">
+
+
+<fmt:bundle basename="locale">
+    <fmt:message key="local.accountHistory.stakeType" var="stakeType"/>
+    <fmt:message key="local.accountHistory.coefficient" var="coef"/>
+    <fmt:message key="local.accountHistory.result" var="result"/>
+</fmt:bundle>
 
 <html>
 <head>
@@ -19,9 +27,9 @@
 
         <thead class="table-thead">
         <tr>
-            <th>Stake type</th>
-            <th>Coefficient</th>
-            <th>Result</th>
+            <th>${stakeType}</th>
+            <th>${coef}</th>
+            <th>${result}</th>
         </tr>
         </thead>
         <tbody class="table-body-class">

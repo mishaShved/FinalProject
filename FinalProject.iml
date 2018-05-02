@@ -40,6 +40,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="log4j-1.2.17" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.41" level="project" />
     <orderEntry type="library" name="Maven: commons-dbcp:commons-dbcp:1.4" level="project" />
     <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.5.4" level="project" />
@@ -48,6 +49,6 @@
     <orderEntry type="library" name="Maven: org.webjars:bootstrap:3.3.5" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:jquery:1.11.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet.jsp:javax.servlet.jsp-api:2.3.1" level="project" />
-    <orderEntry type="library" name="log4j-1.2.17" level="project" />
+    <orderEntry type="library" name="Maven: taglibs:fmt:1.1.2" level="project" />
   </component>
 </module>

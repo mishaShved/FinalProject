@@ -1,5 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <link rel="stylesheet" href="../../css/styles.css">
+
+
+<fmt:bundle basename="locale">
+    <fmt:message key="local.footer.rightsReserved" var="rightsReserved"/>
+</fmt:bundle>
+
+
 <html>
 <head>
     <title>Title</title>
@@ -7,7 +15,7 @@
 <body>
 
     <footer class="footer-class">
-        <p>Final project by Misha Shved &copy; 2018 All rights reserved.</p>
+        <p>${rightsReserved}</p>
     </footer>
 
 </body>

@@ -79,7 +79,19 @@ public class LoginCommand implements Command {
         } catch (IOException e) {
             log.error("Error in pages path", e);
         } catch (LoginFailedException e) {
-            e.printStackTrace();
+
+            request.setAttribute("loginFalse", true);
+
+            try {
+                servlet.getServletContext().getRequestDispatcher
+                        ("/jsp/LoginPage.jsp")
+                        .forward(request, response);
+            } catch (IOException e1) {
+                log.error("Error in pages path", e);
+            } catch (ServletException e1) {
+                log.error("Servlet error", e);
+            }
+            request.setAttribute("loginFalse", false);
         }
 
     }

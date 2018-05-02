@@ -1,7 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/styles.css">
+
+<fmt:bundle basename="locale">
+    <fmt:message key="local.loginPage.accountNumber" var="account"/>
+    <fmt:message key="local.loginPage.password" var="password"/>
+    <fmt:message key="local.loginPage.loginButton" var="login"/>
+    <fmt:message key="local.loginPage.registrationButton" var="registration"/>
+    <fmt:message key="local.loginPage.back" var="back"/>
+</fmt:bundle>
+
 <html>
 <head>
     <title>MBet</title>
@@ -18,7 +28,7 @@
                  </a>
             </div>
             <ul class="nav navbar-nav nav-rigth-class">
-                <li><a href="StartPage.jsp">Back</a></li>
+                <li><a href="StartPage.jsp">${back}</a></li>
             </ul>
         </div>
     </nav>
@@ -29,22 +39,25 @@
 
         <div class="login-background">
         <div class="form-group">
-            <label for="input-account-number">Account</label>
+            <label for="input-account-number">${account}</label>
             <input type="number" name="id" class="form-control" id="input-account-number" placeholder="Account Number">
         </div>
         <div class="form-group">
-            <label for="input-password">Password</label>
+            <label for="input-password">${password}</label>
             <input type="password" name="password" class="form-control" id="input-password" placeholder="Password">
+            <c:if test="${loginFalse == true}">
+                <p>Login error</p>
+            </c:if>
         </div>
         <input type="hidden" value="login" name="command">
-        <button type="submit" class="btn btn-primary" id="button-submit">Login</button>
+        <button type="submit" class="btn btn-primary" id="button-submit">${login}</button>
         </div>
 
     </form>
 
         <div class="login-background login-form" style=" margin-top: -64px; padding-left: 443px;">
         <a href="RegistrationPage.jsp">
-            <button class="btn btn-primary">Registration</button>
+            <button class="btn btn-primary">${registration}</button>
         </a>
         </div>
 

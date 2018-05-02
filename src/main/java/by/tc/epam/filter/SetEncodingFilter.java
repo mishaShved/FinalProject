@@ -25,7 +25,9 @@ public class SetEncodingFilter implements Filter {
         String encoding = filterConfig.getInitParameter(ConstantContainer.CHARACTERS_ENCODING);
         request.setCharacterEncoding(encoding);
 
+
         chain.doFilter(request, response);
+
     }
 
     @Override

@@ -1,7 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/styles.css">
+
+<fmt:bundle basename="locale">
+    <fmt:message key="local.addOdd.event" var="event"/>
+    <fmt:message key="local.addOdd.coefficient" var="coef"/>
+    <fmt:message key="local.addOdd.param" var="param"/>
+    <fmt:message key="local.addOdd.createOddButton" var="createBtn"/>
+</fmt:bundle>
+
 <html>
 <head>
     <title>MBet</title>
@@ -18,7 +27,7 @@
 
             <div class="form-group">
 
-                <label for="oddType">Event</label>
+                <label for="oddType">${event}</label>
                 <select name="oddType"  id="oddType" class="form-control selectpicker" data-live-search="true">
 
                     <c:forEach var="i" begin="0" end="${oddTypesCount}">
@@ -30,7 +39,7 @@
 
             </div>
             <div class="form-group">
-                <label for="event">Event</label>
+                <label for="event">${event}</label>
                 <select name="eventId" id="event" class="form-control selectpicker" data-live-search="true">
 
                     <c:forEach var="i" begin="0" end="${eventsList.size() - 1}">
@@ -48,17 +57,17 @@
             </div>
 
             <div class="form-group">
-                <label for="koef">Coefficient</label>
+                <label for="koef">${coef}</label>
                 <input type="text" name="koef" class="form-control" id="koef" placeholder="Coefficient">
             </div>
 
             <div class="form-group">
-                <label for="param">Param</label>
+                <label for="param">${param}</label>
                 <input type="text" name="param" class="form-control" id="param" placeholder="Parameter">
             </div>
 
             <input type="hidden" name="command" value="createOdd">
-            <button type="submit" class="btn btn-primary">Create odd</button>
+            <button type="submit" class="btn btn-primary">${createBtn}</button>
         </div>
 
     </form>
