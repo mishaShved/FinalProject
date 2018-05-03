@@ -5,7 +5,7 @@ var update = function(sport){
     $.ajax({
         type: "get",
         url: "/MishaBet?command=showEventsBySport",
-        data: {sportType: sport === "FOOTBALL" ? "FOOTBALL" : this.innerText.toUpperCase()},
+        data: {sportType: sport === "CYBERSPORT" ? "CYBERSPORT" : this.id.toUpperCase()},
         dataType: "HTML",
         success: function (data) {
 

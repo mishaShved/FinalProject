@@ -40,11 +40,11 @@
         <div class="login-background">
         <div class="form-group">
             <label for="input-account-number">${account}</label>
-            <input type="number" name="id" class="form-control" id="input-account-number" placeholder="Account Number">
+            <input type="number" name="id" class="form-control" id="input-account-number" placeholder="${account}">
         </div>
         <div class="form-group">
             <label for="input-password">${password}</label>
-            <input type="password" name="password" class="form-control" id="input-password" placeholder="Password">
+            <input type="password" name="password" class="form-control" id="input-password" placeholder="${password}">
             <c:if test="${loginFalse == true}">
                 <p>Login error</p>
             </c:if>
@@ -55,7 +55,7 @@
 
     </form>
 
-        <div class="login-background login-form" style=" margin-top: -64px; padding-left: 443px;">
+        <div class="login-background login-form" style=" margin-top: -64px; padding-left: 27.5%;">
         <a href="RegistrationPage.jsp">
             <button class="btn btn-primary">${registration}</button>
         </a>

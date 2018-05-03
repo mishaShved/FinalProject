@@ -16,6 +16,8 @@
 
     <footer class="footer-class">
         <p>${rightsReserved}</p>
+        <a href="/MishaBet?command=changeLocale&locale=ru">RU</a>
+        <a href="/MishaBet?command=changeLocale&locale=en">EN</a>
     </footer>
 
 </body>

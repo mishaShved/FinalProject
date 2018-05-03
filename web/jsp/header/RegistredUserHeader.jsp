@@ -6,7 +6,7 @@
 
 
 <fmt:bundle basename="locale">
-    <fmt:message key="local.header.balance" var="balance"/>
+    <fmt:message key="local.header.balance" var="balanceWord"/>
     <fmt:message key="local.header.accountNumber" var="account"/>
     <fmt:message key="local.header.logout" var="logout"/>
     <fmt:message key="local.header.settings" var="settings"/>
@@ -38,7 +38,7 @@
             </li>
             <li><p><c:out value="${sessionScope.user.name}"/>
                     ${account}:<c:out value="${sessionScope.user.id}"/>
-                    <br/>${balance} : <c:out value="${balance}"/></p></li>
+                    <br/>${balanceWord} : <c:out value="${balance}"/></p></li>
             <li>
             <a href="/MishaBet?command=logout">${logout}</a></li>
         </ul>

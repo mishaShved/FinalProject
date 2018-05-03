@@ -4,6 +4,6 @@
     <title>MBET</title>
 </head>
 <body>
-    Pshol nah
+    you aren't admin
 </body>
 </html>

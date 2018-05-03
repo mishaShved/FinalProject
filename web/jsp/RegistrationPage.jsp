@@ -5,11 +5,12 @@
 <link rel="stylesheet" href="../css/styles.css">
 
 <fmt:bundle basename="locale">
-    <fmt:message key="local.loginPage.accountNumber" var="account"/>
-    <fmt:message key="local.loginPage.password" var="password"/>
-    <fmt:message key="local.loginPage.loginButton" var="login"/>
-    <fmt:message key="local.loginPage.registrationButton" var="registration"/>
-    <fmt:message key="local.loginPage.back" var="back"/>
+    <fmt:message key="local.registration.name" var="name"/>
+    <fmt:message key="local.registration.password" var="password"/>
+    <fmt:message key="local.registration.repeatPass" var="repeatPass"/>
+    <fmt:message key="local.registration.email" var="email"/>
+    <fmt:message key="local.registration.regBtn" var="regBtn"/>
+    <fmt:message key="local.registration.back" var="back"/>
 </fmt:bundle>
 
 
@@ -29,7 +30,7 @@
                     MBET
                 </div>
                 <ul class="nav navbar-nav nav-rigth-class">
-                    <li><a href="StartPage.jsp">Back</a></li>
+                    <li><a href="StartPage.jsp">${back}</a></li>
                 </ul>
             </div>
         </nav>
@@ -38,27 +39,27 @@
 
             <div class="login-background">
                 <div class="form-group">
-                    <label for="input-name">Name</label>
-                    <input type="text" name="name" class="form-control" id="input-name" placeholder="Name">
+                    <label for="input-name">${name}</label>
+                    <input type="text" name="name" class="form-control" id="input-name" placeholder="${name}">
                     <p id="name-failed"></p>
                 </div>
                 <div class="form-group">
-                    <label for="input-email">E-Mail</label>
-                    <input type="email" name="email" class="form-control" id="input-email" placeholder="E-Mail">
+                    <label for="input-email">${email}</label>
+                    <input type="email" name="email" class="form-control" id="input-email" placeholder="${email}">
                     <p id="email-failed"></p>
                 </div>
                 <div class="form-group">
-                    <label for="input-password">Password</label>
-                    <input type="password" name="password" class="form-control" id="input-password" placeholder="Password">
+                    <label for="input-password">${password}</label>
+                    <input type="password" name="password" class="form-control" id="input-password" placeholder="${password}">
                     <p id="password-failed"></p>
                 </div>
                 <div class="form-group">
-                    <label for="repeat-password">Repeat password</label>
-                    <input type="password" name="repeatPassword" class="form-control" id="repeat-password" placeholder="Password">
+                    <label for="repeat-password">${repeatPass}</label>
+                    <input type="password" name="repeatPassword" class="form-control" id="repeat-password" placeholder="${repeatPass}">
                     <p id="repeat-password-failed"></p>
                 </div>
                 <input type="hidden" value="registration" name="command">
-                <button type="submit" class="btn btn-primary" id="button-submit">Submit</button>
+                <button type="submit" class="btn btn-primary" id="button-submit">${regBtn}</button>
             </div>
 
         </form>
