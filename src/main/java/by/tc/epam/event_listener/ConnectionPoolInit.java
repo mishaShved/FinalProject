@@ -27,6 +27,5 @@ public class ConnectionPoolInit implements ServletContextListener{
     public void contextDestroyed(ServletContextEvent sce) {
 
 
-
     }
 }

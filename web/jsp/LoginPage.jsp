@@ -10,6 +10,7 @@
     <fmt:message key="local.loginPage.loginButton" var="login"/>
     <fmt:message key="local.loginPage.registrationButton" var="registration"/>
     <fmt:message key="local.loginPage.back" var="back"/>
+    <fmt:message key="local.loginPage.loginLabel" var="loginLabel"/>
 </fmt:bundle>
 
 <html>
@@ -37,7 +38,12 @@
 
     <form action="/MishaBet" method="post" class="login-form">
 
+
+
         <div class="login-background">
+
+            <p>${loginLabel}</p>
+            <hr/>
         <div class="form-group">
             <label for="input-account-number">${account}</label>
             <input type="number" name="id" class="form-control" id="input-account-number" placeholder="${account}">

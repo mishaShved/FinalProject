@@ -22,13 +22,14 @@
         <jsp:param value="${balance}" name="balance"/>
     </jsp:include>
 
+    <div class="login-form">
 
-    <form action="/MishaBet" method="post" class="login-form">
+    <form action="/MishaBet" method="post">
 
         <div class="login-background">
             <div class="form-group">
-                <label for="deposit">${money}</label>
-                <input pattern="\d+(\.\d{0,2})?" name="value" class="form-control" id="deposit" placeholder="Account Number">
+                <label for="deposit">${deposit}</label>
+                <input pattern="\d+(\.\d{0,2})?" name="value" class="form-control" id="deposit" placeholder="${money}">
             </div>
             <input type="hidden" name="command" value="deposit">
             <button type="submit" class="btn btn-primary">${deposit}</button>
@@ -36,18 +37,20 @@
 
     </form>
 
-    <form action="/MishaBet" method="post" class="login-form">
+    <form action="/MishaBet" method="post">
 
         <div class="login-background">
             <div class="form-group">
-                <label for="withdraw">${money}</label>
-                <input pattern="\d+(\.\d{0,2})?" name="value" class="form-control" id="withdraw" placeholder="Account Number">
+                <label for="withdraw">${withdraw}</label>
+                <input pattern="\d+(\.\d{0,2})?" name="value" class="form-control" id="withdraw" placeholder="${money}">
             </div>
             <input type="hidden" name="command" value="withdraw">
             <button type="submit" class="btn btn-primary">${withdraw}</button>
         </div>
 
     </form>
+
+    </div>
 
 
 
