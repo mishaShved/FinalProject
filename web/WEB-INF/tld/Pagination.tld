@@ -12,7 +12,7 @@
     <tag>
 
         <name>pagination</name>
-        <tag-class>by.tc.epam.tag.Pagination</tag-class>
+        <tag-class>by.tc.epam.web.tag.Pagination</tag-class>
         <body-content>empty</body-content>
         <attribute>
             <name>currentPage</name>

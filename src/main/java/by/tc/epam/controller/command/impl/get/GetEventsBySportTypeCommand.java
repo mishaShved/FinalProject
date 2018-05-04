@@ -1,9 +1,8 @@
-package by.tc.epam.model.command.impl.go_to_page;
+package by.tc.epam.controller.command.impl.get;
 
-import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.get.GetEventsBySportTypeCommand;
+import by.tc.epam.controller.command.Command;
 import by.tc.epam.model.entity.Event;
-import by.tc.epam.model.entity.OddType;
+import by.tc.epam.model.entity.Sport;
 import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.exception.DataSourceException;
@@ -18,27 +17,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class GoToCreateOddPageCommand implements Command{
 
-    private static final Logger log = Logger.getLogger(GoToCreateEventPage.class);
+public class GetEventsBySportTypeCommand implements Command {
+
+    private static final Logger log = Logger.getLogger(GetEventsBySportTypeCommand.class);
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
 
+
         ServiceFactory factory = ServiceFactory.getInstance();
         EventService service = factory.getEventService();
 
+        Sport sportType = Sport.valueOf(request.getParameter(ConstantContainer.SPORT_TYPE));
+
         try {
 
-            List<Event> events = service.getEventsForAddOdd();
+            List<Event> events = service.getEventsBySport(sportType);
+            request.setAttribute(ConstantContainer.EVENTS, events);
 
-            request.setAttribute(ConstantContainer.EVENTS_LIST, events);
-            request.setAttribute(ConstantContainer.ODD_TYPES, OddType.values());
-            request.setAttribute(ConstantContainer.ODD_TYPES_COUNT, OddType.values().length - 1);
-
-            servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/CreateOddPage.jsp")
-                    .forward(request, response);
-
+            servlet.getServletContext().getRequestDispatcher("/jsp/TableBody.jsp")
+                    .forward(request,response);
 
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);
@@ -51,8 +50,5 @@ public class GoToCreateOddPageCommand implements Command{
         }
 
 
-
     }
-
-
 }

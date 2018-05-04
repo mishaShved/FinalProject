@@ -21,7 +21,6 @@ submitButton.onclick = function(event) {
     if(passwordField.value.length < 5 || passwordField.value.length > 30) {
         passwordField.style.boxShadow = "inset 0 1px 1px #fc2a2a, 0 0 13px #fc2a2a";
         passwordField.style.borderColor = "#fc2a2a";
-        passwordFailed.innerText = "5-30 symbols";
         event.preventDefault();
     }
 };

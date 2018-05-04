@@ -1,6 +1,6 @@
-package by.tc.epam.model.command.impl.get;
+package by.tc.epam.controller.command.impl.get;
 
-import by.tc.epam.model.command.Command;
+import by.tc.epam.controller.command.Command;
 import by.tc.epam.model.entity.Event;
 import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;

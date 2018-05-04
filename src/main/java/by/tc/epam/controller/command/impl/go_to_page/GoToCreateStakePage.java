@@ -1,7 +1,7 @@
-package by.tc.epam.model.command.impl.go_to_page;
+package by.tc.epam.controller.command.impl.go_to_page;
 
-import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.get.GetEventsBySportTypeCommand;
+import by.tc.epam.controller.command.Command;
+import by.tc.epam.controller.command.impl.get.GetEventsBySportTypeCommand;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.OddService;
 import by.tc.epam.model.service.ServiceFactory;

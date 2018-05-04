@@ -1,8 +1,8 @@
-package by.tc.epam.model.command.impl.get;
+package by.tc.epam.controller.command.impl.go_to_page;
 
-import by.tc.epam.model.command.Command;
+import by.tc.epam.controller.command.Command;
+import by.tc.epam.controller.command.impl.get.GetEventsBySportTypeCommand;
 import by.tc.epam.model.entity.Event;
-import by.tc.epam.model.entity.Sport;
 import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.exception.DataSourceException;
@@ -17,27 +17,26 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+public class GoToSetScorePage implements Command{
 
-public class GetEventsBySportTypeCommand implements Command {
-
-    private static final Logger log = Logger.getLogger(GetEventsBySportTypeCommand.class);
+    private static final Logger log = Logger.getLogger(GoToSetScorePage.class);
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
 
-
         ServiceFactory factory = ServiceFactory.getInstance();
         EventService service = factory.getEventService();
 
-        Sport sportType = Sport.valueOf(request.getParameter(ConstantContainer.SPORT_TYPE));
+        List<Event> events;
 
         try {
+            events = service.getAllEvents();
 
-            List<Event> events = service.getEventsBySport(sportType);
-            request.setAttribute(ConstantContainer.EVENTS, events);
+            request.setAttribute(ConstantContainer.EVENTS_LIST, events);
 
-            servlet.getServletContext().getRequestDispatcher("/jsp/TableBody.jsp")
-                    .forward(request,response);
+            servlet.getServletContext().
+                    getRequestDispatcher("/jsp/admin_page/SetScorePage.jsp").
+                    forward(request, response);
 
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);

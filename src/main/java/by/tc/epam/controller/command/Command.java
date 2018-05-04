@@ -1,4 +1,4 @@
-package by.tc.epam.model.command;
+package by.tc.epam.controller.command;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

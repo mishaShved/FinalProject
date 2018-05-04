@@ -1,7 +1,7 @@
-package by.tc.epam.model.command.impl.post;
+package by.tc.epam.controller.command.impl.post;
 
-import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.go_to_page.GoToStartPage;
+import by.tc.epam.controller.command.Command;
+import by.tc.epam.controller.command.impl.go_to_page.GoToStartPage;
 import by.tc.epam.util.ConstantContainer;
 import org.apache.log4j.Logger;
 

@@ -1,10 +1,11 @@
-package by.tc.epam.model.command.impl.go_to_page;
+package by.tc.epam.controller.command.impl.go_to_page;
 
-import by.tc.epam.model.command.Command;
-import by.tc.epam.model.command.impl.get.GetEventsBySportTypeCommand;
-import by.tc.epam.model.entity.User;
+import by.tc.epam.controller.command.Command;
+import by.tc.epam.controller.command.impl.get.GetEventsBySportTypeCommand;
+import by.tc.epam.model.entity.Event;
+import by.tc.epam.model.entity.OddType;
+import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
-import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.util.ConstantContainer;
@@ -15,34 +16,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-public class GoToStartPage implements Command{
+public class GoToCreateOddPageCommand implements Command{
 
-    private static final Logger log = Logger.getLogger(GoToStartPage.class);
+    private static final Logger log = Logger.getLogger(GoToCreateEventPage.class);
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
 
         ServiceFactory factory = ServiceFactory.getInstance();
-        UserService service = factory.getUserService();
+        EventService service = factory.getEventService();
 
-        int userId = 0;
+        try {
 
-        User user = (User)request.getSession().getAttribute(ConstantContainer.USER);
-        if(user != null) {
-            userId = user.getId();
-        }
+            List<Event> events = service.getEventsForAddOdd();
 
-        try{
+            request.setAttribute(ConstantContainer.EVENTS_LIST, events);
+            request.setAttribute(ConstantContainer.ODD_TYPES, OddType.values());
+            request.setAttribute(ConstantContainer.ODD_TYPES_COUNT, OddType.values().length - 1);
 
-            if(user != null) {
-                double balance = service.getUserBalance(userId);
-                request.setAttribute(ConstantContainer.BALANCE, balance);
-            }
+            servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/CreateOddPage.jsp")
+                    .forward(request, response);
 
-            servlet.getServletContext().
-                    getRequestDispatcher("/jsp/StartPage.jsp").
-                    forward(request, response);
 
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);
@@ -57,5 +53,6 @@ public class GoToStartPage implements Command{
 
 
     }
+
 
 }

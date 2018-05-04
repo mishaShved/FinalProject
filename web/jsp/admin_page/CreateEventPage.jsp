@@ -36,15 +36,15 @@
         <div class="login-background">
             <div class="form-group">
                 <label for="team1">${team1}</label>
-                <input type="text" name="team1" class="form-control" id="team1" placeholder="Team1">
+                <input type="text" name="team1" class="form-control" id="team1" placeholder="${team1}">
             </div>
             <div class="form-group">
                 <label for="team2">${team2}</label>
-                <input type="text" name="team2" class="form-control" id="team2" placeholder="Team2">
+                <input type="text" name="team2" class="form-control" id="team2" placeholder="${team2}">
             </div>
             <div class="form-group">
                 <label for="sport">${sport}</label>
-                <select name="sport" class="form-control selectpicker" data-live-search="true" id="sport">
+                <select name="sport" class="form-control selectpicker" data-live-search="true" id="${sport}">
                     <option value="HOCKEY">
                         ${hockey}
                     </option>
@@ -71,12 +71,12 @@
 
             <div class="form-group">
                 <label for="date">${date}</label>
-                <input type="date" name="date" class="form-control" id="date" placeholder="Date">
+                <input type="date" name="date" class="form-control" id="date" placeholder="${date}">
             </div>
 
             <div class="form-group">
                 <label for="time">${time}</label>
-                <input type="time" name="time" class="form-control" id="time" placeholder="Time">
+                <input type="time" name="time" class="form-control" id="time" placeholder="${time}">
             </div>
 
             <input type="hidden" name="command" value="createEvent">
