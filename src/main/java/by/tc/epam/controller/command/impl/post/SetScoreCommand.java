@@ -33,7 +33,10 @@ public class SetScoreCommand implements Command{
 
 
             service.setScore(eventId, score1, score2);
+
+            request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
             response.sendRedirect("/jsp/admin_page/AdminPage.jsp");
+            request.getSession().setAttribute(ConstantContainer.IS_UPDATE, false);
 
 
         } catch (DataSourceException e) {

@@ -7,7 +7,7 @@
 <fmt:bundle basename="locale">
     <fmt:message key="local.addOdd.event" var="event"/>
     <fmt:message key="local.addOdd.coefficient" var="coef"/>
-    <fmt:message key="local.addOdd.param" var="param"/>
+    <fmt:message key="local.addOdd.param" var="parameter"/>
     <fmt:message key="local.addOdd.createOddButton" var="createBtn"/>
 </fmt:bundle>
 
@@ -58,12 +58,12 @@
 
             <div class="form-group">
                 <label for="koef">${coef}</label>
-                <input type="text" name="koef" class="form-control" id="koef" placeholder="Coefficient">
+                <input type="text" name="koef" class="form-control" id="koef" placeholder="${coef}">
             </div>
 
             <div class="form-group">
-                <label for="param">${param}</label>
-                <input type="text" name="param" class="form-control" id="param" placeholder="Parameter">
+                <label for="param">${parameter}</label>
+                <input type="text" name="param" class="form-control" id="param" placeholder="${parameter}">
             </div>
 
             <input type="hidden" name="command" value="createOdd">

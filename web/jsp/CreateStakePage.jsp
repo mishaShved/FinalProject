@@ -7,7 +7,7 @@
 <fmt:bundle basename="locale">
     <fmt:message key="local.createStake.event" var="event"/>
     <fmt:message key="local.createStake.outcome" var="outcome"/>
-    <fmt:message key="local.createStake.coef" var="coef"/>
+    <fmt:message key="local.createStake.coef" var="coefficient"/>
     <fmt:message key="local.createStake.money" var="money"/>
     <fmt:message key="local.createStake.makeBet" var="makeBet"/>
 </fmt:bundle>
@@ -35,7 +35,7 @@
                    <tr>
                        <th>${event}</th>
                        <th>${outcome}</th>
-                       <th>${coef}</th>
+                       <th>${coefficient}</th>
                        <th>${money}</th>
                    </tr>
 

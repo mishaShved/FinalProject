@@ -34,7 +34,9 @@ public class EventCreateCommand implements Command {
         try {
             service.createEvent(date, time, team1, team2, sportType);
 
+            request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
             response.sendRedirect("/jsp/admin_page/AdminPage.jsp");
+            request.getSession().setAttribute(ConstantContainer.IS_UPDATE, false);
 
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);

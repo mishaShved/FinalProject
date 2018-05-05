@@ -36,7 +36,6 @@ public class CreateStackeCommand implements Command{
 
             response.sendRedirect("/MishaBet");
 
-
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);
         } catch (ServiceSQLException e) {

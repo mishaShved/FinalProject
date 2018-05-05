@@ -17,7 +17,9 @@
 <nav class="navbar navbar-default nav-class">
     <div class="container-fluid">
         <div class="navbar-header icon-class">
-            MBET
+            <a href="/jsp/admin_page/AdminPage.jsp">
+                MBET
+            </a>
         </div>
     </div>
     <ul class="nav navbar-nav nav-rigth-class">
