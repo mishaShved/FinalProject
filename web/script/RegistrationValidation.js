@@ -30,25 +30,25 @@ submitButton.onclick = function(event) {
     if(accountField.value.length < 3 || accountField.value.length > 20) {
         accountField.style.boxShadow = "inset 0 1px 1px #fc2a2a, 0 0 13px #fc2a2a";
         accountField.style.borderColor = "#fc2a2a";
-        nameFailed.innerText = "3-20 symbols";
+        nameFailed.innerText = validationMessages.nameVerificationError;
         event.preventDefault();
     }
     if(passwordField.value.length < 5 || passwordField.value.length > 30) {
         passwordField.style.boxShadow = "inset 0 1px 1px #fc2a2a, 0 0 13px #fc2a2a";
         passwordField.style.borderColor = "#fc2a2a";
-        passwordFailed.innerText = "5-30 symbols";
+        passwordFailed.innerText = validationMessages.passwordVerificationError;
         event.preventDefault();
     }
     if(passwordField.value !== repeatPasswordField.value) {
         repeatPasswordField.style.boxShadow = "inset 0 1px 1px #fc2a2a, 0 0 13px #fc2a2a";
         repeatPasswordField.style.borderColor = "#fc2a2a";
-        repeatPasswordFailed.innerText = "Passwords do not match";
+        repeatPasswordFailed.innerText = validationMessages.repeatPasswordVerificationError;
         event.preventDefault();
     }
     if(emailField.value.search(regExp) === -1){
         emailField.style.boxShadow = "inset 0 1px 1px #fc2a2a, 0 0 13px #fc2a2a";
         emailField.style.borderColor = "#fc2a2a";
-        emailFailed.innerText = "It isn't correct e-mail";
+        emailFailed.innerText = validationMessages.emailVerificationError;
         event.preventDefault();
     }
 

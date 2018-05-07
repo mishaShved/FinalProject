@@ -1,7 +1,6 @@
 package by.tc.epam.controller.command.impl.get;
 
 import by.tc.epam.controller.command.Command;
-import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.entity.OddsList;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.service.OddService;
@@ -9,6 +8,7 @@ import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
+import by.tc.epam.util.ConstantContainer;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;

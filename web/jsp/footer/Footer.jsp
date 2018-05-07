@@ -8,17 +8,13 @@
 </fmt:bundle>
 
 
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
 
-    <footer class="footer-class">
-        <p>${rightsReserved}</p>
-        <a href="/MishaBet?command=changeLocale&locale=ru">RU</a>
-        <a href="/MishaBet?command=changeLocale&locale=en">EN</a>
-    </footer>
 
-</body>
-</html>
+
+<footer class="footer-class">
+    <p>${rightsReserved}</p>
+    <a href="/MishaBet?command=changeLocale&locale=ru">RU</a>
+    <a href="/MishaBet?command=changeLocale&locale=en">EN</a>
+</footer>
+
+

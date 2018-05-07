@@ -1,1 +1,1 @@
-alert("Entry added");
+alert(successMessage.addedEntry);

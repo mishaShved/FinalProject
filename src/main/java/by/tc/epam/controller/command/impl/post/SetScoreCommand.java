@@ -36,7 +36,7 @@ public class SetScoreCommand implements Command{
 
             request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
             response.sendRedirect("/jsp/admin_page/AdminPage.jsp");
-            request.getSession().setAttribute(ConstantContainer.IS_UPDATE, false);
+
 
 
         } catch (DataSourceException e) {

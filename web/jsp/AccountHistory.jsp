@@ -50,7 +50,9 @@
                 </td>
                 <td>
                     <c:if test="${stakes.get(i).score1 != -1 && stakes.get(i).isWon() == true}">
-                        <p style="color: limegreen"> <c:out value="${stakes.get(i).betSum * stakes.get(i).koef}"/>$</p>
+                        <p style="color: limegreen">
+                            <fmt:formatNumber type="number" maxFractionDigits="2" value="${stakes.get(i).betSum * stakes.get(i).koef}"/>$
+                        </p>
                     </c:if>
                     <c:if test="${stakes.get(i).score1 != -1 && stakes.get(i).isWon() == false}">
                         <p style="color: red"> 0.00$ </p>

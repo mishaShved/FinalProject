@@ -11,6 +11,9 @@
     <fmt:message key="local.loginPage.registrationButton" var="registration"/>
     <fmt:message key="local.loginPage.back" var="back"/>
     <fmt:message key="local.loginPage.loginLabel" var="loginLabel"/>
+    <fmt:message key="local.loginPage.loginErrorLabel" var="loginErrorLabel"/>
+
+
 </fmt:bundle>
 
 <html>
@@ -29,7 +32,7 @@
                  </a>
             </div>
             <ul class="nav navbar-nav nav-rigth-class">
-                <li><a href="StartPage.jsp">${back}</a></li>
+                <li><a href="/jsp/StartPage.jsp">${back}</a></li>
             </ul>
         </div>
     </nav>
@@ -51,9 +54,11 @@
         <div class="form-group">
             <label for="input-password">${password}</label>
             <input type="password" name="password" class="form-control" id="input-password" placeholder="${password}">
+            <p id="login-error">
             <c:if test="${loginFalse == true}">
-                <p>Login error</p>
+                ${loginErrorLabel}
             </c:if>
+            </p>
         </div>
         <input type="hidden" value="login" name="command">
         <button type="submit" class="btn btn-primary" id="button-submit">${login}</button>
@@ -62,7 +67,7 @@
     </form>
 
         <div class="login-background login-form" style=" margin-top: -64px; padding-left: 27.5%;">
-        <a href="RegistrationPage.jsp">
+        <a href="/jsp/RegistrationPage.jsp">
             <button class="btn btn-primary">${registration}</button>
         </a>
         </div>
@@ -70,6 +75,14 @@
     </div>
 
     <jsp:include page="footer/Footer.jsp"/>
+
+    <script type="text/javascript">
+        var errorMessages =
+            {
+                "loginError":"${loginErrorLabel}",
+            }
+        ;
+    </script>
 
     <script src="../script/LoginValidation.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

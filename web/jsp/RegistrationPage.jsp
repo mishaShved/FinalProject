@@ -11,6 +11,10 @@
     <fmt:message key="local.registration.email" var="email"/>
     <fmt:message key="local.registration.regBtn" var="regBtn"/>
     <fmt:message key="local.registration.back" var="back"/>
+    <fmt:message key="local.registration.nameVerificationError" var="nameVerificationError"/>
+    <fmt:message key="local.registration.passwordVerificationError" var="passwordVerificationError"/>
+    <fmt:message key="local.registration.emailVerificationError" var="emailVerificationError"/>
+    <fmt:message key="local.registration.repeatPasswordVerificationError" var="repeatPasswordVerificationError"/>
 </fmt:bundle>
 
 
@@ -67,6 +71,18 @@
         </div>
 
         <jsp:include page="footer/Footer.jsp"/>
+
+        <script type="text/javascript">
+            var validationMessages =
+                {
+                    "repeatPasswordVerificationError":"${repeatPasswordVerificationError}",
+                    "passwordVerificationError":"${passwordVerificationError}",
+                    "nameVerificationError":"${nameVerificationError}",
+                    "emailVerificationError":"${emailVerificationError}"
+                }
+            ;
+        </script>
+
 
         <script type="text/javascript" src="../script/RegistrationValidation.js"></script>
 
