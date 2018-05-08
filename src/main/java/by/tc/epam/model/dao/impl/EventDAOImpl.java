@@ -16,9 +16,8 @@ import java.util.List;
 public class EventDAOImpl implements EventDAO {
 
     @Override
-    public void createEvent(String date, String team1, String team2, Sport sportType)
-            throws ConnectionPoolException,
-            DBLoginException, JDBCDriverNotFoundException, DAOSQLException {
+    public void createEvent(String date, String team1RU, String team2RU, String team1EN, String  team2EN, Sport sportType)
+            throws ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -28,7 +27,7 @@ public class EventDAOImpl implements EventDAO {
 
         try{
 
-            transactionDAO.createEvent(conn, date, team1, team2, sportType);
+            transactionDAO.createEvent(conn, date, team1RU, team2RU, team1EN, team2EN, sportType);
 
         } finally {
             pool.returnConnection(conn);
@@ -100,7 +99,7 @@ public class EventDAOImpl implements EventDAO {
 
 
     @Override
-    public List<Event> getEventsBySport(Sport sportType)
+    public List<Event> getEventsBySport(Sport sportType, String locale)
             throws DAOSQLException, ConnectionPoolException {
 
 
@@ -114,7 +113,7 @@ public class EventDAOImpl implements EventDAO {
 
         try{
 
-            partEvent = transactionDAO.getEventsBySport(conn, sportType);
+            partEvent = transactionDAO.getEventsBySport(conn, sportType, locale);
 
         }finally {
             pool.returnConnection(conn);

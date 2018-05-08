@@ -9,13 +9,14 @@ import java.util.List;
 
 public interface EventService {
 
-    void createEvent(String date, String time, String team1, String team2, Sport sportType)
+    void createEvent(String date, String time, String team1RU, String team2RU,
+                     String team1EN, String team2EN, Sport sportType)
             throws ServiceSQLException, DataSourceException;
 
     List<Event> getAllEvents()
             throws DataSourceException, ServiceSQLException;
 
-    List<Event> getEventsBySport(Sport sport)
+    List<Event> getEventsBySport(Sport sport, String locale)
             throws ServiceSQLException, DataSourceException;
 
     List<Event> getEventsForAddOdd()

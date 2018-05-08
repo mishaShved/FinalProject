@@ -5,8 +5,10 @@
 
 
 <fmt:bundle basename="locale">
-    <fmt:message key="local.createEvent.team1" var="team1"/>
-    <fmt:message key="local.createEvent.team2" var="team2"/>
+    <fmt:message key="local.createEvent.team1EN" var="team1EN"/>
+    <fmt:message key="local.createEvent.team2EN" var="team2EN"/>
+    <fmt:message key="local.createEvent.team1RU" var="team1RU"/>
+    <fmt:message key="local.createEvent.team2RU" var="team2RU"/>
     <fmt:message key="local.createEvent.sport" var="sport"/>
     <fmt:message key="local.createEvent.date" var="date"/>
     <fmt:message key="local.createEvent.time" var="time"/>
@@ -35,16 +37,24 @@
 
         <div class="login-background">
             <div class="form-group">
-                <label for="team1">${team1}</label>
-                <input type="text" name="team1" class="form-control" id="team1" placeholder="${team1}">
+                <label for="team1EN">${team1EN}</label>
+                <input type="text" name="team1EN" class="form-control" id="team1EN" placeholder="${team1}">
             </div>
             <div class="form-group">
-                <label for="team2">${team2}</label>
-                <input type="text" name="team2" class="form-control" id="team2" placeholder="${team2}">
+                <label for="team2EN">${team2EN}</label>
+                <input type="text" name="team2EN" class="form-control" id="team2EN" placeholder="${team2}">
+            </div>
+            <div class="form-group">
+                <label for="team1RU">${team1RU}</label>
+                <input type="text" name="team1RU" class="form-control" id="team1RU" placeholder="${team1}">
+            </div>
+            <div class="form-group">
+                <label for="team2RU">${team2RU}</label>
+                <input type="text" name="team2RU" class="form-control" id="team2RU" placeholder="${team2}">
             </div>
             <div class="form-group">
                 <label for="sport">${sport}</label>
-                <select name="sport" class="form-control selectpicker" data-live-search="true" id="${sport}">
+                <select name="sport" class="form-control selectpicker" data-live-search="true" id="sport">
                     <option value="HOCKEY">
                         ${hockey}
                     </option>

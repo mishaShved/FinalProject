@@ -21,8 +21,8 @@ public class EventServiceImpl implements EventService{
     private static final EventDAO eventDAO = daoFactory.getEventDAO();
 
     @Override
-    public void createEvent(String date, String time, String team1,
-                            String team2, Sport sportType)
+    public void createEvent(String date, String time, String team1RU,
+                            String team2RU, String team1EN, String team2EN, Sport sportType)
             throws ServiceSQLException, DataSourceException {
 
         EntityBuilder builder = EntityBuilder.getInstance();
@@ -32,7 +32,7 @@ public class EventServiceImpl implements EventService{
         fullDate.setTime(time);
 
         try {
-            eventDAO.createEvent(fullDate.getFullDate(), team1, team2, sportType);
+            eventDAO.createEvent(fullDate.getFullDate(), team1RU, team2RU, team1EN, team2EN, sportType);
         } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
@@ -61,13 +61,13 @@ public class EventServiceImpl implements EventService{
     }
 
     @Override
-    public List<Event> getEventsBySport(Sport sport)
+    public List<Event> getEventsBySport(Sport sport, String locale)
             throws ServiceSQLException, DataSourceException{
 
         List<Event> partEvents;
 
         try {
-            partEvents = eventDAO.getEventsBySport(sport);
+            partEvents = eventDAO.getEventsBySport(sport, locale);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
         }catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {

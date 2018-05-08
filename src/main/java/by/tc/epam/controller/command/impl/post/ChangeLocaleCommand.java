@@ -21,6 +21,7 @@ public class ChangeLocaleCommand implements Command{
 
         String newLocale = request.getParameter(ConstantContainer.LOCALE);
 
+        request.getSession().setAttribute(ConstantContainer.LOCALE, newLocale);
         Config.set(request.getSession(), Config.FMT_LOCALE, newLocale);
         try {
             response.sendRedirect("/MishaBet");

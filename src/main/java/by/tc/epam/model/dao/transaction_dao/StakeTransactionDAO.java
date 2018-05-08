@@ -11,7 +11,7 @@ public interface StakeTransactionDAO {
     void createStake(Connection conn, int userId, int oddId, double money, double koef)
             throws DAOSQLException;
 
-    List<Stacke> getStakesByUserId(Connection conn, int userId)
+    List<Stacke> getStakesByUserId(Connection conn, int userId, String locale)
             throws DAOSQLException;
 
 }

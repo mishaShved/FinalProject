@@ -6,7 +6,7 @@ public class Stacke {
 
     private String team1;
     private String team2;
-    private Sport sportType;
+    private String sportType;
     private OddType stakeType;
     private Double betSum;
     private Double koef;
@@ -34,11 +34,11 @@ public class Stacke {
         this.team2 = team2;
     }
 
-    public Sport getSportType() {
+    public String getSportType() {
         return sportType;
     }
 
-    public void setSportType(Sport sportType) {
+    public void setSportType(String sportType) {
         this.sportType = sportType;
     }
 
@@ -107,7 +107,7 @@ public class Stacke {
                 Double.compare(stacke.param, param) == 0 &&
                 Objects.equals(team1, stacke.team1) &&
                 Objects.equals(team2, stacke.team2) &&
-                sportType == stacke.sportType &&
+                Objects.equals(sportType, stacke.sportType) &&
                 stakeType == stacke.stakeType &&
                 Objects.equals(betSum, stacke.betSum) &&
                 Objects.equals(koef, stacke.koef) &&

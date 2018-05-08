@@ -38,7 +38,7 @@ public class StakeTransactionDAOImpl implements StakeTransactionDAO {
     }
 
     @Override
-    public List<Stacke> getStakesByUserId(Connection conn, int userId)
+    public List<Stacke> getStakesByUserId(Connection conn, int userId, String locale)
             throws DAOSQLException {
 
         EntityBuilder entityBuilder = EntityBuilder.getInstance();
@@ -46,8 +46,7 @@ public class StakeTransactionDAOImpl implements StakeTransactionDAO {
         List<Stacke> foundRes = new ArrayList<>();
 
         try(PreparedStatement statement =
-                    conn.prepareStatement(RequestContainer.GET_ALL_USER_STAKES_REQUEST)){
-
+                    conn.prepareStatement(RequestContainer.getRequestForGetUserStakes(locale))){
 
             statement.setInt(1, userId);
 
@@ -58,9 +57,9 @@ public class StakeTransactionDAOImpl implements StakeTransactionDAO {
 
                 Stacke stacke = entityBuilder.createStacke();
 
-                stacke.setTeam1(rs.getString(ConstantContainer.TEAM1));
-                stacke.setTeam2(rs.getString(ConstantContainer.TEAM2));
-                stacke.setSportType(Sport.valueOf(rs.getString(ConstantContainer.SPORT_TYPE_2)));
+                stacke.setTeam1(rs.getString(ConstantContainer.TEAM1_LOCALE + locale));
+                stacke.setTeam2(rs.getString(ConstantContainer.TEAM2_LOCALE + locale));
+                stacke.setSportType(rs.getString(ConstantContainer.SPORT_TYPE_2 + locale));
                 stacke.setStakeType(OddType.valueOf(rs.getString(ConstantContainer.ODD_TYPE_2)));
                 stacke.setBetSum(rs.getDouble(ConstantContainer.MONEY));
                 stacke.setKoef(rs.getDouble(ConstantContainer.COEFFICIENT));

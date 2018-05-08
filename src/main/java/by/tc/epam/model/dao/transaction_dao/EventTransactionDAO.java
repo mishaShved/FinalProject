@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface EventTransactionDAO {
 
-    void createEvent(Connection conn, String date, String team1, String team2, Sport sportType)
+    void createEvent(Connection conn, String date, String team1RU, String team2RU ,String team1EN, String team2EN, Sport sportType)
             throws DAOSQLException;
 
     void setScore(Connection conn, int eventId, int score1, int score2)
@@ -19,7 +19,7 @@ public interface EventTransactionDAO {
     List<Event> getAllEvents(Connection conn)
             throws DAOSQLException;
 
-    List<Event> getEventsBySport(Connection conn, Sport sportType)
+    List<Event> getEventsBySport(Connection conn, Sport sportType, String locale)
             throws DAOSQLException;
 
     List<Event> getEventsForAddOdd(Connection conn)

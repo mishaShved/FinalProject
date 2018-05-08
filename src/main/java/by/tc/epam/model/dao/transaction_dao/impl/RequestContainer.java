@@ -5,19 +5,15 @@ public final class RequestContainer {
     private RequestContainer(){};
 
     public static final String ADD_EVENT_REQUEST =
-            "INSERT INTO `bukmaker`.`event` (`id`, `time`, `team1`, `team2`, `sport_id`, `score1`, `score2`)" +
-                    " VALUES (?, ?, ?, ?, ?, -1, -1);";
+            "INSERT INTO `bukmaker`.`event` (`id`, `time`, `team1_ru`, `team2_ru`, `team1_en`, `team2_en`, `sport_id`, `score1`, `score2`)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?, -1, -1);";
 
     public static final String SELECT_EVENTS_REQUEST_FOR_ADD_ODD =
             "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
                     "join bukmaker.sport as s on b.sport_id = s.id " +
                     "where b.time > curdate();";
 
-    public static final String SELECT_EVENTS_REQUEST_BY_SPORT =
-            "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
-                    "join bukmaker.sport as s on b.sport_id = s.id " +
-                    "where s.sport_type = ? " +
-                    "and b.time > curdate();";
+
 
     public static final String SELECT_EVENTS_REQUEST_FOR_SET_SCORE =
             "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
@@ -55,15 +51,6 @@ public final class RequestContainer {
     public static final String GET_BALANCE_REQUEST =
             "SELECT `user`.`balance` FROM `bukmaker`.`user` WHERE `id`=?;";
 
-    public static final String GET_ALL_USER_STAKES_REQUEST =
-            "select e.team1, e.team2, ot.type as odd_type, o.param," +
-                    " sp.sport_type, s.money, s.coefficient, e.score1, e.score2 from stake as s\n" +
-            "join odd as o on s.odd_id = o.id\n" +
-            "join odd_type as ot on o.type_id = ot.id\n" +
-            "join event as e on o.event_id = e.id\n" +
-            "join sport as sp on e.sport_id = sp.id\n" +
-                    "where s.user_id = ?\n" +
-            "order by e.time desc";
 
     public static final String GET_ALL_STAKES_BY_EVENT_REQUEST =
             "select st.money * st.coefficient as res, st.user_id, o.param, ot.type from stake as st\n" +
@@ -91,7 +78,24 @@ public final class RequestContainer {
                     "join odd_type as ot on ot.id = o.type_id\n" +
                     "where o.id = ?";
 
+    public static String getRequestForGetUserStakes(String locale){
 
+        return "select e.team1_"+ locale +" , e.team2_" + locale + " , ot.type as odd_type, o.param, \n" +
+                "            sp.sport_type_" + locale + " , s.money, s.coefficient, e.score1, e.score2 from stake as s\n" +
+                "            join odd as o on s.odd_id = o.id\n" +
+                "            join odd_type as ot on o.type_id = ot.id\n" +
+                "            join event as e on o.event_id = e.id\n" +
+                "            join sport as sp on e.sport_id = sp.id\n" +
+                "                    where s.user_id = ?\n" +
+                "            order by e.time desc";
 
+    }
+
+    public static String getRequestForSelectEventsBySport(String locale){
+        return "SELECT b.id, b.time, b.team1_" + locale + " , b.team2_" + locale + " , s.sport_type FROM bukmaker.event as b " +
+                        "join bukmaker.sport as s on b.sport_id = s.id " +
+                        "where s.sport_type = ? " +
+                        "and b.time > curdate();";
+    }
 
 }

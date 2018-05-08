@@ -13,7 +13,7 @@ public interface StakeService {
             throws DataSourceException,
             ServiceSQLException, SmallBalanceException;
 
-    List<Stacke> getStakesByUserId(int userId, int page)
+    List<Stacke> getStakesByUserId(int userId, int page, String locale)
             throws ServiceSQLException, DataSourceException;
 
     int getPageCount(int userId)

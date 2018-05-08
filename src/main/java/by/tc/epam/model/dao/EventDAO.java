@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface EventDAO {
 
-    void createEvent(String date, String team1, String team2, Sport sportType)
+    void createEvent(String date, String team1RU, String team2RU, String team1EN, String team2EN, Sport sportType)
             throws ConnectionPoolException, DBLoginException,
             JDBCDriverNotFoundException, DAOSQLException;
 
@@ -23,7 +23,7 @@ public interface EventDAO {
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPoolException, DAOSQLException;
 
-    List<Event> getEventsBySport(Sport sportType)
+    List<Event> getEventsBySport(Sport sportType, String locale)
             throws DAOSQLException, DBLoginException,
             JDBCDriverNotFoundException, ConnectionPoolException;
 

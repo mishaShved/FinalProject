@@ -12,7 +12,7 @@ public interface StakeDAO {
             DBLoginException, JDBCDriverNotFoundException,
             DAOSQLException, NotEnoughMoneyException;
 
-    List<Stacke> getStakesByUserId(int userId)
+    List<Stacke> getStakesByUserId(int userId, String locale)
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPoolException, DAOSQLException;
 

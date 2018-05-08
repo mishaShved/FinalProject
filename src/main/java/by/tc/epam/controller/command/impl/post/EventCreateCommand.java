@@ -28,11 +28,13 @@ public class EventCreateCommand implements Command {
         String time = request.getParameter(ConstantContainer.TIME);
         String date = request.getParameter(ConstantContainer.DATE);
         Sport sportType = Sport.valueOf(request.getParameter(ConstantContainer.SPORT));
-        String team1 = request.getParameter(ConstantContainer.TEAM1);
-        String team2 = request.getParameter(ConstantContainer.TEAM2);
+        String team1EN = request.getParameter(ConstantContainer.TEAM1EN);
+        String team2EN = request.getParameter(ConstantContainer.TEAM2EN);
+        String team1RU = request.getParameter(ConstantContainer.TEAM1RU);
+        String team2RU = request.getParameter(ConstantContainer.TEAM2RU);
 
         try {
-            service.createEvent(date, time, team1, team2, sportType);
+            service.createEvent(date, time, team1RU, team2RU, team1EN, team2EN, sportType);
 
             request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
             response.sendRedirect("/jsp/admin_page/AdminPage.jsp");

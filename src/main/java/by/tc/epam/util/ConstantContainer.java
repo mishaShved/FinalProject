@@ -16,6 +16,12 @@ public final class ConstantContainer {
     public static final String SPORT = "sport";
     public static final String TEAM1 = "team1";
     public static final String TEAM2 = "team2";
+    public static final String TEAM1RU = "team1RU";
+    public static final String TEAM2RU = "team2RU";
+    public static final String TEAM1EN = "team1EN";
+    public static final String TEAM2EN = "team2EN";
+    public static final String TEAM1_LOCALE = "team1_";
+    public static final String TEAM2_LOCALE = "team2_";
     public static final String ODD_TYPE = "oddType";
     public static final String KOEF = "koef";
     public static final String PARAMETER = "param";
@@ -38,7 +44,7 @@ public final class ConstantContainer {
     public static final String TYPE = "type";
     public static final String USER_ID = "user_id";
     public static final String RES = "res";
-    public static final String SPORT_TYPE_2 = "sport_type";
+    public static final String SPORT_TYPE_2 = "sport_type_";
     public static final String COEFFICIENT = "coefficient";
     public static final String INFO = "info";
     public static final String ODD_TYPE_2 = "odd_type";
@@ -49,6 +55,7 @@ public final class ConstantContainer {
     public static final String EMAIL_REG_EXP = ".+@.+\\..+";
     public static final String LOCALE = "locale";
     public static final String IS_UPDATE = "isUpdated";
+    public static final String DEFAULT_LOCALE = "en";
 
     public static final int COUNT_STAKE_ON_PAGE = 5;
     public static final int MIN_LENGTH_PASSWORD = 5;

@@ -18,8 +18,8 @@ public class StakeDAOImpl implements StakeDAO {
 
     @Override
     public void createStake(int userId, int oddId, double money)
-            throws ConnectionPoolException, DBLoginException,
-            JDBCDriverNotFoundException, DAOSQLException, NotEnoughMoneyException {
+            throws ConnectionPoolException, DAOSQLException,
+            NotEnoughMoneyException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -70,9 +70,8 @@ public class StakeDAOImpl implements StakeDAO {
     }
 
     @Override
-    public List<Stacke> getStakesByUserId(int userId)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DAOSQLException {
+    public List<Stacke> getStakesByUserId(int userId, String locale)
+            throws ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -84,7 +83,7 @@ public class StakeDAOImpl implements StakeDAO {
 
         try{
 
-            foundRes = transactionDAO.getStakesByUserId(conn, userId);
+            foundRes = transactionDAO.getStakesByUserId(conn, userId, locale);
 
         } finally {
             pool.returnConnection(conn);

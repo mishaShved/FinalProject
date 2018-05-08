@@ -29,11 +29,13 @@ public class GetEventsBySportTypeCommand implements Command {
         ServiceFactory factory = ServiceFactory.getInstance();
         EventService service = factory.getEventService();
 
+        String locale = (String)request.getSession().getAttribute(ConstantContainer.LOCALE);
+
         Sport sportType = Sport.valueOf(request.getParameter(ConstantContainer.SPORT_TYPE));
 
         try {
 
-            List<Event> events = service.getEventsBySport(sportType);
+            List<Event> events = service.getEventsBySport(sportType, locale);
             request.setAttribute(ConstantContainer.EVENTS, events);
 
             servlet.getServletContext().getRequestDispatcher("/jsp/TableBody.jsp")

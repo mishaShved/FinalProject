@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.jstl.core.Config;
 import java.io.IOException;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class ShowStakesCommand implements Command{
         UserService userService = factory.getUserService();
 
         User user = (User)request.getSession().getAttribute(ConstantContainer.USER);
+        String locale = (String)request.getSession().getAttribute(ConstantContainer.LOCALE);
 
         int userId = user.getId();
         int page = Integer.parseInt(request.getParameter(ConstantContainer.PAGE));
@@ -40,10 +42,11 @@ public class ShowStakesCommand implements Command{
 
         try {
 
-            stakes = stackeService.getStakesByUserId(userId, page);
+            stakes = stackeService.getStakesByUserId(userId, page, locale);
             pageCount = stackeService.getPageCount(userId);
 
             double balance = userService.getUserBalance(userId);
+
 
             request.setAttribute(ConstantContainer.STAKES, stakes);
             request.setAttribute(ConstantContainer.BALANCE, balance);

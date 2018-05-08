@@ -37,7 +37,7 @@ public class StakeServiceImpl implements StakeService {
     }
 
     @Override
-    public List<Stacke> getStakesByUserId(int userId, int page)
+    public List<Stacke> getStakesByUserId(int userId, int page, String locale)
             throws ServiceSQLException, DataSourceException{
 
         List<Stacke> allStakes;
@@ -45,7 +45,7 @@ public class StakeServiceImpl implements StakeService {
 
         try{
 
-            allStakes = dao.getStakesByUserId(userId);
+            allStakes = dao.getStakesByUserId(userId, locale);
 
             for(int i = (page - 1) * 5, j = 0; j < 5 && allStakes.size() > i; i++, j++){
                 foundRes.add(allStakes.get(i));
@@ -69,7 +69,7 @@ public class StakeServiceImpl implements StakeService {
 
         try{
 
-            allStakes = dao.getStakesByUserId(userId);
+            allStakes = dao.getStakesByUserId(userId, "ru");
 
             pageCount = getPageCount(allStakes, ConstantContainer.COUNT_STAKE_ON_PAGE);
 

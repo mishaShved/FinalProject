@@ -17,7 +17,8 @@ import java.util.List;
 
 public class EventTransactionDAOImpl implements EventTransactionDAO {
     @Override
-    public void createEvent(Connection conn, String date, String team1, String team2, Sport sportType)
+    public void createEvent(Connection conn, String date, String team1RU, String team2RU,
+                            String team1EN, String team2EN, Sport sportType)
             throws DAOSQLException {
 
         try(PreparedStatement statement =
@@ -25,9 +26,11 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
 
             statement.setString(1, null);
             statement.setString(2, date);
-            statement.setString(3, team1);
-            statement.setString(4, team2);
-            statement.setInt(5, sportType.ordinal() + 1);
+            statement.setString(3, team1RU);
+            statement.setString(4, team2RU);
+            statement.setString(5, team1EN);
+            statement.setString(6, team2EN);
+            statement.setInt(7, sportType.ordinal() + 1);
 
             statement.executeUpdate();
 
@@ -74,13 +77,13 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
     }
 
     @Override
-    public List<Event> getEventsBySport(Connection conn, Sport sportType)
+    public List<Event> getEventsBySport(Connection conn, Sport sportType, String locale)
             throws DAOSQLException{
 
         List<Event> partEvent;
 
         try(PreparedStatement statement =
-                    conn.prepareStatement(RequestContainer.SELECT_EVENTS_REQUEST_BY_SPORT)){
+                    conn.prepareStatement(RequestContainer.getRequestForSelectEventsBySport(locale))){
 
             statement.setString(1, sportType.name());
 
