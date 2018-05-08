@@ -51,13 +51,13 @@ public class OddServiceImpl implements OddService{
     }
 
     @Override
-    public String getInfoAboutOdd(int oddId)
+    public String getInfoAboutOdd(int oddId, String locale)
             throws DataSourceException, ServiceSQLException {
 
         String oddInfo;
 
         try{
-            oddInfo = oddDAO.getInfoAboutOdd(oddId);
+            oddInfo = oddDAO.getInfoAboutOdd(oddId, locale);
         } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {

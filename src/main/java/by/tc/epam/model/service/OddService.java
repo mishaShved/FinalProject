@@ -14,7 +14,7 @@ public interface OddService {
     OddsList getOddsByEvent(int eventId, String locale)
             throws ServiceSQLException, DataSourceException;
 
-    String getInfoAboutOdd(int oddId)
+    String getInfoAboutOdd(int oddId, String locale)
             throws DataSourceException, ServiceSQLException;
 
     String getOddType(int oddId)

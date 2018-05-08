@@ -51,12 +51,6 @@ public final class RequestContainer {
     public static final String SET_SCORE_REQUEST =
             "UPDATE `bukmaker`.`event` SET `score1`=?, `score2`=? WHERE `id`=?;\n";
 
-    public static final String GET_INFO_ABOUT_ODD =
-            "SELECT concat(s.sport_type, \".\", e.team1 ,\"-\", e.team2) as info FROM bukmaker.event as e\n" +
-                    "join sport as s on e.sport_id = s.id\n" +
-                    "join odd as o on o.event_id = e.id\n" +
-                    "where o.id = ?";
-
     public static final String GET_ODD_COEF =
             "select coefficient from odd\n" +
                     "where id = ?";
@@ -94,13 +88,21 @@ public final class RequestContainer {
                         "where o.event_id = ?;";
     }
 
-    public static final String getRequestForAviableEventsForAddOdd(String locale){
-        String str =
-          "SELECT b.id, b.time, b.team1_" + locale + " as team1, b.team2_" + locale + " as team2, " +
+    public static String getRequestForAviableEventsForAddOdd(String locale){
+
+        return "SELECT b.id, b.time, b.team1_" + locale + " as team1, b.team2_" + locale + " as team2, " +
                 "s.sport_type_" + locale + " as sportType FROM bukmaker.event as b " +
                         "join bukmaker.sport as s on b.sport_id = s.id " +
                         "where b.time > curdate();";
-        return str;
+
+    }
+
+
+    public static String getRequestForGetInfoAboutOdd(String locale){
+        return  "SELECT concat(s.sport_type_" + locale + ", \".\", e.team1_" + locale + ",\"-\", e.team2_" + locale + ") as info FROM bukmaker.event as e\n" +
+                        "join sport as s on e.sport_id = s.id\n" +
+                        "join odd as o on o.event_id = e.id\n" +
+                        "where o.id = ?";
     }
 
 }

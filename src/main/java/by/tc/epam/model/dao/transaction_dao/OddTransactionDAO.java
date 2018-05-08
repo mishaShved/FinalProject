@@ -15,7 +15,7 @@ public interface OddTransactionDAO {
     OddsList getOddsByEvent(Connection conn, int eventId, String locale)
             throws DAOSQLException;
 
-    String getInfoAboutOdd(Connection conn, int oddId)
+    String getInfoAboutOdd(Connection conn, int oddId, String locale)
             throws DAOSQLException;
 
     String getOddType(Connection conn, int oddId)

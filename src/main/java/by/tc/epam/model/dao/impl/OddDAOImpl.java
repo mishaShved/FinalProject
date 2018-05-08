@@ -60,9 +60,8 @@ public class OddDAOImpl implements OddDAO {
     }
 
     @Override
-    public String getInfoAboutOdd(int oddId)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DAOSQLException {
+    public String getInfoAboutOdd(int oddId, String locale)
+            throws ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -74,7 +73,7 @@ public class OddDAOImpl implements OddDAO {
 
         try{
 
-            oddInfo = transactionDAO.getInfoAboutOdd(conn, oddId);
+            oddInfo = transactionDAO.getInfoAboutOdd(conn, oddId, locale);
 
         }finally {
             pool.returnConnection(conn);
@@ -86,8 +85,7 @@ public class OddDAOImpl implements OddDAO {
 
     @Override
     public String getOddType(int oddId)
-            throws DAOSQLException, ConnectionPoolException,
-            DBLoginException, JDBCDriverNotFoundException {
+            throws DAOSQLException, ConnectionPoolException{
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();

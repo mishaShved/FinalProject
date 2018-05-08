@@ -17,7 +17,7 @@ public interface OddDAO {
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPoolException, DAOSQLException;
 
-    String getInfoAboutOdd(int oddId)
+    String getInfoAboutOdd(int oddId, String locale)
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPoolException, DAOSQLException;
 

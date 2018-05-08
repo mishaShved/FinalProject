@@ -72,13 +72,13 @@ public class OddTransactionDAOImpl implements OddTransactionDAO {
     }
 
     @Override
-    public String getInfoAboutOdd(Connection conn, int oddId)
+    public String getInfoAboutOdd(Connection conn, int oddId, String locale)
             throws DAOSQLException {
 
         String info = null;
 
         try(PreparedStatement statement =
-                    conn.prepareStatement(RequestContainer.GET_INFO_ABOUT_ODD)){
+                    conn.prepareStatement(RequestContainer.getRequestForGetInfoAboutOdd(locale))){
 
             statement.setInt(1, oddId);
 
