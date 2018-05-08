@@ -13,7 +13,7 @@ public interface EventService {
                      String team1EN, String team2EN, Sport sportType)
             throws ServiceSQLException, DataSourceException;
 
-    List<Event> getAllEvents()
+    List<Event> getAllEvents(String locale)
             throws DataSourceException, ServiceSQLException;
 
     List<Event> getEventsBySport(Sport sport, String locale)

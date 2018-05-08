@@ -57,14 +57,14 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
     }
 
     @Override
-    public List<Event> getAllEvents(Connection conn)
+    public List<Event> getAllEvents(Connection conn, String locale)
             throws DAOSQLException {
 
         List<Event> allEvents;
 
         try(Statement statement = conn.createStatement()){
 
-            ResultSet rs = statement.executeQuery(RequestContainer.SELECT_EVENTS_REQUEST_FOR_SET_SCORE);
+            ResultSet rs = statement.executeQuery(RequestContainer.getRequestForGetEventsForSetScore(locale));
 
             allEvents = createEventList(rs);
 

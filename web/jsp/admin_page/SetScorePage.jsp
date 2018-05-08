@@ -34,7 +34,7 @@
                             <br/>
                             <c:out value="${eventsList.get(i).startTime}"/>
                             <br/>
-                            <c:out value="${eventsList.get(i).sportType.name()}"/>
+                            <c:out value="${eventsList.get(i).sportType}"/>
                             <br/>
                         </option>
                     </c:forEach>

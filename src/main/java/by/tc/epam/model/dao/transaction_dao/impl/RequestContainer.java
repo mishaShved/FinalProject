@@ -8,12 +8,6 @@ public final class RequestContainer {
             "INSERT INTO `bukmaker`.`event` (`id`, `time`, `team1_ru`, `team2_ru`, `team1_en`, `team2_en`, `sport_id`, `score1`, `score2`)" +
                     " VALUES (?, ?, ?, ?, ?, ?, ?, -1, -1);";
 
-    public static final String SELECT_EVENTS_REQUEST_FOR_SET_SCORE =
-            "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
-                    "join bukmaker.sport as s on b.sport_id = s.id " +
-                    "where b.score1 = -1 " +
-                    "and b.time < curdate();";
-
     public static final String CREATE_ODD =
             "INSERT INTO `bukmaker`.`odd` (`id`, `event_id`, `type_id`, `coefficient`, `param`) " +
                     "VALUES (?, ?, ?, ?, ?);";
@@ -103,6 +97,14 @@ public final class RequestContainer {
                         "join sport as s on e.sport_id = s.id\n" +
                         "join odd as o on o.event_id = e.id\n" +
                         "where o.id = ?";
+    }
+
+    public static String getRequestForGetEventsForSetScore(String locale){
+        return  "SELECT b.id, b.time, b.team1_" + locale + " as team1, b.team2_" + locale + " as team2," +
+                " s.sport_type_" + locale + " as sportType FROM bukmaker.event as b " +
+                        "join bukmaker.sport as s on b.sport_id = s.id " +
+                        "where b.score1 = -1 " +
+                        "and b.time < curdate();";
     }
 
 }

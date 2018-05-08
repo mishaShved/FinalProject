@@ -27,10 +27,12 @@ public class GoToSetScorePage implements Command{
         ServiceFactory factory = ServiceFactory.getInstance();
         EventService service = factory.getEventService();
 
+        String locale = (String)request.getSession().getAttribute(ConstantContainer.LOCALE);
+
         List<Event> events;
 
         try {
-            events = service.getAllEvents();
+            events = service.getAllEvents(locale);
 
             request.setAttribute(ConstantContainer.EVENTS_LIST, events);
 

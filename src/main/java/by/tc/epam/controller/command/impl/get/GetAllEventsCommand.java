@@ -31,24 +31,26 @@ public class GetAllEventsCommand implements Command {
         ServiceFactory factory = ServiceFactory.getInstance();
         EventService service = factory.getEventService();
 
-        try {
 
 
-            List<Event> allEvents = service.getAllEvents();
-            request.setAttribute(ConstantContainer.EVENTS, allEvents);
-
-            servlet.getServletContext().getRequestDispatcher("/WEB-INF/jsp/AllEvents.jsp").
-                    forward(request,response);
-
-        } catch (DataSourceException e) {
-            log.error("Problems with data source", e);
-        } catch (ServiceSQLException e) {
-            log.error("SQL error", e);
-        } catch (ServletException e) {
-            log.error("Servlet error", e);
-        } catch (IOException e) {
-            log.error("Error in pages path", e);
-        }
+//        try {
+//
+//
+//            //List<Event> allEvents = service.getAllEvents();
+//            //request.setAttribute(ConstantContainer.EVENTS, allEvents);
+//
+//            servlet.getServletContext().getRequestDispatcher("/WEB-INF/jsp/AllEvents.jsp").
+//                    forward(request,response);
+//
+//        } catch (DataSourceException e) {
+//            log.error("Problems with data source", e);
+//        } catch (ServiceSQLException e) {
+//            log.error("SQL error", e);
+//        } catch (ServletException e) {
+//            log.error("Servlet error", e);
+//        } catch (IOException e) {
+//            log.error("Error in pages path", e);
+//        }
 
     }
 }

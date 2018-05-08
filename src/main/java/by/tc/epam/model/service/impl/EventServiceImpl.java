@@ -33,7 +33,7 @@ public class EventServiceImpl implements EventService{
 
         try {
             eventDAO.createEvent(fullDate.getFullDate(), team1RU, team2RU, team1EN, team2EN, sportType);
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch ( ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -42,16 +42,16 @@ public class EventServiceImpl implements EventService{
     }
 
     @Override
-    public List<Event> getAllEvents()
+    public List<Event> getAllEvents(String locale)
             throws DataSourceException, ServiceSQLException {
 
         List<Event> allEvents;
 
         try {
 
-            allEvents =  eventDAO.getAllEvents();
+            allEvents =  eventDAO.getAllEvents(locale);
 
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch ( ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -70,7 +70,7 @@ public class EventServiceImpl implements EventService{
             partEvents = eventDAO.getEventsBySport(sport, locale);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
-        }catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        }catch ( ConnectionPoolException e) {
             throw new DataSourceException(e);
         }
 
@@ -89,7 +89,7 @@ public class EventServiceImpl implements EventService{
 
             allEvents =  eventDAO.getEventsForAddOdd(locale);
 
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch ( ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -104,7 +104,7 @@ public class EventServiceImpl implements EventService{
 
         try {
             eventDAO.setScore(eventId, score1, score2);
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch ( ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);

@@ -17,7 +17,7 @@ public interface EventTransactionDAO {
     void setScore(Connection conn, int eventId, int score1, int score2)
             throws DAOSQLException;
 
-    List<Event> getAllEvents(Connection conn)
+    List<Event> getAllEvents(Connection conn, String locale)
             throws DAOSQLException;
 
     List<Event> getEventsBySport(Connection conn, Sport sportType, String locale)
