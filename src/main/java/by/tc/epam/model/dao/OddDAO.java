@@ -13,14 +13,20 @@ public interface OddDAO {
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPoolException, DAOSQLException;
 
-    OddsList getOddsByEvent(int eventId)
+    OddsList getOddsByEvent(int eventId, String locale)
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPoolException, DAOSQLException;
 
-    String getInfoAboutOdd(int oddId) throws DBLoginException, JDBCDriverNotFoundException, ConnectionPoolException, DAOSQLException;
+    String getInfoAboutOdd(int oddId)
+            throws DBLoginException, JDBCDriverNotFoundException,
+            ConnectionPoolException, DAOSQLException;
 
-    String getOddType(int oddId) throws DAOSQLException, ConnectionPoolException, DBLoginException, JDBCDriverNotFoundException;
+    String getOddType(int oddId)
+            throws DAOSQLException, ConnectionPoolException,
+            DBLoginException, JDBCDriverNotFoundException;
 
-    double getCoef(int oddId) throws ConnectionPoolException, DBLoginException, JDBCDriverNotFoundException, DAOSQLException;
+    double getCoef(int oddId)
+            throws ConnectionPoolException, DBLoginException,
+            JDBCDriverNotFoundException, DAOSQLException;
 
 }

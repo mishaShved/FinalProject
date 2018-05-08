@@ -40,6 +40,10 @@
         <listener-class>by.tc.epam.web.event_listener.ConnectionPoolInit</listener-class>
     </listener>
 
+    <listener>
+        <listener-class>by.tc.epam.web.session_listener.LocaleSetter</listener-class>
+    </listener>
+
     <session-config>
         <session-timeout>
             30

@@ -100,14 +100,14 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
     }
 
     @Override
-    public List<Event> getEventsForAddOdd(Connection conn)
+    public List<Event> getEventsForAddOdd(Connection conn, String locale)
             throws DAOSQLException {
 
         List<Event> events;
 
         try(Statement statement = conn.createStatement()){
 
-            ResultSet rs = statement.executeQuery(RequestContainer.SELECT_EVENTS_REQUEST_FOR_ADD_ODD);
+            ResultSet rs = statement.executeQuery(RequestContainer.getRequestForAviableEventsForAddOdd(locale));
 
             events = createEventList(rs);
 
@@ -173,7 +173,7 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
             event.setId(rs.getInt(ConstantContainer.ID));
             event.setTeam1(rs.getString(ConstantContainer.TEAM1));
             event.setTeam2(rs.getString(ConstantContainer.TEAM2));
-            event.setSportType(Sport.valueOf(rs.getString(ConstantContainer.SPORT_TYPE_2)));
+            event.setSportType(rs.getString(ConstantContainer.SPORT_TYPE));
             event.setStartTime(rs.getString(ConstantContainer.TIME));
 
             eventList.add(event);

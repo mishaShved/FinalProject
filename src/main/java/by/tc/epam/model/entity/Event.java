@@ -1,13 +1,13 @@
 package by.tc.epam.model.entity;
 
-import java.util.Date;
+
 import java.util.Objects;
 
 public class Event {
 
     private int id;
     private String startTime;
-    private Sport sportType;
+    private String sportType;
     private String team1;
     private String team2;
     private Integer score1;
@@ -16,7 +16,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(int id, String startTime, Sport sportType, String team1,
+    public Event(int id, String startTime, String sportType, String team1,
                  String team2, Integer score1, Integer score2) {
         this.id = id;
         this.startTime = startTime;
@@ -39,7 +39,7 @@ public class Event {
         return startTime;
     }
 
-    public Sport getSportType() {
+    public String getSportType() {
         return sportType;
     }
 
@@ -63,7 +63,7 @@ public class Event {
         this.startTime = startTime;
     }
 
-    public void setSportType(Sport sportType) {
+    public void setSportType(String sportType) {
         this.sportType = sportType;
     }
 
@@ -90,7 +90,7 @@ public class Event {
         Event event = (Event) o;
         return id == event.id &&
                 Objects.equals(startTime, event.startTime) &&
-                sportType == event.sportType &&
+                Objects.equals(sportType, event.sportType) &&
                 Objects.equals(team1, event.team1) &&
                 Objects.equals(team2, event.team2) &&
                 Objects.equals(score1, event.score1) &&

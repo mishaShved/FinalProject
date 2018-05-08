@@ -8,13 +8,6 @@ public final class RequestContainer {
             "INSERT INTO `bukmaker`.`event` (`id`, `time`, `team1_ru`, `team2_ru`, `team1_en`, `team2_en`, `sport_id`, `score1`, `score2`)" +
                     " VALUES (?, ?, ?, ?, ?, ?, ?, -1, -1);";
 
-    public static final String SELECT_EVENTS_REQUEST_FOR_ADD_ODD =
-            "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
-                    "join bukmaker.sport as s on b.sport_id = s.id " +
-                    "where b.time > curdate();";
-
-
-
     public static final String SELECT_EVENTS_REQUEST_FOR_SET_SCORE =
             "SELECT b.id, b.time, b.team1, b.team2, s.sport_type FROM bukmaker.event as b " +
                     "join bukmaker.sport as s on b.sport_id = s.id " +
@@ -25,11 +18,7 @@ public final class RequestContainer {
             "INSERT INTO `bukmaker`.`odd` (`id`, `event_id`, `type_id`, `coefficient`, `param`) " +
                     "VALUES (?, ?, ?, ?, ?);";
 
-    public static final String GET_ODD_BY_EVENT =
-            "SELECT o.id, e.team1, e.team2, t.type, o.coefficient, o.param FROM bukmaker.odd as o\n" +
-                    "join bukmaker.event as e on o.event_id = e.id\n" +
-                    "join bukmaker.odd_type as t on o.type_id = t.id\n" +
-                    "where o.event_id = ?;";
+
 
     public static final String CREATE_STACKE =
             "INSERT INTO `bukmaker`.`stake` " +
@@ -92,10 +81,26 @@ public final class RequestContainer {
     }
 
     public static String getRequestForSelectEventsBySport(String locale){
-        return "SELECT b.id, b.time, b.team1_" + locale + " , b.team2_" + locale + " , s.sport_type FROM bukmaker.event as b " +
+        return "SELECT b.id, b.time, b.team1_" + locale + " as team1 , b.team2_" + locale + " as team2, s.sport_type as sportType FROM bukmaker.event as b " +
                         "join bukmaker.sport as s on b.sport_id = s.id " +
                         "where s.sport_type = ? " +
                         "and b.time > curdate();";
+    }
+
+    public static String getRequestForGetOddsByEvent(String locale){
+        return "SELECT o.id, e.team1_" + locale + " as team1, e.team2_" + locale + " as team2, t.type, o.coefficient, o.param FROM bukmaker.odd as o\n" +
+                        "join bukmaker.event as e on o.event_id = e.id\n" +
+                        "join bukmaker.odd_type as t on o.type_id = t.id\n" +
+                        "where o.event_id = ?;";
+    }
+
+    public static final String getRequestForAviableEventsForAddOdd(String locale){
+        String str =
+          "SELECT b.id, b.time, b.team1_" + locale + " as team1, b.team2_" + locale + " as team2, " +
+                "s.sport_type_" + locale + " as sportType FROM bukmaker.event as b " +
+                        "join bukmaker.sport as s on b.sport_id = s.id " +
+                        "where b.time > curdate();";
+        return str;
     }
 
 }

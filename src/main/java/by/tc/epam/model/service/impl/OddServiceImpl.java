@@ -34,13 +34,13 @@ public class OddServiceImpl implements OddService{
     }
 
     @Override
-    public OddsList getOddsByEvent(int eventId)
+    public OddsList getOddsByEvent(int eventId, String locale)
             throws ServiceSQLException, DataSourceException {
 
         OddsList odds;
 
         try {
-            odds = oddDAO.getOddsByEvent(eventId);
+            odds = oddDAO.getOddsByEvent(eventId, locale);
         } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {

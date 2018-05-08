@@ -123,7 +123,7 @@ public class EventDAOImpl implements EventDAO {
     }
 
     @Override
-    public List<Event> getEventsForAddOdd()
+    public List<Event> getEventsForAddOdd(String locale)
             throws ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -136,7 +136,7 @@ public class EventDAOImpl implements EventDAO {
 
         try{
 
-            allEvents = transactionDAO.getEventsForAddOdd(conn);
+            allEvents = transactionDAO.getEventsForAddOdd(conn, locale);
 
         } finally {
             pool.returnConnection(conn);

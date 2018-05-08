@@ -37,9 +37,8 @@ public class OddDAOImpl implements OddDAO {
     }
 
     @Override
-    public OddsList getOddsByEvent(int eventId)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DAOSQLException {
+    public OddsList getOddsByEvent(int eventId, String locale)
+            throws ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -51,7 +50,7 @@ public class OddDAOImpl implements OddDAO {
 
         try{
 
-            odds = transactionDAO.getOddsByEvent(conn, eventId);
+            odds = transactionDAO.getOddsByEvent(conn, eventId, locale);
 
         }finally {
             pool.returnConnection(conn);

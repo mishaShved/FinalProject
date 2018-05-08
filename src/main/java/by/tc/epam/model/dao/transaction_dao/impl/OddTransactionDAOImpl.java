@@ -35,13 +35,13 @@ public class OddTransactionDAOImpl implements OddTransactionDAO {
     }
 
     @Override
-    public OddsList getOddsByEvent(Connection conn, int eventId)
+    public OddsList getOddsByEvent(Connection conn, int eventId, String locale)
             throws DAOSQLException {
 
         OddsList odds = new OddsList();
 
         try(PreparedStatement statement =
-                    conn.prepareStatement(RequestContainer.GET_ODD_BY_EVENT)){
+                    conn.prepareStatement(RequestContainer.getRequestForGetOddsByEvent(locale))){
 
             statement.setInt(1, eventId);
 

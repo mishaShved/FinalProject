@@ -9,6 +9,7 @@ import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.util.ConstantContainer;
+import com.sun.jndi.cosnaming.CNCtx;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -29,6 +30,7 @@ public class GetOddsByEventCommand implements Command{
         UserService userService = factory.getUserService();
 
         int eventId = Integer.parseInt(request.getParameter(ConstantContainer.EVENT_ID));
+        String locale = (String)request.getSession().getAttribute(ConstantContainer.LOCALE);
 
         User user = (User)request.getSession().getAttribute(ConstantContainer.USER);
         int userId = 0;
@@ -40,7 +42,7 @@ public class GetOddsByEventCommand implements Command{
 
         try {
 
-            OddsList odds = oddService.getOddsByEvent(eventId);
+            OddsList odds = oddService.getOddsByEvent(eventId, locale);
 
             if(user != null){
                 balance = userService.getUserBalance(userId);

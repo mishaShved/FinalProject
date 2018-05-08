@@ -80,14 +80,14 @@ public class EventServiceImpl implements EventService{
     }
 
     @Override
-    public List<Event> getEventsForAddOdd()
+    public List<Event> getEventsForAddOdd(String locale)
             throws DataSourceException, ServiceSQLException {
 
         List<Event> allEvents;
 
         try {
 
-            allEvents =  eventDAO.getEventsForAddOdd();
+            allEvents =  eventDAO.getEventsForAddOdd(locale);
 
         } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
             throw new DataSourceException(e);

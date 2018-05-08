@@ -19,7 +19,7 @@ public interface EventService {
     List<Event> getEventsBySport(Sport sport, String locale)
             throws ServiceSQLException, DataSourceException;
 
-    List<Event> getEventsForAddOdd()
+    List<Event> getEventsForAddOdd(String locale)
             throws DataSourceException, ServiceSQLException;
 
     void setScore(int eventId, int score1, int score2)

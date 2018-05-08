@@ -27,7 +27,7 @@ public interface EventDAO {
             throws DAOSQLException, DBLoginException,
             JDBCDriverNotFoundException, ConnectionPoolException;
 
-    List<Event> getEventsForAddOdd()
+    List<Event> getEventsForAddOdd(String locale)
             throws DBLoginException, JDBCDriverNotFoundException,
             ConnectionPoolException, DAOSQLException;
 

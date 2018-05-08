@@ -28,9 +28,11 @@ public class GoToCreateOddPageCommand implements Command{
         ServiceFactory factory = ServiceFactory.getInstance();
         EventService service = factory.getEventService();
 
+        String locale = (String)request.getSession().getAttribute(ConstantContainer.LOCALE);
+
         try {
 
-            List<Event> events = service.getEventsForAddOdd();
+            List<Event> events = service.getEventsForAddOdd(locale);
 
             request.setAttribute(ConstantContainer.EVENTS_LIST, events);
             request.setAttribute(ConstantContainer.ODD_TYPES, OddType.values());

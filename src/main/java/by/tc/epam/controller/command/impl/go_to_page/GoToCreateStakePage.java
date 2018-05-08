@@ -28,6 +28,7 @@ public class GoToCreateStakePage implements Command{
         OddService oddService = factory.getOddService();
         UserService userService = factory.getUserService();
 
+        String locale = (String)request.getSession().getAttribute(ConstantContainer.LOCALE);
         User user = (User)request.getSession().getAttribute(ConstantContainer.USER);
         int oddId = Integer.parseInt(request.getParameter(ConstantContainer.ODD_ID));
 
@@ -52,7 +53,7 @@ public class GoToCreateStakePage implements Command{
             try {
 
                 balance = userService.getUserBalance(userId);
-                oddInfo = oddService.getInfoAboutOdd(oddId);
+                oddInfo = oddService.getInfoAboutOdd(oddId, locale);
                 oddOutcome = oddService.getOddType(oddId);
                 coef = oddService.getCoef(oddId);
 
