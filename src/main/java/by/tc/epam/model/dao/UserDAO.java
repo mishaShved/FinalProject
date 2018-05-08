@@ -1,18 +1,21 @@
 package by.tc.epam.model.dao;
 
-import by.tc.epam.model.dao.exception.*;
+
+import by.tc.epam.model.dao.exception.ConnectionPoolException;
+import by.tc.epam.model.dao.exception.DAOSQLException;
+import by.tc.epam.model.dao.exception.DublicateUserException;
+import by.tc.epam.model.dao.exception.IncorrectLoginException;
+import by.tc.epam.model.dao.exception.NotEnoughMoneyException;
 import by.tc.epam.model.entity.User;
 
 public interface UserDAO {
 
-    void registration(String name, String email, String password)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DublicateUserException, DAOSQLException;
+    int registration(String name, String email, String password)
+            throws ConnectionPoolException, DublicateUserException, DAOSQLException;
 
 
     User login(int id, String password)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DAOSQLException,
+            throws ConnectionPoolException, DAOSQLException,
             IncorrectLoginException;
 
 
@@ -21,17 +24,14 @@ public interface UserDAO {
     void setName(int id, String newName);
 
     void withdraw(int id, double money)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DAOSQLException,
+            throws ConnectionPoolException, DAOSQLException,
             NotEnoughMoneyException;
 
 
     void deposit(int id, double money)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DAOSQLException;
+            throws ConnectionPoolException, DAOSQLException;
 
 
     double getUserBalance(int id)
-            throws DAOSQLException, ConnectionPoolException,
-            DBLoginException, JDBCDriverNotFoundException;
+            throws DAOSQLException, ConnectionPoolException;
 }

@@ -7,28 +7,25 @@ import by.tc.epam.model.entity.UserType;
 import by.tc.epam.util.ConstantContainer;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserTransactionDAOImpl implements UserTransactionDAO {
 
     @Override
-    public void registration(Connection conn, String name, String email, String password)
+    public int registration(Connection conn, String name, String email, String password)
             throws DublicateUserException, DAOSQLException {
 
-        try (PreparedStatement statement =
-                     conn.prepareStatement(RequestContainer.USER_ADD_REQUEST)){
+        int userId;
 
-            statement.setString(1, null);
-            statement.setString(2, name);
+        try (CallableStatement statement =
+                     conn.prepareCall(RequestContainer.USER_ADD_REQUEST)){
+
+            statement.setString(1, name);
+            statement.setString(2, email);
             statement.setString(3, password);
-            statement.setString(4, email);
-
-            statement.executeUpdate();
-
-            System.out.println(statement.toString());
+            statement.registerOutParameter(4,java.sql.Types.INTEGER);
+            statement.execute();
+            userId = statement.getInt(4);
 
 
         } catch (MySQLIntegrityConstraintViolationException e) {
@@ -37,6 +34,7 @@ public class UserTransactionDAOImpl implements UserTransactionDAO {
             throw new DAOSQLException(e);
         }
 
+        return userId;
     }
 
     @Override

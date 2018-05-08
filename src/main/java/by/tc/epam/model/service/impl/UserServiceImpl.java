@@ -13,19 +13,23 @@ public class UserServiceImpl implements UserService {
     private static final UserDAO userDAO = daoFactory.getUserDAO();
 
     @Override
-    public void registration(String name, String email, String password)
+    public int registration(String name, String email, String password)
             throws ServiceSQLException, UserAlreadyExistException,
             DataSourceException {
 
+        int userID;
+
         try {
-            userDAO.registration(name, email, password);
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+            userID = userDAO.registration(name, email, password);
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DublicateUserException e) {
             throw new UserAlreadyExistException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
         }
+
+        return userID;
     }
 
     @Override
@@ -37,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
         try {
             user = userDAO.login(id, password);
-        } catch (DBLoginException | ConnectionPoolException | JDBCDriverNotFoundException e) {
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -65,7 +69,7 @@ public class UserServiceImpl implements UserService {
 
         try {
             userDAO.withdraw(id, money);
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -81,7 +85,7 @@ public class UserServiceImpl implements UserService {
 
         try {
             userDAO.deposit(id, money);
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -100,7 +104,7 @@ public class UserServiceImpl implements UserService {
             balance = userDAO.getUserBalance(id);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         }
 

@@ -10,7 +10,7 @@ import java.sql.Connection;
 
 public interface UserTransactionDAO {
 
-    void registration(Connection conn, String name, String email, String password)
+    int registration(Connection conn, String name, String email, String password)
             throws DublicateUserException, DAOSQLException;
 
 

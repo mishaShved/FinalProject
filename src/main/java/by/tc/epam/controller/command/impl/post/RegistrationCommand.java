@@ -29,10 +29,13 @@ public class RegistrationCommand implements Command{
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         UserService service = serviceFactory.getUserService();
 
+        int userID;
+
         try {
 
 
-            service.registration(name, email, password);
+            userID = service.registration(name, email, password);
+            request.getSession().setAttribute(ConstantContainer.USER_ID, userID);
             response.sendRedirect("/MishaBet");
 
 

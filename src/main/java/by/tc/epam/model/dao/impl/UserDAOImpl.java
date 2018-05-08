@@ -13,9 +13,8 @@ import java.sql.Connection;
 public class UserDAOImpl implements UserDAO {
 
     @Override
-    public void registration(String name, String email, String password)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DublicateUserException,
+    public int registration(String name, String email, String password)
+            throws ConnectionPoolException, DublicateUserException,
             DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
@@ -24,19 +23,22 @@ public class UserDAOImpl implements UserDAO {
         TransactionDAOFactory transactionDAOFactory = TransactionDAOFactory.getInstance();
         UserTransactionDAO transactionDAO = transactionDAOFactory.getUserTransactionDAO();
 
+        int userID;
+
         try{
 
-            transactionDAO.registration(conn, name, email, password);
+            userID = transactionDAO.registration(conn, name, email, password);
 
         }finally {
             pool.returnConnection(conn);
         }
 
+        return userID;
     }
 
     @Override
-    public User login(int userId, String password) throws DBLoginException,
-            JDBCDriverNotFoundException, ConnectionPoolException,
+    public User login(int userId, String password)
+            throws ConnectionPoolException,
             DAOSQLException, IncorrectLoginException {
 
 
@@ -71,8 +73,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void withdraw(int userId, double money)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DAOSQLException, NotEnoughMoneyException {
+            throws ConnectionPoolException, DAOSQLException, NotEnoughMoneyException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -100,8 +101,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void deposit(int userId, double money)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DAOSQLException {
+            throws ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -124,8 +124,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public double getUserBalance(int userId)
-            throws DAOSQLException, ConnectionPoolException,
-            DBLoginException, JDBCDriverNotFoundException {
+            throws DAOSQLException, ConnectionPoolException{
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();

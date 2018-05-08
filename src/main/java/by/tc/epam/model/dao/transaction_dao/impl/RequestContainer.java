@@ -20,8 +20,7 @@ public final class RequestContainer {
                     "VALUES (?, ?, ?, ?, ?);";
 
     public static final String USER_ADD_REQUEST =
-            "INSERT INTO `bukmaker`.`user` (`id`, `name`, `password`, `balance`, `user_type_id`, `email`)" +
-                    " VALUES (?, ?, md5(?), '0', '2', ?);";
+            "call userRegistration(?, ?, ?, ?)";
 
     public static final String GET_USER_REQUEST =
             "SELECT u.id, u.name, t.type AS userType FROM bukmaker.user AS u\n" +

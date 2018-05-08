@@ -5,7 +5,7 @@ import by.tc.epam.model.service.exception.*;
 
 public interface UserService {
 
-    void registration(String name, String email, String password)
+    int registration(String name, String email, String password)
             throws ServiceSQLException, DataSourceException,
             UserAlreadyExistException;
 
