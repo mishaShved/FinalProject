@@ -13,7 +13,7 @@
     <fmt:message key="local.startPage.cybersport" var="cybersport"/>
 </fmt:bundle>
 
-<body onload="update('CYBERSPORT');">
+<div onload="update('CYBERSPORT');">
 
 <ul class="nav nav-tabs nav-tabs-center" id="sport-type" role="tablist">
     <li class="nav-item">
@@ -39,7 +39,7 @@
     </li>
 </ul>
 
-
+</div>
 
 <table class="table table-condensed center-table-class" id="events-table" >
 
@@ -48,4 +48,4 @@
 <script type="text/javascript" src="../script/ChangeSportType.js"></script>
 <script type="text/javascript" src="../script/UpdateTable.js"></script>
 
-</body>
+
