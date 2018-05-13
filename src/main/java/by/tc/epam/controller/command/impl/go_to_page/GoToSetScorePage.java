@@ -22,7 +22,8 @@ public class GoToSetScorePage implements Command{
     private static final Logger log = Logger.getLogger(GoToSetScorePage.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         ServiceFactory factory = ServiceFactory.getInstance();
         EventService service = factory.getEventService();
@@ -37,7 +38,7 @@ public class GoToSetScorePage implements Command{
             request.setAttribute(ConstantContainer.EVENTS_LIST, events);
 
             servlet.getServletContext().
-                    getRequestDispatcher("/jsp/admin_page/SetScorePage.jsp").
+                    getRequestDispatcher(urlPrefix + "/jsp/admin_page/SetScorePage.jsp").
                     forward(request, response);
 
         } catch (DataSourceException e) {

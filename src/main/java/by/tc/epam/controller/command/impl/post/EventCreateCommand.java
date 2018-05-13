@@ -20,7 +20,8 @@ public class EventCreateCommand implements Command {
     private static final Logger log = Logger.getLogger(EventCreateCommand.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         EventService service = serviceFactory.getEventService();
@@ -37,7 +38,7 @@ public class EventCreateCommand implements Command {
             service.createEvent(date, time, team1RU, team2RU, team1EN, team2EN, sportType);
 
             request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
-            response.sendRedirect("/jsp/admin_page/AdminPage.jsp");
+            response.sendRedirect(urlPrefix + "/jsp/admin_page/AdminPage.jsp");
 
 
         } catch (DataSourceException e) {

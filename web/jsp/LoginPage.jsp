@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/styles.css">
+
+<c:set var="urlPrefix" value="${pageContext.request.contextPath}"/>
 
 <fmt:bundle basename="locale">
     <fmt:message key="local.loginPage.accountNumber" var="account"/>
@@ -12,13 +12,13 @@
     <fmt:message key="local.loginPage.back" var="back"/>
     <fmt:message key="local.loginPage.loginLabel" var="loginLabel"/>
     <fmt:message key="local.loginPage.loginErrorLabel" var="loginErrorLabel"/>
-
-
 </fmt:bundle>
 
 <html>
 <head>
     <title>MBet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${urlPrefix}/css/styles.css">
 </head>
 <body>
 
@@ -39,7 +39,7 @@
 
 
 
-    <form action="/MishaBet" method="post" class="login-form">
+    <form action="${urlPrefix}/MishaBet" method="post" class="login-form">
 
 
 
@@ -67,7 +67,7 @@
     </form>
 
         <div class="login-background login-form" style=" margin-top: -64px; padding-left: 27.5%;">
-        <a href="/jsp/RegistrationPage.jsp">
+        <a href="${urlPrefix}/jsp/RegistrationPage.jsp">
             <button class="btn btn-primary">${registration}</button>
         </a>
         </div>
@@ -84,7 +84,7 @@
         ;
     </script>
 
-    <script src="../script/LoginValidation.js"></script>
+    <script src="${urlPrefix}/script/LoginValidation.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 

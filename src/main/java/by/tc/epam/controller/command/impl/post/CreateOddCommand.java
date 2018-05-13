@@ -19,7 +19,8 @@ public class CreateOddCommand implements Command{
     private static final Logger log = Logger.getLogger(CreateOddCommand.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
 
         ServiceFactory factory = ServiceFactory.getInstance();
@@ -36,7 +37,7 @@ public class CreateOddCommand implements Command{
             service.createOdd(eventId, oddType, koef, param);
 
             request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
-            response.sendRedirect("/jsp/admin_page/AdminPage.jsp");
+            response.sendRedirect(urlPrefix + "/jsp/admin_page/AdminPage.jsp");
 
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);

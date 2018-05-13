@@ -21,7 +21,8 @@ public class GoToStartPage implements Command{
     private static final Logger log = Logger.getLogger(GoToStartPage.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         ServiceFactory factory = ServiceFactory.getInstance();
         UserService service = factory.getUserService();
@@ -41,7 +42,7 @@ public class GoToStartPage implements Command{
             }
 
             servlet.getServletContext().
-                    getRequestDispatcher("/jsp/StartPage.jsp").
+                    getRequestDispatcher(urlPrefix + "/jsp/StartPage.jsp").
                     forward(request, response);
 
         } catch (DataSourceException e) {

@@ -24,7 +24,8 @@ public class LoginCommand implements Command {
     private static final Logger log = Logger.getLogger(LoginCommand.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         int id = Integer.parseInt(request.getParameter(ConstantContainer.ID));
         String password = request.getParameter(ConstantContainer.PASSWORD);
@@ -53,11 +54,11 @@ public class LoginCommand implements Command {
                 if(oddID == null) {
 
                     servletContext.getRequestDispatcher
-                            ("/jsp/StartPage.jsp").forward(request, response);
+                            (urlPrefix + "/jsp/StartPage.jsp").forward(request, response);
                 }else{
 
                     servletContext.getRequestDispatcher
-                            ("/MishaBet?command=goToCreateStakePage&oddId=" + oddID)
+                            (urlPrefix + "/MishaBet?command=goToCreateStakePage&oddId=" + oddID)
                             .forward(request, response);
                     request.getSession().setAttribute(ConstantContainer.ODD_ID, null);
                 }
@@ -66,7 +67,7 @@ public class LoginCommand implements Command {
             }else{
 
                 servletContext.getRequestDispatcher
-                        ("/jsp/admin_page/AdminPage.jsp").forward(request, response);
+                        (urlPrefix + "/jsp/admin_page/AdminPage.jsp").forward(request, response);
             }
 
 
@@ -84,7 +85,7 @@ public class LoginCommand implements Command {
 
             try {
                 servlet.getServletContext().getRequestDispatcher
-                        ("/jsp/LoginPage.jsp")
+                        (urlPrefix + "/jsp/LoginPage.jsp")
                         .forward(request, response);
             } catch (IOException e1) {
                 log.error("Error in pages path", e);

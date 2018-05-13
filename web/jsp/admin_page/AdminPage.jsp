@@ -10,12 +10,13 @@
     <fmt:message key="local.adminPage.createEntryLabel" var="entryAddedSuccesfull"/>
 </fmt:bundle>
 
+<c:set var="urlPrefix" value="${pageContext.request.contextPath}"/>
 
 <html>
 <head>
     <title>MBet</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="${urlPrefix}/css/styles.css">
 </head>
 <body>
 
@@ -25,19 +26,19 @@
 
         <div class="admin-choice">
 
-            <form action="/MishaBet" method="post">
+            <form action="${urlPrefix}/MishaBet" method="post">
                 <input type="hidden" name="command" value="goToSetScorePage">
                 <input type="submit" value="${setScore}">
             </form>
 
-            <form action="/MishaBet" method="post">
+            <form action="${urlPrefix}/MishaBet" method="post">
 
                 <input type="hidden" name="command" value="goToCreateOddPage">
                 <input type="submit" value="${craeteOdd}">
 
             </form>
 
-            <form action="/MishaBet" method="post">
+            <form action="${urlPrefix}/MishaBet" method="post">
 
                 <input type="hidden" name="command" value="goToCreateEventPage">
                 <input type="submit" value="${createEvent}">
@@ -59,7 +60,7 @@
     </script>
 
     <c:if test="${sessionScope.isUpdated == true}">
-        <script src="/script/UpdateAlert.js"></script>
+        <script src="/${urlPrefix}/script/UpdateAlert.js"></script>
         <c:set value="false" var="isUpdated" scope="session"/>
     </c:if>
 

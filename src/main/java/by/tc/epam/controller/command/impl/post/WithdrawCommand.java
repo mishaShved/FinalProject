@@ -21,7 +21,8 @@ public class WithdrawCommand implements Command{
     private static final Logger log = Logger.getLogger(WithdrawCommand.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         UserService service = serviceFactory.getUserService();
@@ -33,7 +34,7 @@ public class WithdrawCommand implements Command{
 
             service.withdraw(user.getId(), money);
 
-            response.sendRedirect("/MishaBet");
+            response.sendRedirect(urlPrefix + "/MishaBet");
 
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);

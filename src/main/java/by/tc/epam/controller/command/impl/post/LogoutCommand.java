@@ -15,13 +15,14 @@ public class LogoutCommand implements Command{
     private static final Logger log = Logger.getLogger(LogoutCommand.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         request.getSession().setAttribute(ConstantContainer.USER, null);
 
         try {
 
-            response.sendRedirect("/MishaBet");
+            response.sendRedirect(urlPrefix + "/MishaBet");
 
         } catch (IOException e) {
             log.error("Error in pages path", e);

@@ -26,10 +26,11 @@ public class BukmakerServlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response){
 
         String command = request.getParameter(ConstantContainer.COMAND);
+        String urlPrefix = request.getContextPath();
 
         CommandNavigator commandNavigator = CommandNavigator.getInstance();
         Command concreteCommand = commandNavigator.getCommand(command);
 
-        concreteCommand.execute(this, request, response);
+        concreteCommand.execute(this, request, response, urlPrefix);
     }
 }

@@ -16,7 +16,8 @@ public class ChangeLocaleCommand implements Command{
     private static final Logger log = Logger.getLogger(GoToStartPage.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
 
         String newLocale = request.getParameter(ConstantContainer.LOCALE);
@@ -24,7 +25,7 @@ public class ChangeLocaleCommand implements Command{
         request.getSession().setAttribute(ConstantContainer.LOCALE, newLocale);
         Config.set(request.getSession(), Config.FMT_LOCALE, newLocale);
         try {
-            response.sendRedirect("/MishaBet");
+            response.sendRedirect(urlPrefix + "/MishaBet");
         } catch (IOException e) {
             log.error("File path error", e);
         }

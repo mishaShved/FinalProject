@@ -21,7 +21,8 @@ public class GoToDepositWithdrawPage implements Command{
     private static final Logger log = Logger.getLogger(GoToDepositWithdrawPage.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         UserService service = serviceFactory.getUserService();
@@ -39,7 +40,7 @@ public class GoToDepositWithdrawPage implements Command{
             request.setAttribute(ConstantContainer.BALANCE, userBalance);
 
             servlet.getServletContext().
-                    getRequestDispatcher("/jsp/DepositWithdrawPage.jsp").forward(request, response);
+                    getRequestDispatcher(urlPrefix + "/jsp/DepositWithdrawPage.jsp").forward(request, response);
 
 
         } catch (DataSourceException e) {

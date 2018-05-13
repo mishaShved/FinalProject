@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/styles.css">
+
+
+<c:set var="urlPrefix" value="${pageContext.request.contextPath}"/>
 
 <fmt:bundle basename="locale">
     <fmt:message key="local.stakeTypes.W1" var="W1"/>
@@ -22,6 +23,8 @@
 <head>
 
     <title>MBet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${urlPrefix}/css/styles.css">
 
 </head>
 
@@ -51,17 +54,17 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('W1').id}">
+                        <a href="${urlPrefix}/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('W1').id}">
                             <c:out value="${odds.getOdd('W1').koef}"/>
                         </a>
                     </td>
                     <td>
-                        <a href="/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('X').id}">
+                        <a href="${urlPrefix}/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('X').id}">
                             <c:out value="${odds.getOdd('X').koef}"/>
                         </a>
                     </td>
                     <td>
-                        <a href="/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('W2').id}">
+                        <a href="${urlPrefix}/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('W2').id}">
                             <c:out value="${odds.getOdd('W2').koef}"/>
                         </a>
                     </td>
@@ -78,17 +81,17 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('X1').id}">
+                        <a href="${urlPrefix}/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('X1').id}">
                             <c:out value="${odds.getOdd('X1').koef}"/>
                         </a>
                     </td>
                     <td>
-                        <a href="/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('NOTX').id}">
+                        <a href="${urlPrefix}/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('NOTX').id}">
                             <c:out value="${odds.getOdd('NOTX').koef}"/>
                         </a>
                     </td>
                     <td>
-                        <a href="/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('X2').id}">
+                        <a href="${urlPrefix}/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('X2').id}">
                             <c:out value="${odds.getOdd('X2').koef}"/>
                         </a>
                     </td>
@@ -105,13 +108,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('TM').id}">
+                        <a href="${urlPrefix}/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('TM').id}">
                             <c:out value="${odds.getOdd('TM').koef}"/>
                         </a>
                     </td>
                     <td></td>
                     <td>
-                        <a href="/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('TL').id}">
+                        <a href="${urlPrefix}/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('TL').id}">
                             <c:out value="${odds.getOdd('TL').koef}"/>
                         </a>
                     </td>
@@ -128,13 +131,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <a href="/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('F1').id}">
+                        <a href="${urlPrefix}/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('F1').id}">
                             <c:out value="${odds.getOdd('F1').koef}"/>
                         </a>
                     </td>
                     <td></td>
                     <td>
-                        <a href="/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('F2').id}">
+                        <a href="${urlPrefix}/MishaBet?command=goToCreateStakePage&oddId=${odds.getOdd('F2').id}">
                             <c:out value="${odds.getOdd('F2').koef}"/>
                         </a>
                     </td>

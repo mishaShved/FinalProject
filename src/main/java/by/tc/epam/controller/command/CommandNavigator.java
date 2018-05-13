@@ -5,6 +5,7 @@ import by.tc.epam.util.ConstantContainer;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,12 +25,13 @@ public class CommandNavigator {
 
         navigator = new HashMap<>();
 
-        FileInputStream fis;
+        InputStream inputStream;
         Properties property = new Properties();
 
         try {
-            fis = new FileInputStream("/home/misha/Desktop/FinalProject/src/main/resources/command_resource/commandList.properties");
-            property.load(fis);
+
+            inputStream = this.getClass().getClassLoader().getResourceAsStream("/command_resource/commandList.properties");
+            property.load(inputStream);
 
             Enumeration<?> commandNames = property.propertyNames();
             String currentCommandClassName;

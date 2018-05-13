@@ -23,7 +23,8 @@ public class CreateStackeCommand implements Command{
     StakeService stackeService = serviceFactory.getStackeService();
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         User user = (User) request.getSession().getAttribute(ConstantContainer.USER);
         int oddId = Integer.parseInt(request.getParameter(ConstantContainer.ODD_ID));
@@ -34,7 +35,7 @@ public class CreateStackeCommand implements Command{
 
             stackeService.createStake(user.getId(), oddId, money);
 
-            response.sendRedirect("/MishaBet");
+            response.sendRedirect(urlPrefix + "/MishaBet");
 
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);

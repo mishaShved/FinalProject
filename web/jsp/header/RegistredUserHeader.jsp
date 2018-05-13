@@ -17,23 +17,23 @@
 <nav class="navbar navbar-default nav-class">
     <div class="container-fluid">
         <div class="navbar-header icon-class">
-            <a href="/MishaBet">
+            <a href="${urlPrefix}/MishaBet">
                 MBET
             </a>
         </div>
         <ul class="nav navbar-nav nav-rigth-class">
             <li><a href="#">${settings}</a></li>
             <li>
-                <a href="/MishaBet?command=showStakes&page=1">${history}</a>
+                <a href="${urlPrefix}/MishaBet?command=showStakes&page=1">${history}</a>
             </li>
             <li>
-                <a href="/MishaBet?command=goToDepositWithdrawPage">${depositWithdraw}</a>
+                <a href="${urlPrefix}/MishaBet?command=goToDepositWithdrawPage">${depositWithdraw}</a>
             </li>
             <li><p><c:out value="${sessionScope.user.name}"/>
                     ${account}:<c:out value="${sessionScope.user.id}"/>
                     <br/>${balanceWord} : <c:out value="${balance}"/></p></li>
             <li>
-            <a href="/MishaBet?command=logout">${logout}</a></li>
+            <a href="${urlPrefix}/MishaBet?command=logout">${logout}</a></li>
         </ul>
     </div>
 </nav>

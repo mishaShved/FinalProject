@@ -15,11 +15,12 @@ public class GoToCreateEventPage implements Command {
     private static final Logger log = Logger.getLogger(GoToCreateEventPage.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         try {
 
-            servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/CreateEventPage.jsp")
+            servlet.getServletContext().getRequestDispatcher(urlPrefix + "/jsp/admin_page/CreateEventPage.jsp")
                     .forward(request, response);
 
         } catch (ServletException e) {

@@ -2,9 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="p" uri="pagination" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/styles.css">
 
+
+<c:set var="urlPrefix" value="${pageContext.request.contextPath}"/>
 
 <fmt:bundle basename="locale">
     <fmt:message key="local.accountHistory.stakeType" var="stakeType"/>
@@ -15,6 +15,8 @@
 <html>
 <head>
     <title>MBET</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${urlPrefix}/css/styles.css">
 </head>
 <body>
 

@@ -23,7 +23,8 @@ public class GoToCreateOddPageCommand implements Command{
     private static final Logger log = Logger.getLogger(GoToCreateEventPage.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         ServiceFactory factory = ServiceFactory.getInstance();
         EventService service = factory.getEventService();
@@ -38,7 +39,7 @@ public class GoToCreateOddPageCommand implements Command{
             request.setAttribute(ConstantContainer.ODD_TYPES, OddType.values());
             request.setAttribute(ConstantContainer.ODD_TYPES_COUNT, OddType.values().length - 1);
 
-            servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/CreateOddPage.jsp")
+            servlet.getServletContext().getRequestDispatcher(urlPrefix + "/jsp/admin_page/CreateOddPage.jsp")
                     .forward(request, response);
 
 

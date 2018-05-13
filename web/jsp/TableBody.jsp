@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
+
+
 <fmt:bundle basename="locale">
     <fmt:message key="local.startPage.time" var="time"/>
     <fmt:message key="local.startPage.team1" var="team1"/>
@@ -21,7 +23,7 @@
         <c:if test="${events.size() > 0}">
 
         <c:forEach var="i" begin="0" end="${events.size() - 1}" step="1">
-            <tr onclick="window.location.href='/MishaBet?command=showOdds&eventId='+${events.get(i).id};
+            <tr onclick="window.location.href='${urlPrefix}/MishaBet?command=showOdds&eventId='+${events.get(i).id};
                 return false" class="clickable-row">
             <td><c:out value="${events.get(i).startTime}"/></td>
             <td><c:out value="${events.get(i).team1}"/></td>

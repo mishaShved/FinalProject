@@ -20,7 +20,8 @@ public class DepositCommand implements Command {
     private static final Logger log = Logger.getLogger(DepositCommand.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         UserService service = serviceFactory.getUserService();
@@ -32,7 +33,7 @@ public class DepositCommand implements Command {
 
             service.deposit(user.getId(), money);
 
-            response.sendRedirect("/MishaBet");
+            response.sendRedirect(urlPrefix + "/MishaBet");
 
         }  catch (DataSourceException e) {
             log.error("Problems with data source", e);

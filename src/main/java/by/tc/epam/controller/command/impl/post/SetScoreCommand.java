@@ -22,7 +22,8 @@ public class SetScoreCommand implements Command{
     EventService service = factory.getEventService();
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         int eventId = Integer.parseInt(request.getParameter(ConstantContainer.EVENT_ID));
         int score1 = Integer.parseInt(request.getParameter(ConstantContainer.SCORE1));
@@ -35,7 +36,7 @@ public class SetScoreCommand implements Command{
             service.setScore(eventId, score1, score2);
 
             request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
-            response.sendRedirect("/jsp/admin_page/AdminPage.jsp");
+            response.sendRedirect(urlPrefix + "/jsp/admin_page/AdminPage.jsp");
 
 
 

@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/styles.css">
+
+
+<c:set var="urlPrefix" value="${pageContext.request.contextPath}"/>
 
 <fmt:bundle basename="locale">
     <fmt:message key="local.addOdd.event" var="event"/>
@@ -14,6 +15,8 @@
 <html>
 <head>
     <title>MBet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${urlPrefix}/css/styles.css">
 </head>
 <body>
 
@@ -21,7 +24,7 @@
 
     <jsp:include page="../header/AdminHeader.jsp"/>
 
-    <form action="/MishaBet" method="post" class="create-event-form">
+    <form action="${urlPrefix}/MishaBet" method="post" class="create-event-form">
 
         <div class="login-background">
 

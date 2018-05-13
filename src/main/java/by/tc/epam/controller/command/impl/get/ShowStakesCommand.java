@@ -25,7 +25,8 @@ public class ShowStakesCommand implements Command{
     private static final Logger log = Logger.getLogger(ShowStakesCommand.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         ServiceFactory factory = ServiceFactory.getInstance();
         StakeService stackeService = factory.getStackeService();
@@ -54,7 +55,7 @@ public class ShowStakesCommand implements Command{
             request.setAttribute(ConstantContainer.PAGE, page);
 
             servlet.getServletContext().
-                    getRequestDispatcher("/jsp/AccountHistory.jsp").
+                    getRequestDispatcher(urlPrefix + "/jsp/AccountHistory.jsp").
                     forward(request,response);
 
         } catch (DataSourceException e) {

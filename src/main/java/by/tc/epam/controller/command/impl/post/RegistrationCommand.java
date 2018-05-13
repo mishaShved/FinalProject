@@ -20,7 +20,8 @@ public class RegistrationCommand implements Command{
     private static final Logger log = Logger.getLogger(RegistrationCommand.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         String name = request.getParameter(ConstantContainer.NAME);
         String password = request.getParameter(ConstantContainer.PASSWORD);
@@ -36,7 +37,7 @@ public class RegistrationCommand implements Command{
 
             userID = service.registration(name, email, password);
             request.getSession().setAttribute(ConstantContainer.USER_ID, userID);
-            response.sendRedirect("/MishaBet");
+            response.sendRedirect(urlPrefix + "/MishaBet");
 
 
         } catch (DataSourceException e) {

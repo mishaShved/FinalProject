@@ -23,7 +23,8 @@ public class GetEventsBySportTypeCommand implements Command {
     private static final Logger log = Logger.getLogger(GetEventsBySportTypeCommand.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
 
         ServiceFactory factory = ServiceFactory.getInstance();
@@ -38,7 +39,7 @@ public class GetEventsBySportTypeCommand implements Command {
             List<Event> events = service.getEventsBySport(sportType, locale);
             request.setAttribute(ConstantContainer.EVENTS, events);
 
-            servlet.getServletContext().getRequestDispatcher("/jsp/TableBody.jsp")
+            servlet.getServletContext().getRequestDispatcher(urlPrefix + "/jsp/TableBody.jsp")
                     .forward(request,response);
 
         } catch (DataSourceException e) {

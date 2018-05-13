@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/styles.css">
+
+
+<c:set var="urlPrefix" value="${pageContext.request.contextPath}"/>
 
 <fmt:bundle basename="locale">
     <fmt:message key="local.createStake.event" var="event"/>
@@ -16,6 +17,8 @@
 
     <head>
         <title>MBET</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="${urlPrefix}/css/styles.css">
     </head>
 
 
@@ -48,7 +51,7 @@
                         <td> <c:out value="${oddOutcome}"/></td>
                         <td> <c:out value="${coef}"/></td>
                         <td>
-                            <form action="/MishaBet" method="post">
+                            <form action="${urlPrefix}/MishaBet" method="post">
                                 <input required pattern="\d+(\.\d{0,2})?" name="money" value=""/>
                                 <input type="hidden" name="command" value="createStake"/>
                                 <input type="hidden" name="oddId" value="${oddId}"/>

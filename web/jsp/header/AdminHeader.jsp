@@ -11,13 +11,13 @@
 <nav class="navbar navbar-default nav-class">
     <div class="container-fluid">
         <div class="navbar-header icon-class">
-            <a href="/jsp/admin_page/AdminPage.jsp">
+            <a href="${urlPrefix}/jsp/admin_page/AdminPage.jsp">
                 MBET
             </a>
         </div>
     </div>
     <ul class="nav navbar-nav nav-rigth-class">
-        <a href="/MishaBet?command=logout">${logout}</a></li>
+        <a href="${urlPrefix}/MishaBet?command=logout">${logout}</a></li>
     </ul>
 </nav>
 

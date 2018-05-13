@@ -23,7 +23,8 @@ public class GetOddsByEventCommand implements Command{
     private static final Logger log = Logger.getLogger(GetOddsByEventCommand.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         ServiceFactory factory = ServiceFactory.getInstance();
         OddService oddService = factory.getOddService();
@@ -51,7 +52,7 @@ public class GetOddsByEventCommand implements Command{
 
             request.setAttribute(ConstantContainer.ODDS, odds);
 
-            servlet.getServletContext().getRequestDispatcher("/jsp/ShowOdds.jsp").
+            servlet.getServletContext().getRequestDispatcher(urlPrefix + "/jsp/ShowOdds.jsp").
                     forward(request, response);
 
         } catch (DataSourceException e) {

@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/styles.css">
 
+<c:set var="urlPrefix" value="${pageContext.request.contextPath}"/>
+
 <fmt:bundle basename="locale">
     <fmt:message key="local.depositWithdraw.depositButton" var="deposit"/>
     <fmt:message key="local.depositWithdraw.withdrawButton" var="withdraw"/>
@@ -13,6 +15,8 @@
 <html>
 <head>
     <title>Mbet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${urlPrefix}/css/styles.css">
 </head>
 <body>
 
@@ -24,7 +28,7 @@
 
     <div class="login-form">
 
-    <form action="/MishaBet" method="post">
+    <form action="${urlPrefix}/MishaBet" method="post">
 
         <div class="login-background">
             <div class="form-group">
@@ -37,7 +41,7 @@
 
     </form>
 
-    <form action="/MishaBet" method="post">
+    <form action="${urlPrefix}/MishaBet" method="post">
 
         <div class="login-background">
             <div class="form-group">

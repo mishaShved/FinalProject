@@ -22,7 +22,8 @@ public class GoToCreateStakePage implements Command{
     private static final Logger log = Logger.getLogger(GoToCreateStakePage.class);
 
     @Override
-    public void execute(HttpServlet servlet, HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServlet servlet, HttpServletRequest request,
+                        HttpServletResponse response, String urlPrefix) {
 
         ServiceFactory factory = ServiceFactory.getInstance();
         OddService oddService = factory.getOddService();
@@ -35,7 +36,7 @@ public class GoToCreateStakePage implements Command{
         if(user == null){
             try {
                 request.getSession().setAttribute(ConstantContainer.ODD_ID, oddId);
-                servlet.getServletContext().getRequestDispatcher("/jsp/LoginPage.jsp").forward(request, response);
+                servlet.getServletContext().getRequestDispatcher(urlPrefix + "/jsp/LoginPage.jsp").forward(request, response);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ServletException e) {

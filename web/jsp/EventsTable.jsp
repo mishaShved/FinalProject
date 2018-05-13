@@ -45,7 +45,7 @@
 
 </table>
 
-<script type="text/javascript" src="../script/ChangeSportType.js"></script>
-<script type="text/javascript" src="../script/UpdateTable.js"></script>
+<script type="text/javascript" src="${urlPrefix}/script/ChangeSportType.js"></script>
+<script type="text/javascript" src="${urlPrefix}/script/UpdateTable.js"></script>
 
 
