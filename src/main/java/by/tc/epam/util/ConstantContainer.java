@@ -56,6 +56,7 @@ public final class ConstantContainer {
     public static final String LOCALE = "locale";
     public static final String IS_UPDATE = "isUpdated";
     public static final String DEFAULT_LOCALE = "en";
+    public static final String DEFAULT_COMMAND = "goToStartPage";
 
     public static final int COUNT_STAKE_ON_PAGE = 5;
     public static final int MIN_LENGTH_PASSWORD = 5;

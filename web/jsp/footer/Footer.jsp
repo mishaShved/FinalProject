@@ -1,14 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<link rel="stylesheet" href="../../css/styles.css">
 
 
 <fmt:bundle basename="locale">
     <fmt:message key="local.footer.rightsReserved" var="rightsReserved"/>
 </fmt:bundle>
-
-
-
 
 
 <footer class="footer-class">

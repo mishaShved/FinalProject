@@ -1,5 +1,7 @@
 package by.tc.epam.controller.command;
 
+import by.tc.epam.util.ConstantContainer;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,7 +14,7 @@ public class CommandNavigator {
 
     private static CommandNavigator ourInstance = new CommandNavigator();
     private final Map<String, Command> navigator;
-    private final static String DEFAULT_COMMAND = "goToStartPage";
+
 
     public static CommandNavigator getInstance() {
         return ourInstance;
@@ -56,7 +58,7 @@ public class CommandNavigator {
 
     public Command getCommand(String commandName){
         if(commandName == null || commandName.equals("")){
-            commandName = DEFAULT_COMMAND;
+            commandName = ConstantContainer.DEFAULT_COMMAND;
         }
         return navigator.get(commandName);
     }
