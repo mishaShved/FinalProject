@@ -2,8 +2,6 @@ package by.tc.epam.model.dao;
 
 import by.tc.epam.model.dao.exception.ConnectionPoolException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
-import by.tc.epam.model.dao.exception.DBLoginException;
-import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
 import by.tc.epam.model.entity.Event;
 import by.tc.epam.model.entity.Sport;
 

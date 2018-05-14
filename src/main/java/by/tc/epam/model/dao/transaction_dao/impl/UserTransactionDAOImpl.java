@@ -1,13 +1,21 @@
 package by.tc.epam.model.dao.transaction_dao.impl;
 
-import by.tc.epam.model.dao.exception.*;
+
+import by.tc.epam.model.dao.exception.DAOSQLException;
+import by.tc.epam.model.dao.exception.DublicateUserException;
+import by.tc.epam.model.dao.exception.IncorrectLoginException;
 import by.tc.epam.model.dao.transaction_dao.UserTransactionDAO;
 import by.tc.epam.model.entity.User;
 import by.tc.epam.model.entity.UserType;
 import by.tc.epam.util.ConstantContainer;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+
 
 public class UserTransactionDAOImpl implements UserTransactionDAO {
     /**

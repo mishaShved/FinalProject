@@ -4,13 +4,12 @@ import by.tc.epam.model.dao.EventDAO;
 import by.tc.epam.model.dao.connection_pool.ConnectionPool;
 import by.tc.epam.model.dao.exception.ConnectionPoolException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
-import by.tc.epam.model.dao.exception.DBLoginException;
-import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
 import by.tc.epam.model.dao.transaction_dao.EventTransactionDAO;
 import by.tc.epam.model.dao.transaction_dao.TransactionDAOFactory;
 import by.tc.epam.model.entity.*;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 public class EventDAOImpl implements EventDAO {

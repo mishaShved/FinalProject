@@ -9,7 +9,6 @@ import by.tc.epam.model.service.UserService;
 import by.tc.epam.model.service.exception.DataSourceException;
 import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.util.ConstantContainer;
-import com.sun.jndi.cosnaming.CNCtx;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;

@@ -2,7 +2,9 @@ package by.tc.epam.model.dao.impl;
 
 import by.tc.epam.model.dao.StakeDAO;
 import by.tc.epam.model.dao.connection_pool.ConnectionPool;
-import by.tc.epam.model.dao.exception.*;
+import by.tc.epam.model.dao.exception.ConnectionPoolException;
+import by.tc.epam.model.dao.exception.DAOSQLException;
+import by.tc.epam.model.dao.exception.NotEnoughMoneyException;
 import by.tc.epam.model.dao.transaction_dao.OddTransactionDAO;
 import by.tc.epam.model.dao.transaction_dao.StakeTransactionDAO;
 import by.tc.epam.model.dao.transaction_dao.TransactionDAOFactory;

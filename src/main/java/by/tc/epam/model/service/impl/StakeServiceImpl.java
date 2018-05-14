@@ -2,7 +2,9 @@ package by.tc.epam.model.service.impl;
 
 import by.tc.epam.model.dao.DAOFactory;
 import by.tc.epam.model.dao.StakeDAO;
-import by.tc.epam.model.dao.exception.*;
+import by.tc.epam.model.dao.exception.ConnectionPoolException;
+import by.tc.epam.model.dao.exception.DAOSQLException;
+import by.tc.epam.model.dao.exception.NotEnoughMoneyException;
 import by.tc.epam.model.entity.Stacke;
 import by.tc.epam.model.service.StakeService;
 import by.tc.epam.model.service.exception.DataSourceException;
@@ -35,7 +37,7 @@ public class StakeServiceImpl implements StakeService {
 
         try {
             dao.createStake(userId, oddId, money);
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         }catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -69,7 +71,7 @@ public class StakeServiceImpl implements StakeService {
                 foundRes.add(allStakes.get(i));
             }
 
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -94,11 +96,11 @@ public class StakeServiceImpl implements StakeService {
 
         try{
 
-            allStakes = dao.getStakesByUserId(userId, "ru");
+            allStakes = dao.getStakesByUserId(userId, ConstantContainer.DEFAULT_LOCALE);
 
             pageCount = getPageCount(allStakes, ConstantContainer.COUNT_STAKE_ON_PAGE);
 
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);

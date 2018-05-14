@@ -1,7 +1,5 @@
 package by.tc.epam.controller;
 
-
-
 import by.tc.epam.controller.command.Command;
 import by.tc.epam.controller.command.CommandNavigator;
 import by.tc.epam.util.ConstantContainer;

@@ -2,7 +2,12 @@ package by.tc.epam.web.filter;
 
 import by.tc.epam.util.ConstantContainer;
 
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.FilterChain;
 import java.io.IOException;
 
 public class SetEncodingFilter implements Filter {

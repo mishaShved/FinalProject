@@ -1,7 +1,6 @@
 package by.tc.epam.model.dao.transaction_dao;
 
 import by.tc.epam.model.dao.exception.DAOSQLException;
-import by.tc.epam.model.dao.exception.DBLoginException;
 import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.entity.OddsList;
 

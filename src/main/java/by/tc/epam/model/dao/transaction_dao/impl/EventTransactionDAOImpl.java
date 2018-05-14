@@ -4,7 +4,10 @@ import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.transaction_dao.EventTransactionDAO;
 import by.tc.epam.model.dao.transaction_dao.TransactionDAOFactory;
 import by.tc.epam.model.dao.transaction_dao.UserTransactionDAO;
-import by.tc.epam.model.entity.*;
+import by.tc.epam.model.entity.EntityBuilder;
+import by.tc.epam.model.entity.Event;
+import by.tc.epam.model.entity.OddType;
+import by.tc.epam.model.entity.Sport;
 import by.tc.epam.util.ConstantContainer;
 
 import java.sql.Connection;

@@ -1,10 +1,10 @@
 package by.tc.epam.model.dao.transaction_dao.impl;
 
-import by.tc.epam.model.dao.exception.*;
+
+import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.transaction_dao.StakeTransactionDAO;
 import by.tc.epam.model.entity.EntityBuilder;
 import by.tc.epam.model.entity.OddType;
-import by.tc.epam.model.entity.Sport;
 import by.tc.epam.model.entity.Stacke;
 import by.tc.epam.util.ConstantContainer;
 
@@ -27,7 +27,7 @@ public class StakeTransactionDAOImpl implements StakeTransactionDAO {
      */
     @Override
     public void createStake(Connection conn, int userId, int oddId, double money, double coef)
-            throws DAOSQLException{
+            throws DAOSQLException {
 
         try(PreparedStatement createStackeStatement =
                 conn.prepareStatement(RequestContainer.CREATE_STACKE)) {

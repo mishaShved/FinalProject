@@ -4,8 +4,6 @@ import by.tc.epam.model.dao.DAOFactory;
 import by.tc.epam.model.dao.OddDAO;
 import by.tc.epam.model.dao.exception.ConnectionPoolException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
-import by.tc.epam.model.dao.exception.DBLoginException;
-import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
 import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.entity.OddsList;
 import by.tc.epam.model.service.OddService;
@@ -33,7 +31,7 @@ public class OddServiceImpl implements OddService{
 
         try {
             oddDAO.createOdd(eventId, oddType, koef, param);
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -59,7 +57,7 @@ public class OddServiceImpl implements OddService{
 
         try {
             odds = oddDAO.getOddsByEvent(eventId, locale);
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -84,7 +82,7 @@ public class OddServiceImpl implements OddService{
 
         try{
             oddInfo = oddDAO.getInfoAboutOdd(oddId, locale);
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -110,7 +108,7 @@ public class OddServiceImpl implements OddService{
 
         try{
             oddType = oddDAO.getOddType(oddId);
-        }catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        }catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);
@@ -134,7 +132,7 @@ public class OddServiceImpl implements OddService{
 
         try{
             coef = oddDAO.getCoef(oddId);
-        } catch (DBLoginException | JDBCDriverNotFoundException | ConnectionPoolException e) {
+        } catch (ConnectionPoolException e) {
             throw new DataSourceException(e);
         } catch (DAOSQLException e) {
             throw new ServiceSQLException(e);

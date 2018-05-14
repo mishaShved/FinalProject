@@ -1,7 +1,6 @@
 package by.tc.epam.controller.command.impl.go_to_page;
 
 import by.tc.epam.controller.command.Command;
-import by.tc.epam.controller.command.impl.get.GetEventsBySportTypeCommand;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;

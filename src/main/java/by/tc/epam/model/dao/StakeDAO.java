@@ -9,11 +9,9 @@ public interface StakeDAO {
 
     void createStake(int userId, int oddId, double money)
             throws ConnectionPoolException,
-            DBLoginException, JDBCDriverNotFoundException,
             DAOSQLException, NotEnoughMoneyException;
 
     List<Stacke> getStakesByUserId(int userId, String locale)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DAOSQLException;
+            throws ConnectionPoolException, DAOSQLException;
 
 }

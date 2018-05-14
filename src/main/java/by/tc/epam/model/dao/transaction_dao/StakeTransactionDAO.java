@@ -1,6 +1,7 @@
 package by.tc.epam.model.dao.transaction_dao;
 
-import by.tc.epam.model.dao.exception.*;
+
+import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.entity.Stacke;
 
 import java.sql.Connection;

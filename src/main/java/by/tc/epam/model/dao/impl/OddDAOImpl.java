@@ -5,10 +5,11 @@ import by.tc.epam.model.dao.connection_pool.ConnectionPool;
 import by.tc.epam.model.dao.exception.ConnectionPoolException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.dao.exception.DBLoginException;
-import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
 import by.tc.epam.model.dao.transaction_dao.OddTransactionDAO;
 import by.tc.epam.model.dao.transaction_dao.TransactionDAOFactory;
-import by.tc.epam.model.entity.*;
+import by.tc.epam.model.entity.OddType;
+import by.tc.epam.model.entity.OddsList;
+
 
 import java.sql.Connection;
 
@@ -28,8 +29,7 @@ public class OddDAOImpl implements OddDAO {
      */
     @Override
     public void createOdd(int eventId, OddType oddType, double koef, double param)
-            throws DBLoginException, JDBCDriverNotFoundException,
-            ConnectionPoolException, DAOSQLException {
+            throws ConnectionPoolException, DAOSQLException {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -155,8 +155,7 @@ public class OddDAOImpl implements OddDAO {
      */
     @Override
     public double getCoef(int oddId)
-            throws ConnectionPoolException, DBLoginException,
-            JDBCDriverNotFoundException, DAOSQLException {
+            throws ConnectionPoolException, DAOSQLException {
 
 
         ConnectionPool pool = ConnectionPool.getInstance();

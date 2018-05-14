@@ -4,8 +4,6 @@ import by.tc.epam.model.dao.DAOFactory;
 import by.tc.epam.model.dao.EventDAO;
 import by.tc.epam.model.dao.exception.ConnectionPoolException;
 import by.tc.epam.model.dao.exception.DAOSQLException;
-import by.tc.epam.model.dao.exception.DBLoginException;
-import by.tc.epam.model.dao.exception.JDBCDriverNotFoundException;
 import by.tc.epam.model.entity.BukmakerDate;
 import by.tc.epam.model.entity.EntityBuilder;
 import by.tc.epam.model.entity.Event;

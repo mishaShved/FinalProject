@@ -1,7 +1,12 @@
 package by.tc.epam.model.service;
 
 import by.tc.epam.model.entity.User;
-import by.tc.epam.model.service.exception.*;
+import by.tc.epam.model.service.exception.DataSourceException;
+import by.tc.epam.model.service.exception.LoginFailedException;
+import by.tc.epam.model.service.exception.ServiceSQLException;
+import by.tc.epam.model.service.exception.UserAlreadyExistException;
+import by.tc.epam.model.service.exception.SmallBalanceException;
+
 
 public interface UserService {
 

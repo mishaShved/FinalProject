@@ -3,7 +3,6 @@ package by.tc.epam.model.dao.transaction_dao;
 import by.tc.epam.model.dao.exception.DAOSQLException;
 import by.tc.epam.model.entity.Event;
 import by.tc.epam.model.entity.Sport;
-import by.tc.epam.model.entity.Stacke;
 
 import java.sql.Connection;
 import java.util.List;

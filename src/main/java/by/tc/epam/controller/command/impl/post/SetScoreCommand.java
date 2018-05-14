@@ -1,7 +1,6 @@
 package by.tc.epam.controller.command.impl.post;
 
 import by.tc.epam.controller.command.Command;
-import by.tc.epam.controller.command.impl.get.GetEventsBySportTypeCommand;
 import by.tc.epam.model.service.EventService;
 import by.tc.epam.model.service.ServiceFactory;
 import by.tc.epam.model.service.exception.DataSourceException;
