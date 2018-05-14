@@ -64,7 +64,8 @@ public class GoToCreateStakePage implements Command{
                 request.setAttribute(ConstantContainer.BALANCE, balance);
                 request.setAttribute(ConstantContainer.ODD_ID, oddId);
 
-                servlet.getServletContext().getRequestDispatcher("/jsp/CreateStakePage.jsp").forward(request, response);
+                servlet.getServletContext().getRequestDispatcher("/jsp/CreateStakePage.jsp")
+                        .forward(request, response);
 
             } catch (DataSourceException e) {
                 log.error("Problems with data source", e);

@@ -11,6 +11,7 @@
     <fmt:message key="local.createStake.coef" var="coefficient"/>
     <fmt:message key="local.createStake.money" var="money"/>
     <fmt:message key="local.createStake.makeBet" var="makeBet"/>
+    <fmt:message key="local.createStake.smallBalance" var="smallBalanceAlert"/>
 </fmt:bundle>
 
 <html>
@@ -53,6 +54,9 @@
                         <td>
                             <form action="${urlPrefix}/MishaBet" method="post">
                                 <input required pattern="\d+(\.\d{0,2})?" name="money" value=""/>
+                                <c:if test="${sessionScope.smallBalance == true}">
+                                    <p style="color: #fc2a2a; font-size: 14px">${smallBalanceAlert}</p>
+                                </c:if>
                                 <input type="hidden" name="command" value="createStake"/>
                                 <input type="hidden" name="oddId" value="${oddId}"/>
                                 <button type="submit" class="btn btn-primary">${makeBet}</button>
