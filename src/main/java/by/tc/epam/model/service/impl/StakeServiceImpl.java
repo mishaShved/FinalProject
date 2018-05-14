@@ -19,6 +19,15 @@ public class StakeServiceImpl implements StakeService {
     private static final DAOFactory daoFactory = DAOFactory.getInstance();
     private static final StakeDAO dao = daoFactory.getStackeDAO();
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param userId
+     * @param oddId
+     * @param money
+     * @throws DataSourceException
+     * @throws ServiceSQLException
+     * @throws SmallBalanceException
+     */
     @Override
     public void createStake(int userId, int oddId, double money)
             throws DataSourceException,
@@ -36,6 +45,15 @@ public class StakeServiceImpl implements StakeService {
 
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param userId
+     * @param page
+     * @param locale
+     * @return
+     * @throws ServiceSQLException
+     * @throws DataSourceException
+     */
     @Override
     public List<Stacke> getStakesByUserId(int userId, int page, String locale)
             throws ServiceSQLException, DataSourceException{
@@ -60,6 +78,13 @@ public class StakeServiceImpl implements StakeService {
         return foundRes;
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param userId
+     * @return
+     * @throws DataSourceException
+     * @throws ServiceSQLException
+     */
     @Override
     public int getPageCount(int userId)
             throws DataSourceException, ServiceSQLException{
@@ -82,6 +107,12 @@ public class StakeServiceImpl implements StakeService {
         return pageCount;
     }
 
+    /**
+     * return page count
+     * @param stake
+     * @param countStakesOnPage
+     * @return
+     */
     private int getPageCount(List<?> stake, int countStakesOnPage){
 
         int pageCount = stake.size() / countStakesOnPage;

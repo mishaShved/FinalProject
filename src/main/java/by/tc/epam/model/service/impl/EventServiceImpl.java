@@ -20,6 +20,18 @@ public class EventServiceImpl implements EventService{
     private static final DAOFactory daoFactory = DAOFactory.getInstance();
     private static final EventDAO eventDAO = daoFactory.getEventDAO();
 
+    /**
+     * prepare parameters for invoke dao
+     * @param date
+     * @param time
+     * @param team1RU
+     * @param team2RU
+     * @param team1EN
+     * @param team2EN
+     * @param sportType
+     * @throws ServiceSQLException
+     * @throws DataSourceException
+     */
     @Override
     public void createEvent(String date, String time, String team1RU,
                             String team2RU, String team1EN, String team2EN, Sport sportType)
@@ -41,6 +53,13 @@ public class EventServiceImpl implements EventService{
 
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param locale
+     * @return
+     * @throws DataSourceException
+     * @throws ServiceSQLException
+     */
     @Override
     public List<Event> getAllEvents(String locale)
             throws DataSourceException, ServiceSQLException {
@@ -60,6 +79,14 @@ public class EventServiceImpl implements EventService{
         return allEvents;
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param sport
+     * @param locale
+     * @return
+     * @throws ServiceSQLException
+     * @throws DataSourceException
+     */
     @Override
     public List<Event> getEventsBySport(Sport sport, String locale)
             throws ServiceSQLException, DataSourceException{
@@ -79,6 +106,13 @@ public class EventServiceImpl implements EventService{
 
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param locale
+     * @return
+     * @throws DataSourceException
+     * @throws ServiceSQLException
+     */
     @Override
     public List<Event> getEventsForAddOdd(String locale)
             throws DataSourceException, ServiceSQLException {
@@ -98,6 +132,14 @@ public class EventServiceImpl implements EventService{
         return allEvents;
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param eventId
+     * @param score1
+     * @param score2
+     * @throws ServiceSQLException
+     * @throws DataSourceException
+     */
     @Override
     public void setScore(int eventId, int score1, int score2)
             throws ServiceSQLException, DataSourceException {

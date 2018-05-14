@@ -17,6 +17,15 @@ public class OddServiceImpl implements OddService{
     private static final DAOFactory daoFactory = DAOFactory.getInstance();
     private static final OddDAO oddDAO = daoFactory.getOddDAO();
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param eventId
+     * @param oddType
+     * @param koef
+     * @param param
+     * @throws DataSourceException
+     * @throws ServiceSQLException
+     */
     @Override
     public void createOdd(int eventId, OddType oddType, double koef, double param)
             throws DataSourceException,
@@ -32,6 +41,15 @@ public class OddServiceImpl implements OddService{
 
 
     }
+
+    /**
+     *  prepare parameters for invoke dao
+     * @param eventId
+     * @param locale
+     * @return
+     * @throws ServiceSQLException
+     * @throws DataSourceException
+     */
 
     @Override
     public OddsList getOddsByEvent(int eventId, String locale)
@@ -50,6 +68,14 @@ public class OddServiceImpl implements OddService{
         return odds;
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param oddId
+     * @param locale
+     * @return
+     * @throws DataSourceException
+     * @throws ServiceSQLException
+     */
     @Override
     public String getInfoAboutOdd(int oddId, String locale)
             throws DataSourceException, ServiceSQLException {
@@ -69,6 +95,13 @@ public class OddServiceImpl implements OddService{
 
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param oddId
+     * @return
+     * @throws DataSourceException
+     * @throws ServiceSQLException
+     */
     @Override
     public String getOddType(int oddId)
             throws DataSourceException, ServiceSQLException {
@@ -86,6 +119,13 @@ public class OddServiceImpl implements OddService{
         return oddType;
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param oddId
+     * @return
+     * @throws DataSourceException
+     * @throws ServiceSQLException
+     */
     @Override
     public double getCoef(int oddId)
             throws DataSourceException, ServiceSQLException {

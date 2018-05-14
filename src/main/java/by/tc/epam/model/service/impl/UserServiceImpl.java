@@ -12,6 +12,16 @@ public class UserServiceImpl implements UserService {
     private static final DAOFactory daoFactory = DAOFactory.getInstance();
     private static final UserDAO userDAO = daoFactory.getUserDAO();
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param name
+     * @param email
+     * @param password
+     * @return
+     * @throws ServiceSQLException
+     * @throws UserAlreadyExistException
+     * @throws DataSourceException
+     */
     @Override
     public int registration(String name, String email, String password)
             throws ServiceSQLException, UserAlreadyExistException,
@@ -32,6 +42,15 @@ public class UserServiceImpl implements UserService {
         return userID;
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param id
+     * @param password
+     * @return
+     * @throws DataSourceException
+     * @throws ServiceSQLException
+     * @throws LoginFailedException
+     */
     @Override
     public User login(int id, String password)
             throws DataSourceException,
@@ -62,6 +81,14 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param id
+     * @param money
+     * @throws DataSourceException
+     * @throws ServiceSQLException
+     * @throws SmallBalanceException
+     */
     @Override
     public void withdraw(int id, double money)
             throws DataSourceException, ServiceSQLException,
@@ -79,6 +106,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param id
+     * @param money
+     * @throws DataSourceException
+     * @throws ServiceSQLException
+     */
     @Override
     public void deposit(int id, double money)
             throws DataSourceException, ServiceSQLException {
@@ -94,6 +128,13 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     *  prepare parameters for invoke dao
+     * @param id
+     * @return
+     * @throws ServiceSQLException
+     * @throws DataSourceException
+     */
     @Override
     public double getUserBalance(int id)
             throws ServiceSQLException, DataSourceException {

@@ -22,6 +22,14 @@ public class AdminPagesFilter implements Filter {
 
     }
 
+    /**
+     * filter blocks access to admin pages to non admins
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 

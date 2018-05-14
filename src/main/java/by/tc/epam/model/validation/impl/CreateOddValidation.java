@@ -6,7 +6,11 @@ import by.tc.epam.util.ConstantContainer;
 import javax.servlet.http.HttpServletRequest;
 
 public class CreateOddValidation implements Validation{
-
+    /**
+     * validation for craete odd
+     * @param request
+     * @return
+     */
     @Override
     public boolean validate(HttpServletRequest request) {
 

@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CreateEventValidate implements Validation{
 
-
+    /**
+     *  validation for create event
+     * @param request
+     * @return
+     */
     @Override
     public boolean validate(HttpServletRequest request) {
 

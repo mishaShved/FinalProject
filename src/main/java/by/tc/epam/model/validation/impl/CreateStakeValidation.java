@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CreateStakeValidation implements Validation{
 
+    /**
+     * validation for create stake
+     * @param request
+     * @return
+     */
     @Override
     public boolean validate(HttpServletRequest request) {
 

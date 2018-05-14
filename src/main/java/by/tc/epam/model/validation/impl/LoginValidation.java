@@ -6,6 +6,11 @@ import by.tc.epam.util.ConstantContainer;
 import javax.servlet.http.HttpServletRequest;
 
 public class LoginValidation implements Validation {
+    /**
+     * validation for login
+     * @param request
+     * @return
+     */
     @Override
     public boolean validate(HttpServletRequest request) {
 

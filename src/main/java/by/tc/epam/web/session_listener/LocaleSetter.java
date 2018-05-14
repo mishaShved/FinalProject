@@ -6,6 +6,11 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 public class LocaleSetter implements HttpSessionListener {
+
+    /**
+     * listener set default locale to users
+     * @param se
+     */
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         se.getSession().setAttribute(ConstantContainer.LOCALE, ConstantContainer.DEFAULT_LOCALE);
