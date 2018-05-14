@@ -19,6 +19,16 @@ public class EventCreateCommand implements Command {
 
     private static final Logger log = Logger.getLogger(EventCreateCommand.class);
 
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Command create event
+     *
+     */
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {

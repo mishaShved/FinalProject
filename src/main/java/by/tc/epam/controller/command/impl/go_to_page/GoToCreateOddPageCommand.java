@@ -22,6 +22,16 @@ public class GoToCreateOddPageCommand implements Command{
 
     private static final Logger log = Logger.getLogger(GoToCreateEventPage.class);
 
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Prepare attributes for page to create odd
+     *
+     */
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {

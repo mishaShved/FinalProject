@@ -18,6 +18,16 @@ public class CreateOddCommand implements Command{
 
     private static final Logger log = Logger.getLogger(CreateOddCommand.class);
 
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Command create odd
+     *
+     */
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {

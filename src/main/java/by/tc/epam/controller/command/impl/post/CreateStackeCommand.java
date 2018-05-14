@@ -22,6 +22,16 @@ public class CreateStackeCommand implements Command{
     private static final Logger log = Logger.getLogger(CreateStackeCommand.class);
 
 
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Command create stake
+     *
+     */
 
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,

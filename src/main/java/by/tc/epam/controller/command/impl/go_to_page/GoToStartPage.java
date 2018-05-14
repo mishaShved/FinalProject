@@ -20,6 +20,16 @@ public class GoToStartPage implements Command{
 
     private static final Logger log = Logger.getLogger(GoToStartPage.class);
 
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Prepare attributes for start page
+     *
+     */
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {

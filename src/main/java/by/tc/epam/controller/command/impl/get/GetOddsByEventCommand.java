@@ -22,6 +22,17 @@ public class GetOddsByEventCommand implements Command{
 
     private static final Logger log = Logger.getLogger(GetOddsByEventCommand.class);
 
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Shows the odds of a particular event
+     *
+     */
+
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {

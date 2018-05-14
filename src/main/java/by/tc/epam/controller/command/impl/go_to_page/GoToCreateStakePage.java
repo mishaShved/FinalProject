@@ -21,6 +21,16 @@ public class GoToCreateStakePage implements Command{
 
     private static final Logger log = Logger.getLogger(GoToCreateStakePage.class);
 
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Prepare attributes for page to create stake
+     *
+     */
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {

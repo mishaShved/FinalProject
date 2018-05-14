@@ -22,6 +22,17 @@ public class GetEventsBySportTypeCommand implements Command {
 
     private static final Logger log = Logger.getLogger(GetEventsBySportTypeCommand.class);
 
+
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Shows the events of a particular sport
+     *
+     */
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {

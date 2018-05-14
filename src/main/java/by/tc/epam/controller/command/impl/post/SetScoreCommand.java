@@ -21,6 +21,16 @@ public class SetScoreCommand implements Command{
     ServiceFactory factory = ServiceFactory.getInstance();
     EventService service = factory.getEventService();
 
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Command execute set score and calculation of all bets
+     *
+     */
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {

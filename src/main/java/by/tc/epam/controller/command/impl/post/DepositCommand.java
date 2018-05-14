@@ -19,6 +19,17 @@ public class DepositCommand implements Command {
 
     private static final Logger log = Logger.getLogger(DepositCommand.class);
 
+
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Command to deposit money
+     *
+     */
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {

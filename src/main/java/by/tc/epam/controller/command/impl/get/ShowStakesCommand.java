@@ -24,6 +24,17 @@ public class ShowStakesCommand implements Command{
 
     private static final Logger log = Logger.getLogger(ShowStakesCommand.class);
 
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Shows the stakes of a particular user
+     *
+     */
+
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {

@@ -14,6 +14,16 @@ public class LogoutCommand implements Command{
 
     private static final Logger log = Logger.getLogger(LogoutCommand.class);
 
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Command execute logout
+     *
+     */
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {

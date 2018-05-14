@@ -15,6 +15,16 @@ public class ChangeLocaleCommand implements Command{
 
     private static final Logger log = Logger.getLogger(GoToStartPage.class);
 
+    /**
+     *
+     * @param servlet
+     * @param request
+     * @param response
+     * @param urlPrefix
+     *
+     * Change user locale
+     *
+     */
     @Override
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {
