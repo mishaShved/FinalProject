@@ -23,6 +23,13 @@ public class BukmakerServlet extends HttpServlet {
         processRequest(request, response);
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     *
+     * method navigte request to concrete command and execute him
+     */
     private void processRequest(HttpServletRequest request, HttpServletResponse response){
 
         String command = request.getParameter(ConstantContainer.COMAND);

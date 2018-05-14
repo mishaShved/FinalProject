@@ -14,7 +14,18 @@ import java.sql.Connection;
 
 public class OddDAOImpl implements OddDAO {
 
-
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param eventId
+     * @param oddType
+     * @param koef
+     * @param param
+     * @throws DBLoginException
+     * @throws JDBCDriverNotFoundException
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     */
     @Override
     public void createOdd(int eventId, OddType oddType, double koef, double param)
             throws DBLoginException, JDBCDriverNotFoundException,
@@ -36,6 +47,15 @@ public class OddDAOImpl implements OddDAO {
 
     }
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param eventId
+     * @param locale
+     * @return
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     */
     @Override
     public OddsList getOddsByEvent(int eventId, String locale)
             throws ConnectionPoolException, DAOSQLException {
@@ -59,6 +79,15 @@ public class OddDAOImpl implements OddDAO {
         return odds;
     }
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param oddId
+     * @param locale
+     * @return
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     */
     @Override
     public String getInfoAboutOdd(int oddId, String locale)
             throws ConnectionPoolException, DAOSQLException {
@@ -83,6 +112,14 @@ public class OddDAOImpl implements OddDAO {
 
     }
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param oddId
+     * @return
+     * @throws DAOSQLException
+     * @throws ConnectionPoolException
+     */
     @Override
     public String getOddType(int oddId)
             throws DAOSQLException, ConnectionPoolException{
@@ -106,6 +143,16 @@ public class OddDAOImpl implements OddDAO {
         return oddOutcome;
     }
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param oddId
+     * @return
+     * @throws ConnectionPoolException
+     * @throws DBLoginException
+     * @throws JDBCDriverNotFoundException
+     * @throws DAOSQLException
+     */
     @Override
     public double getCoef(int oddId)
             throws ConnectionPoolException, DBLoginException,

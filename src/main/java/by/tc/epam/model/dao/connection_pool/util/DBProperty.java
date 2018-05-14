@@ -2,6 +2,9 @@ package by.tc.epam.model.dao.connection_pool.util;
 
 public class DBProperty {
 
+    /**
+     * contains properties for db connection
+     */
     private DBProperty() {
     }
 

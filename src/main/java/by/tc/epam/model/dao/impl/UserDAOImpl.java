@@ -11,7 +11,17 @@ import java.sql.Connection;
 
 
 public class UserDAOImpl implements UserDAO {
-
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param name
+     * @param email
+     * @param password
+     * @return
+     * @throws ConnectionPoolException
+     * @throws DublicateUserException
+     * @throws DAOSQLException
+     */
     @Override
     public int registration(String name, String email, String password)
             throws ConnectionPoolException, DublicateUserException,
@@ -36,6 +46,16 @@ public class UserDAOImpl implements UserDAO {
         return userID;
     }
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param userId
+     * @param password
+     * @return
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     * @throws IncorrectLoginException
+     */
     @Override
     public User login(int userId, String password)
             throws ConnectionPoolException,
@@ -71,6 +91,15 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param userId
+     * @param money
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     * @throws NotEnoughMoneyException
+     */
     @Override
     public void withdraw(int userId, double money)
             throws ConnectionPoolException, DAOSQLException, NotEnoughMoneyException {
@@ -99,6 +128,14 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param userId
+     * @param money
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     */
     @Override
     public void deposit(int userId, double money)
             throws ConnectionPoolException, DAOSQLException {
@@ -122,6 +159,14 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param userId
+     * @return
+     * @throws DAOSQLException
+     * @throws ConnectionPoolException
+     */
     @Override
     public double getUserBalance(int userId)
             throws DAOSQLException, ConnectionPoolException{

@@ -21,6 +21,10 @@ public class CommandNavigator {
         return ourInstance;
     }
 
+    /**
+     * constructor read all properties from file and
+     * create hashMap to navigate request
+     */
     private CommandNavigator() {
 
         navigator = new HashMap<>();

@@ -16,7 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StakeTransactionDAOImpl implements StakeTransactionDAO {
-
+    /**
+     * create stake
+     * @param conn
+     * @param userId
+     * @param oddId
+     * @param money
+     * @param coef
+     * @throws DAOSQLException
+     */
     @Override
     public void createStake(Connection conn, int userId, int oddId, double money, double coef)
             throws DAOSQLException{
@@ -37,6 +45,14 @@ public class StakeTransactionDAOImpl implements StakeTransactionDAO {
         }
     }
 
+    /**
+     * return all stakes for concrete user
+     * @param conn
+     * @param userId
+     * @param locale
+     * @return
+     * @throws DAOSQLException
+     */
     @Override
     public List<Stacke> getStakesByUserId(Connection conn, int userId, String locale)
             throws DAOSQLException {

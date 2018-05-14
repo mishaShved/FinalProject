@@ -35,6 +35,10 @@ public final class ConnectionPool {
         return instance;
     }
 
+    /**
+     * method create connections
+     * @throws ConnectionPoolException
+     */
     public void initPoolData() throws ConnectionPoolException {
 
         isBlocked = false;
@@ -55,7 +59,11 @@ public final class ConnectionPool {
         }
     }
 
-
+    /**
+     * method get connection from connection pool and return him
+     * @return
+     * @throws ConnectionPoolException
+     */
     public Connection getConnection() throws ConnectionPoolException {
 
         Connection connection;
@@ -73,6 +81,10 @@ public final class ConnectionPool {
         return connection;
     }
 
+    /**
+     * method return connection to connection pool
+     * @param conn
+     */
     public void returnConnection(Connection conn) {
 
         try {
@@ -84,7 +96,11 @@ public final class ConnectionPool {
         connectionQueue.add(conn);
     }
 
-
+    /**
+     *  method close all connections
+     * @throws ConnectionPoolException
+     * @throws InterruptedException
+     */
     public void closeConnections() throws ConnectionPoolException, InterruptedException {
 
         while(givenConnections.size() != 0) {
@@ -107,8 +123,6 @@ public final class ConnectionPool {
                 throw new ConnectionPoolException(e);
             }
         }
-
-
 
     }
 }

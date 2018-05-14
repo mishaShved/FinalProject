@@ -10,7 +10,16 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 import java.sql.*;
 
 public class UserTransactionDAOImpl implements UserTransactionDAO {
-
+    /**
+     * registers the user
+     * @param conn
+     * @param name
+     * @param email
+     * @param password
+     * @return
+     * @throws DublicateUserException
+     * @throws DAOSQLException
+     */
     @Override
     public int registration(Connection conn, String name, String email, String password)
             throws DublicateUserException, DAOSQLException {
@@ -37,6 +46,15 @@ public class UserTransactionDAOImpl implements UserTransactionDAO {
         return userId;
     }
 
+    /**
+     * execute login user into system
+     * @param conn
+     * @param id
+     * @param password
+     * @return
+     * @throws DAOSQLException
+     * @throws IncorrectLoginException
+     */
     @Override
     public User login(Connection conn, int id, String password)
             throws DAOSQLException, IncorrectLoginException {
@@ -77,6 +95,13 @@ public class UserTransactionDAOImpl implements UserTransactionDAO {
 
     }
 
+    /**
+     * change user balance
+     * @param conn
+     * @param id
+     * @param money
+     * @throws DAOSQLException
+     */
     @Override
     public void setBalance(Connection conn, int id, double money)
             throws DAOSQLException{
@@ -94,6 +119,13 @@ public class UserTransactionDAOImpl implements UserTransactionDAO {
         }
     }
 
+    /**
+     * return user balance
+     * @param conn
+     * @param id
+     * @return
+     * @throws DAOSQLException
+     */
     @Override
     public double getUserBalance(Connection conn, int id)
             throws DAOSQLException{

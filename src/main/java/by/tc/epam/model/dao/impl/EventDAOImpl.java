@@ -15,6 +15,19 @@ import java.util.List;
 
 public class EventDAOImpl implements EventDAO {
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     *
+     * @param date
+     * @param team1RU
+     * @param team2RU
+     * @param team1EN
+     * @param team2EN
+     * @param sportType
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     */
     @Override
     public void createEvent(String date, String team1RU, String team2RU,
                             String team1EN, String  team2EN, Sport sportType)
@@ -35,7 +48,16 @@ public class EventDAOImpl implements EventDAO {
         }
     }
 
-
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     *
+     * @param eventId
+     * @param score1
+     * @param score2
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     */
     @Override
     public void setScore(int eventId, int score1, int score2)
             throws ConnectionPoolException, DAOSQLException {
@@ -72,7 +94,15 @@ public class EventDAOImpl implements EventDAO {
         }
     }
 
-
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     *
+     * @param locale
+     * @return
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     */
     @Override
     public List<Event> getAllEvents(String locale)
             throws ConnectionPoolException, DAOSQLException {
@@ -96,6 +126,16 @@ public class EventDAOImpl implements EventDAO {
         return allEvents;
     }
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     *
+     * @param sportType
+     * @param locale
+     * @return
+     * @throws DAOSQLException
+     * @throws ConnectionPoolException
+     */
 
     @Override
     public List<Event> getEventsBySport(Sport sportType, String locale)
@@ -121,6 +161,14 @@ public class EventDAOImpl implements EventDAO {
         return partEvent;
     }
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param locale
+     * @return
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     */
     @Override
     public List<Event> getEventsForAddOdd(String locale)
             throws ConnectionPoolException, DAOSQLException {

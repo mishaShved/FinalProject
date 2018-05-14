@@ -16,6 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventTransactionDAOImpl implements EventTransactionDAO {
+    /**
+     * method create event
+     * @param conn
+     * @param date
+     * @param team1RU
+     * @param team2RU
+     * @param team1EN
+     * @param team2EN
+     * @param sportType
+     * @throws DAOSQLException
+     */
     @Override
     public void createEvent(Connection conn, String date, String team1RU, String team2RU,
                             String team1EN, String team2EN, Sport sportType)
@@ -39,6 +50,14 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
         }
     }
 
+    /**
+     * method set event score
+     * @param conn
+     * @param eventId
+     * @param score1
+     * @param score2
+     * @throws DAOSQLException
+     */
     @Override
     public void setScore(Connection conn, int eventId, int score1, int score2)
             throws DAOSQLException {
@@ -56,6 +75,13 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
 
     }
 
+    /**
+     * method return all events
+     * @param conn
+     * @param locale
+     * @return
+     * @throws DAOSQLException
+     */
     @Override
     public List<Event> getAllEvents(Connection conn, String locale)
             throws DAOSQLException {
@@ -76,6 +102,14 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
         return allEvents;
     }
 
+    /**
+     * method return specific sport events
+     * @param conn
+     * @param sportType
+     * @param locale
+     * @return
+     * @throws DAOSQLException
+     */
     @Override
     public List<Event> getEventsBySport(Connection conn, Sport sportType, String locale)
             throws DAOSQLException{
@@ -99,6 +133,13 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
         return partEvent;
     }
 
+    /**
+     * method return event, that available for add odds
+     * @param conn
+     * @param locale
+     * @return
+     * @throws DAOSQLException
+     */
     @Override
     public List<Event> getEventsForAddOdd(Connection conn, String locale)
             throws DAOSQLException {
@@ -119,6 +160,14 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
         return events;
     }
 
+    /**
+     * method calculate all bets, that user makes on appropriate event
+     * @param conn
+     * @param eventId
+     * @param score1
+     * @param score2
+     * @throws DAOSQLException
+     */
     @Override
     public void calculateBet(Connection conn, int eventId, int score1, int score2)
             throws DAOSQLException {
@@ -159,7 +208,12 @@ public class EventTransactionDAOImpl implements EventTransactionDAO {
 
     }
 
-
+    /**
+     * method create event list from result set
+     * @param rs
+     * @return
+     * @throws SQLException
+     */
     private List<Event> createEventList(ResultSet rs) throws SQLException {
 
         List<Event> eventList = new ArrayList<>();

@@ -14,6 +14,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OddTransactionDAOImpl implements OddTransactionDAO {
+
+    /**
+     * create odd
+     * @param conn
+     * @param eventId
+     * @param oddType
+     * @param coef
+     * @param param
+     * @throws DAOSQLException
+     */
     @Override
     public void createOdd(Connection conn, int eventId, OddType oddType, double coef, double param)
             throws DAOSQLException {
@@ -34,6 +44,14 @@ public class OddTransactionDAOImpl implements OddTransactionDAO {
 
     }
 
+    /**
+     * return odds list for event
+     * @param conn
+     * @param eventId
+     * @param locale
+     * @return
+     * @throws DAOSQLException
+     */
     @Override
     public OddsList getOddsByEvent(Connection conn, int eventId, String locale)
             throws DAOSQLException {
@@ -71,6 +89,14 @@ public class OddTransactionDAOImpl implements OddTransactionDAO {
 
     }
 
+    /**
+     * return info about odd
+     * @param conn
+     * @param oddId
+     * @param locale
+     * @return
+     * @throws DAOSQLException
+     */
     @Override
     public String getInfoAboutOdd(Connection conn, int oddId, String locale)
             throws DAOSQLException {
@@ -95,6 +121,13 @@ public class OddTransactionDAOImpl implements OddTransactionDAO {
         return info;
     }
 
+    /**
+     * return odd type for odd
+     * @param conn
+     * @param oddId
+     * @return
+     * @throws DAOSQLException
+     */
     @Override
     public String getOddType(Connection conn, int oddId)
             throws DAOSQLException {
@@ -119,6 +152,13 @@ public class OddTransactionDAOImpl implements OddTransactionDAO {
         return oddOutcome;
     }
 
+    /**
+     * return coefficient for odd
+     * @param conn
+     * @param oddId
+     * @return
+     * @throws DAOSQLException
+     */
     @Override
     public double getCoef(Connection conn, int oddId)
             throws DAOSQLException {

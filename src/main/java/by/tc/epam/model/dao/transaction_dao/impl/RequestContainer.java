@@ -1,5 +1,8 @@
 package by.tc.epam.model.dao.transaction_dao.impl;
 
+/**
+ * class contains requests and methods for create request
+ */
 public final class RequestContainer {
 
     private RequestContainer(){};

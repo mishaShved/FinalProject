@@ -15,7 +15,16 @@ import java.util.List;
 
 public class StakeDAOImpl implements StakeDAO {
 
-
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param userId
+     * @param oddId
+     * @param money
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     * @throws NotEnoughMoneyException
+     */
     @Override
     public void createStake(int userId, int oddId, double money)
             throws ConnectionPoolException, DAOSQLException,
@@ -69,6 +78,15 @@ public class StakeDAOImpl implements StakeDAO {
 
     }
 
+    /**
+     * method get connection from connection pool and invoke
+     * appropriate method from transactionDAO
+     * @param userId
+     * @param locale
+     * @return
+     * @throws ConnectionPoolException
+     * @throws DAOSQLException
+     */
     @Override
     public List<Stacke> getStakesByUserId(int userId, String locale)
             throws ConnectionPoolException, DAOSQLException {
