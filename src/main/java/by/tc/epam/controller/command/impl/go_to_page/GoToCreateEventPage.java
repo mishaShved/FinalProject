@@ -1,6 +1,7 @@
 package by.tc.epam.controller.command.impl.go_to_page;
 
 import by.tc.epam.controller.command.Command;
+import by.tc.epam.util.ConstantContainer;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -30,7 +31,7 @@ public class GoToCreateEventPage implements Command {
 
         try {
 
-            servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/CreateEventPage.jsp")
+            servlet.getServletContext().getRequestDispatcher(ConstantContainer.CREATE_EVENT_PAGE)
                     .forward(request, response);
 
         } catch (ServletException e) {

@@ -9,6 +9,7 @@ import by.tc.epam.model.service.exception.ServiceSQLException;
 import by.tc.epam.model.service.exception.UserAlreadyExistException;
 import org.apache.log4j.Logger;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,7 +47,7 @@ public class RegistrationCommand implements Command{
 
             userID = service.registration(name, email, password);
             request.getSession().setAttribute(ConstantContainer.USER_ID, userID);
-            response.sendRedirect(urlPrefix + "/MishaBet");
+            response.sendRedirect(urlPrefix + ConstantContainer.DEFAULT_APPLICATION_URL);
 
 
         } catch (DataSourceException e) {
@@ -56,7 +57,15 @@ public class RegistrationCommand implements Command{
         } catch (IOException e) {
             log.error("Error in pages path", e);
         } catch (UserAlreadyExistException e) {
-            e.printStackTrace();
+            request.setAttribute(ConstantContainer.USER_EXISTS, true);
+            try {
+                request.getRequestDispatcher(ConstantContainer.REGISTRATION_PAGE).forward(request, response);
+            } catch (ServletException e1) {
+                log.error("Servlet error", e1);
+            } catch (IOException e1) {
+                log.error("Error in pages path", e1);
+            }
+            request.setAttribute(ConstantContainer.USER_EXISTS, false);
         }
 
     }

@@ -35,7 +35,7 @@ public class ChangeLocaleCommand implements Command{
         request.getSession().setAttribute(ConstantContainer.LOCALE, newLocale);
         Config.set(request.getSession(), Config.FMT_LOCALE, newLocale);
         try {
-            response.sendRedirect(urlPrefix + "/MishaBet");
+            response.sendRedirect(urlPrefix + ConstantContainer.DEFAULT_APPLICATION_URL);
         } catch (IOException e) {
             log.error("File path error", e);
         }

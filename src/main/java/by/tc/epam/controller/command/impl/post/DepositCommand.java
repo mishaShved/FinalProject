@@ -43,7 +43,7 @@ public class DepositCommand implements Command {
 
             service.deposit(user.getId(), money);
 
-            response.sendRedirect(urlPrefix + "/MishaBet");
+            response.sendRedirect(urlPrefix + ConstantContainer.DEFAULT_APPLICATION_URL);
 
         }  catch (DataSourceException e) {
             log.error("Problems with data source", e);

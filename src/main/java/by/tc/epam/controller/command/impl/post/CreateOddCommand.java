@@ -47,7 +47,7 @@ public class CreateOddCommand implements Command{
             service.createOdd(eventId, oddType, koef, param);
 
             request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
-            response.sendRedirect(urlPrefix + "/jsp/admin_page/AdminPage.jsp");
+            response.sendRedirect(urlPrefix + ConstantContainer.ADMIN_PAGE);
 
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);

@@ -64,11 +64,11 @@ public class LoginCommand implements Command {
                 if(oddID == null) {
 
                     servletContext.getRequestDispatcher
-                            ("/jsp/StartPage.jsp").forward(request, response);
+                            (ConstantContainer.START_PAGE).forward(request, response);
                 }else{
 
                     servletContext.getRequestDispatcher
-                            ("/MishaBet?command=goToCreateStakePage&oddId=" + oddID)
+                            (ConstantContainer.CONCRETE_ODD_PAGE + oddID)
                             .forward(request, response);
                     request.getSession().setAttribute(ConstantContainer.ODD_ID, null);
                 }
@@ -77,7 +77,7 @@ public class LoginCommand implements Command {
             }else{
 
                 servletContext.getRequestDispatcher
-                        ("/jsp/admin_page/AdminPage.jsp").forward(request, response);
+                        (ConstantContainer.ADMIN_PAGE).forward(request, response);
             }
 
 

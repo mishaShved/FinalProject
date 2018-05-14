@@ -45,7 +45,7 @@ public class GoToCreateStakePage implements Command{
         if(user == null){
             try {
                 request.getSession().setAttribute(ConstantContainer.ODD_ID, oddId);
-                servlet.getServletContext().getRequestDispatcher("/jsp/LoginPage.jsp").forward(request, response);
+                servlet.getServletContext().getRequestDispatcher(ConstantContainer.LOGIN_PAGE).forward(request, response);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ServletException e) {
@@ -73,7 +73,7 @@ public class GoToCreateStakePage implements Command{
                 request.setAttribute(ConstantContainer.BALANCE, balance);
                 request.setAttribute(ConstantContainer.ODD_ID, oddId);
 
-                servlet.getServletContext().getRequestDispatcher("/jsp/CreateStakePage.jsp")
+                servlet.getServletContext().getRequestDispatcher(ConstantContainer.CREATE_STAKE_PAGE)
                         .forward(request, response);
 
             } catch (DataSourceException e) {

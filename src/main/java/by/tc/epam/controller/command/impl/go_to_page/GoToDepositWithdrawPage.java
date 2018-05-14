@@ -49,7 +49,8 @@ public class GoToDepositWithdrawPage implements Command{
             request.setAttribute(ConstantContainer.BALANCE, userBalance);
 
             servlet.getServletContext().
-                    getRequestDispatcher("/jsp/DepositWithdrawPage.jsp").forward(request, response);
+                    getRequestDispatcher(ConstantContainer.DEPOSIT_WITHDRAW_PAGE)
+                    .forward(request, response);
 
 
         } catch (DataSourceException e) {

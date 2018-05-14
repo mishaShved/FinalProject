@@ -48,7 +48,7 @@ public class GoToCreateOddPageCommand implements Command{
             request.setAttribute(ConstantContainer.ODD_TYPES, OddType.values());
             request.setAttribute(ConstantContainer.ODD_TYPES_COUNT, OddType.values().length - 1);
 
-            servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/CreateOddPage.jsp")
+            servlet.getServletContext().getRequestDispatcher(ConstantContainer.CREATE_ODD_PAGE)
                     .forward(request, response);
 
 

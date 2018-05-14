@@ -48,7 +48,7 @@ public class CreateStackeCommand implements Command{
 
             stackeService.createStake(user.getId(), oddId, money);
 
-            response.sendRedirect(urlPrefix + "/MishaBet");
+            response.sendRedirect(urlPrefix + ConstantContainer.DEFAULT_APPLICATION_URL);
 
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);

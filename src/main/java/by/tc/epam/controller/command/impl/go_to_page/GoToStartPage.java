@@ -51,7 +51,7 @@ public class GoToStartPage implements Command{
             }
 
             servlet.getServletContext().
-                    getRequestDispatcher("/jsp/StartPage.jsp").
+                    getRequestDispatcher(ConstantContainer.START_PAGE).
                     forward(request, response);
 
         } catch (DataSourceException e) {

@@ -59,6 +59,23 @@ public final class ConstantContainer {
     public static final String DEFAULT_COMMAND = "goToStartPage";
     public static final String SMALL_BALANCE_ALERT = "smallBalance";
     public static final String GO_TO_CREATE_STAKE_COMMAND = "goToCreateStakePage";
+    public static final String USER_EXISTS = "userExists";
+
+    public static final String TABLE_BODY= "/jsp/TableBody.jsp";
+    public static final String SHOW_ODDS = "/jsp/ShowOdds.jsp";
+    public static final String ACCOUNT_HISTORY = "/jsp/AccountHistory.jsp";
+    public static final String CREATE_EVENT_PAGE = "/jsp/admin_page/CreateEventPage.jsp";
+    public static final String CREATE_ODD_PAGE = "/jsp/admin_page/CreateOddPage.jsp";
+    public static final String LOGIN_PAGE = "/jsp/LoginPage.jsp";
+    public static final String CREATE_STAKE_PAGE = "/jsp/CreateStakePage.jsp";
+    public static final String DEPOSIT_WITHDRAW_PAGE = "/jsp/DepositWithdrawPage.jsp";
+    public static final String SET_SCORE_PAGE = "/jsp/admin_page/SetScorePage.jsp";
+    public static final String START_PAGE = "/jsp/StartPage.jsp";
+    public static final String DEFAULT_APPLICATION_URL = "/MishaBet";
+    public static final String ADMIN_PAGE = "/jsp/admin_page/AdminPage.jsp";
+    public static final String CONCRETE_ODD_PAGE = "/MishaBet?command=goToCreateStakePage&oddId=";
+    public static final String REGISTRATION_PAGE = "/jsp/RegistrationPage.jsp";
+
 
     public static final int COUNT_STAKE_ON_PAGE = 5;
     public static final int MIN_LENGTH_PASSWORD = 5;

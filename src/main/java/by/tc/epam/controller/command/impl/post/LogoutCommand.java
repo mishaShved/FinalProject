@@ -31,7 +31,7 @@ public class LogoutCommand implements Command{
 
         try {
 
-            response.sendRedirect(urlPrefix + "/MishaBet");
+            response.sendRedirect(urlPrefix + ConstantContainer.DEFAULT_APPLICATION_URL);
 
         } catch (IOException e) {
             log.error("Error in pages path", e);

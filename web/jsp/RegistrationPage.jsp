@@ -16,6 +16,7 @@
     <fmt:message key="local.registration.passwordVerificationError" var="passwordVerificationError"/>
     <fmt:message key="local.registration.emailVerificationError" var="emailVerificationError"/>
     <fmt:message key="local.registration.repeatPasswordVerificationError" var="repeatPasswordVerificationError"/>
+    <fmt:message key="local.registration.userExists" var="userExistsMessage"/>
 </fmt:bundle>
 
 
@@ -53,7 +54,11 @@
                 <div class="form-group">
                     <label for="input-email">${email}</label>
                     <input type="email" name="email" class="form-control" id="input-email" placeholder="${email}">
-                    <p id="email-failed"></p>
+                    <p id="email-failed">
+                        <c:if test="${userExists == true}">
+                            ${userExistsMessage}
+                        </c:if>
+                    </p>
                 </div>
                 <div class="form-group">
                     <label for="input-password">${password}</label>

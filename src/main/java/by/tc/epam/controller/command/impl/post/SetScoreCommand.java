@@ -45,7 +45,7 @@ public class SetScoreCommand implements Command{
             service.setScore(eventId, score1, score2);
 
             request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
-            response.sendRedirect(urlPrefix + "/jsp/admin_page/AdminPage.jsp");
+            response.sendRedirect(urlPrefix + ConstantContainer.ADMIN_PAGE);
 
 
 

@@ -47,7 +47,7 @@ public class EventCreateCommand implements Command {
             service.createEvent(date, time, team1RU, team2RU, team1EN, team2EN, sportType);
 
             request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
-            response.sendRedirect(urlPrefix + "/jsp/admin_page/AdminPage.jsp");
+            response.sendRedirect(urlPrefix + ConstantContainer.ADMIN_PAGE);
 
 
         } catch (DataSourceException e) {

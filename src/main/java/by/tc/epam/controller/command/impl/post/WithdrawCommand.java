@@ -43,7 +43,7 @@ public class WithdrawCommand implements Command{
 
             service.withdraw(user.getId(), money);
 
-            response.sendRedirect(urlPrefix + "/MishaBet");
+            response.sendRedirect(urlPrefix + ConstantContainer.DEFAULT_APPLICATION_URL);
 
         } catch (DataSourceException e) {
             log.error("Problems with data source", e);
