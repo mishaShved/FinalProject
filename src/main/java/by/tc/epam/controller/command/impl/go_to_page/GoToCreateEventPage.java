@@ -20,7 +20,7 @@ public class GoToCreateEventPage implements Command {
 
         try {
 
-            servlet.getServletContext().getRequestDispatcher(urlPrefix + "/jsp/admin_page/CreateEventPage.jsp")
+            servlet.getServletContext().getRequestDispatcher("/jsp/admin_page/CreateEventPage.jsp")
                     .forward(request, response);
 
         } catch (ServletException e) {

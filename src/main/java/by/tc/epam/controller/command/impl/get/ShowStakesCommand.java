@@ -55,7 +55,7 @@ public class ShowStakesCommand implements Command{
             request.setAttribute(ConstantContainer.PAGE, page);
 
             servlet.getServletContext().
-                    getRequestDispatcher(urlPrefix + "/jsp/AccountHistory.jsp").
+                    getRequestDispatcher("/jsp/AccountHistory.jsp").
                     forward(request,response);
 
         } catch (DataSourceException e) {

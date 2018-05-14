@@ -42,7 +42,7 @@ public class GoToStartPage implements Command{
             }
 
             servlet.getServletContext().
-                    getRequestDispatcher(urlPrefix + "/jsp/StartPage.jsp").
+                    getRequestDispatcher("/jsp/StartPage.jsp").
                     forward(request, response);
 
         } catch (DataSourceException e) {

@@ -54,11 +54,11 @@ public class LoginCommand implements Command {
                 if(oddID == null) {
 
                     servletContext.getRequestDispatcher
-                            (urlPrefix + "/jsp/StartPage.jsp").forward(request, response);
+                            ("/jsp/StartPage.jsp").forward(request, response);
                 }else{
 
                     servletContext.getRequestDispatcher
-                            (urlPrefix + "/MishaBet?command=goToCreateStakePage&oddId=" + oddID)
+                            ("/MishaBet?command=goToCreateStakePage&oddId=" + oddID)
                             .forward(request, response);
                     request.getSession().setAttribute(ConstantContainer.ODD_ID, null);
                 }
@@ -67,7 +67,7 @@ public class LoginCommand implements Command {
             }else{
 
                 servletContext.getRequestDispatcher
-                        (urlPrefix + "/jsp/admin_page/AdminPage.jsp").forward(request, response);
+                        ("/jsp/admin_page/AdminPage.jsp").forward(request, response);
             }
 
 
@@ -85,7 +85,7 @@ public class LoginCommand implements Command {
 
             try {
                 servlet.getServletContext().getRequestDispatcher
-                        (urlPrefix + "/jsp/LoginPage.jsp")
+                        ("/jsp/LoginPage.jsp")
                         .forward(request, response);
             } catch (IOException e1) {
                 log.error("Error in pages path", e);

@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
+<c:set var="urlPrefix" value="${pageContext.request.contextPath}"/>
 
 <fmt:bundle basename="locale">
     <fmt:message key="local.startPage.football" var="football"/>
@@ -44,6 +45,10 @@
 <table class="table table-condensed center-table-class" id="events-table" >
 
 </table>
+
+<script type="text/javascript">
+    var urlPrefix = "${urlPrefix}";
+</script>
 
 <script type="text/javascript" src="${urlPrefix}/script/ChangeSportType.js"></script>
 <script type="text/javascript" src="${urlPrefix}/script/UpdateTable.js"></script>

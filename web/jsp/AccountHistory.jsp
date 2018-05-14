@@ -84,7 +84,7 @@
     </table>
 
     <div class="pagination-center">
-        <p:pagination maxPage="${pageCount}" currentPage="${page}"/>
+        <p:pagination maxPage="${pageCount}" currentPage="${page}" urlPrefix="${urlPrefix}"/>
     </div>
 
     </div>

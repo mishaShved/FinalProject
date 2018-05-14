@@ -34,10 +34,10 @@
         <nav class="navbar navbar-default nav-class">
             <div class="container-fluid">
                 <div class="navbar-header icon-class">
-                    MBET
+                    <a href="${urlPrefix}/MishaBet">MBET</a></li>
                 </div>
                 <ul class="nav navbar-nav nav-rigth-class">
-                    <li><a href="StartPage.jsp">${back}</a></li>
+                    <li><a href="${urlPrefix}/MishaBet">${back}</a></li>
                 </ul>
             </div>
         </nav>

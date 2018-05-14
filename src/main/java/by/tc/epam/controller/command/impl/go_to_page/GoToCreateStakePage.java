@@ -36,7 +36,7 @@ public class GoToCreateStakePage implements Command{
         if(user == null){
             try {
                 request.getSession().setAttribute(ConstantContainer.ODD_ID, oddId);
-                servlet.getServletContext().getRequestDispatcher(urlPrefix + "/jsp/LoginPage.jsp").forward(request, response);
+                servlet.getServletContext().getRequestDispatcher("/jsp/LoginPage.jsp").forward(request, response);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ServletException e) {

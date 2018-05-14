@@ -52,7 +52,7 @@ public class GetOddsByEventCommand implements Command{
 
             request.setAttribute(ConstantContainer.ODDS, odds);
 
-            servlet.getServletContext().getRequestDispatcher(urlPrefix + "/jsp/ShowOdds.jsp").
+            servlet.getServletContext().getRequestDispatcher("/jsp/ShowOdds.jsp").
                     forward(request, response);
 
         } catch (DataSourceException e) {

@@ -9,6 +9,7 @@ public class Pagination extends SimpleTagSupport {
 
     int currentPage;
     int maxPage;
+    String urlPrefix;
 
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
@@ -16,6 +17,10 @@ public class Pagination extends SimpleTagSupport {
 
     public void setMaxPage(int maxPage) {
         this.maxPage = maxPage;
+    }
+
+    public void setUrlPrefix(String urlPrefix){
+        this.urlPrefix = urlPrefix;
     }
 
     @Override
@@ -84,7 +89,7 @@ public class Pagination extends SimpleTagSupport {
         StringBuilder form = new StringBuilder();
 
         form.append("<li class=\"page-item\">")
-                .append("<a class=\"page-link\" href=\"/MishaBet?command=showStakes&page=")
+                .append("<a class=\"page-link\" href=\"" + urlPrefix + "/MishaBet?command=showStakes&page=")
                 .append(page).append("\">")
                 .append(page)
                 .append("</a></li>");

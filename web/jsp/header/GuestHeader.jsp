@@ -1,4 +1,5 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
@@ -6,7 +7,7 @@
     <fmt:message key="local.header.login" var="login"/>
     <fmt:message key="local.header.registration" var="registration"/>
 </fmt:bundle>
-
+<c:set var="urlPrefix" value="${pageContext.request.contextPath}"/>
 
 <nav class="navbar navbar-default nav-class">
     <div class="container-fluid">

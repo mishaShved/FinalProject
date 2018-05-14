@@ -38,7 +38,7 @@ public class GoToSetScorePage implements Command{
             request.setAttribute(ConstantContainer.EVENTS_LIST, events);
 
             servlet.getServletContext().
-                    getRequestDispatcher(urlPrefix + "/jsp/admin_page/SetScorePage.jsp").
+                    getRequestDispatcher("/jsp/admin_page/SetScorePage.jsp").
                     forward(request, response);
 
         } catch (DataSourceException e) {

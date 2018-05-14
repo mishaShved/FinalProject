@@ -40,7 +40,7 @@ public class GoToDepositWithdrawPage implements Command{
             request.setAttribute(ConstantContainer.BALANCE, userBalance);
 
             servlet.getServletContext().
-                    getRequestDispatcher(urlPrefix + "/jsp/DepositWithdrawPage.jsp").forward(request, response);
+                    getRequestDispatcher("/jsp/DepositWithdrawPage.jsp").forward(request, response);
 
 
         } catch (DataSourceException e) {

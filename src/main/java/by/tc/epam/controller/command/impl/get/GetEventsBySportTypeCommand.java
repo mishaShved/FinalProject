@@ -39,7 +39,7 @@ public class GetEventsBySportTypeCommand implements Command {
             List<Event> events = service.getEventsBySport(sportType, locale);
             request.setAttribute(ConstantContainer.EVENTS, events);
 
-            servlet.getServletContext().getRequestDispatcher(urlPrefix + "/jsp/TableBody.jsp")
+            servlet.getServletContext().getRequestDispatcher("/jsp/TableBody.jsp")
                     .forward(request,response);
 
         } catch (DataSourceException e) {
