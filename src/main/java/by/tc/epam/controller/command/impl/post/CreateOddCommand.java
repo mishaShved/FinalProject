@@ -1,6 +1,8 @@
 package by.tc.epam.controller.command.impl.post;
 
 import by.tc.epam.controller.command.Command;
+import by.tc.epam.model.validation.Validation;
+import by.tc.epam.model.validation.ValidationFactory;
 import by.tc.epam.util.ConstantContainer;
 import by.tc.epam.model.entity.OddType;
 import by.tc.epam.model.service.OddService;
@@ -32,32 +34,42 @@ public class CreateOddCommand implements Command{
     public void execute(HttpServlet servlet, HttpServletRequest request,
                         HttpServletResponse response, String urlPrefix) {
 
+        ValidationFactory validationFactory = ValidationFactory.getInstance();
+        Validation validation = validationFactory.getCreateOddValidation();
 
-        ServiceFactory factory = ServiceFactory.getInstance();
-        OddService service = factory.getOddService();
+        if(validation.validate(request)) {
 
-        int eventId = Integer.parseInt(request.getParameter(ConstantContainer.EVENT_ID));
-        OddType oddType = OddType.valueOf(request.getParameter(ConstantContainer.ODD_TYPE));
-        double koef = Double.parseDouble(request.getParameter(ConstantContainer.KOEF));
-        double param = Double.parseDouble(request.getParameter(ConstantContainer.PARAMETER));
+            ServiceFactory serviceFactory = ServiceFactory.getInstance();
+            OddService service = serviceFactory.getOddService();
+
+            int eventId = Integer.parseInt(request.getParameter(ConstantContainer.EVENT_ID));
+            OddType oddType = OddType.valueOf(request.getParameter(ConstantContainer.ODD_TYPE));
+            double koef = Double.parseDouble(request.getParameter(ConstantContainer.KOEF));
+            double param = Double.parseDouble(request.getParameter(ConstantContainer.PARAMETER));
 
 
-        try {
+            try {
 
-            service.createOdd(eventId, oddType, koef, param);
+                service.createOdd(eventId, oddType, koef, param);
 
-            request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
-            response.sendRedirect(urlPrefix + ConstantContainer.ADMIN_PAGE);
+                request.getSession().setAttribute(ConstantContainer.IS_UPDATE, true);
+                response.sendRedirect(urlPrefix + ConstantContainer.ADMIN_PAGE);
 
-        } catch (DataSourceException e) {
-            log.error("Problems with data source", e);
-        } catch (ServiceSQLException e) {
-            log.error("SQL error", e);
-        } catch (IOException e) {
-            log.error("Error in pages path", e);
+            } catch (DataSourceException e) {
+                log.error("Problems with data source", e);
+            } catch (ServiceSQLException e) {
+                log.error("SQL error", e);
+            } catch (IOException e) {
+                log.error("Error in pages path", e);
+            }
+
+        }else{
+            try {
+                response.sendRedirect(urlPrefix + ConstantContainer.BAD_REQUEST_PAGE);
+            } catch (IOException e) {
+                log.error("Error page not found " + e);
+            }
         }
-
-
 
     }
 }

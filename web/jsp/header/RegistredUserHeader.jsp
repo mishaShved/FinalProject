@@ -23,7 +23,6 @@
             </a>
         </div>
         <ul class="nav navbar-nav nav-rigth-class">
-            <li><a href="#">${settings}</a></li>
             <li>
                 <a href="${urlPrefix}/MishaBet?command=showStakes&page=1">${history}</a>
             </li>

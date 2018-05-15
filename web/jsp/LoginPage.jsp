@@ -79,7 +79,7 @@
     <script type="text/javascript">
         var errorMessages =
             {
-                "loginError":"${loginErrorLabel}",
+                "loginError":"${loginErrorLabel}"
             }
         ;
     </script>

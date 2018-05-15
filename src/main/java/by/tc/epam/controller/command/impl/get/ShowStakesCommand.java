@@ -65,7 +65,7 @@ public class ShowStakesCommand implements Command{
             request.setAttribute(ConstantContainer.PAGE, page);
 
             servlet.getServletContext().
-                    getRequestDispatcher(ConstantContainer.ACCOUNT_HISTORY).
+                    getRequestDispatcher(ConstantContainer.ACCOUNT_HISTORY_PAGE).
                     forward(request,response);
 
         } catch (DataSourceException e) {

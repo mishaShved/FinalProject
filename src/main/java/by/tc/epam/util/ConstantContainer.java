@@ -61,9 +61,9 @@ public final class ConstantContainer {
     public static final String GO_TO_CREATE_STAKE_COMMAND = "goToCreateStakePage";
     public static final String USER_EXISTS = "userExists";
 
-    public static final String TABLE_BODY= "/jsp/TableBody.jsp";
-    public static final String SHOW_ODDS = "/jsp/ShowOdds.jsp";
-    public static final String ACCOUNT_HISTORY = "/jsp/AccountHistory.jsp";
+    public static final String TABLE_BODY_PAGE = "/jsp/TableBody.jsp";
+    public static final String SHOW_ODDS_PAGE = "/jsp/ShowOdds.jsp";
+    public static final String ACCOUNT_HISTORY_PAGE = "/jsp/AccountHistory.jsp";
     public static final String CREATE_EVENT_PAGE = "/jsp/admin_page/CreateEventPage.jsp";
     public static final String CREATE_ODD_PAGE = "/jsp/admin_page/CreateOddPage.jsp";
     public static final String LOGIN_PAGE = "/jsp/LoginPage.jsp";
@@ -75,6 +75,7 @@ public final class ConstantContainer {
     public static final String ADMIN_PAGE = "/jsp/admin_page/AdminPage.jsp";
     public static final String CONCRETE_ODD_PAGE = "/MishaBet?command=goToCreateStakePage&oddId=";
     public static final String REGISTRATION_PAGE = "/jsp/RegistrationPage.jsp";
+    public static final String BAD_REQUEST_PAGE = "/jsp/error_page/BadRequestPage.jsp";
 
 
     public static final int COUNT_STAKE_ON_PAGE = 5;
