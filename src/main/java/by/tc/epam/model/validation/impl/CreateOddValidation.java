@@ -17,6 +17,6 @@ public class CreateOddValidation implements Validation{
         double koef = Double.parseDouble(request.getParameter(ConstantContainer.KOEF));
         double param = Double.parseDouble(request.getParameter(ConstantContainer.PARAMETER));
 
-        return koef < ConstantContainer.MIN_COEF || param % 0.5 != 0;
+        return koef > ConstantContainer.MIN_COEF && param % 0.5 == 0;
     }
 }
