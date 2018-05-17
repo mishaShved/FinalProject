@@ -56,6 +56,8 @@ public final class ConstantContainer {
     public static final String LOCALE = "locale";
     public static final String IS_UPDATE = "isUpdated";
     public static final String DEFAULT_LOCALE = "en";
+    public static final String RU_LOCALE = "ru";
+    public static final String EN_LOCALE = "en";
     public static final String DEFAULT_COMMAND = "goToStartPage";
     public static final String SMALL_BALANCE_ALERT = "smallBalance";
     public static final String GO_TO_CREATE_STAKE_COMMAND = "goToCreateStakePage";

@@ -41,7 +41,7 @@
     </listener>
 
     <listener>
-        <listener-class>by.tc.epam.web.session_listener.LocaleSetter</listener-class>
+        <listener-class>by.tc.epam.web.request_listener.LocaleSetter</listener-class>
     </listener>
 
     <session-config>
