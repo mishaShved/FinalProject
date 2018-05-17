@@ -26,7 +26,8 @@ public class LocaleSetter implements ServletRequestListener {
         if(request.getSession(true).getAttribute(ConstantContainer.LOCALE) != null){
             return;
         }
-        if(userLocale.getCountry().equals(ConstantContainer.RU_LOCALE)){
+
+        if(userLocale.getLanguage().equals(ConstantContainer.RU_LOCALE)){
             request.getSession().setAttribute(ConstantContainer.LOCALE, ConstantContainer.RU_LOCALE);
         }else{
             request.getSession().setAttribute(ConstantContainer.LOCALE, ConstantContainer.DEFAULT_LOCALE);
