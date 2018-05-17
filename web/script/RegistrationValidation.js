@@ -9,7 +9,7 @@ const emailFailed = document.getElementById("email-failed");
 const passwordFailed = document.getElementById("password-failed");
 const repeatPasswordFailed = document.getElementById("repeat-password-failed");
 
-const regExp = ".+@.+\..+";
+const regExp = ".+@.+[.].+";
 
 submitButton.onclick = function(event) {
 

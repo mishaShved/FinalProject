@@ -15,9 +15,11 @@ public class CreateEventValidate implements Validation{
     @Override
     public boolean validate(HttpServletRequest request) {
 
-        String team1 = request.getParameter(ConstantContainer.TEAM1);
-        String team2 = request.getParameter(ConstantContainer.TEAM2);
+        String team1RU = request.getParameter(ConstantContainer.TEAM1RU);
+        String team2RU = request.getParameter(ConstantContainer.TEAM2RU);
+        String team1EN = request.getParameter(ConstantContainer.TEAM1EN);
+        String team2EN = request.getParameter(ConstantContainer.TEAM2EN);
 
-        return !(team1.isEmpty() || team2.isEmpty());
+        return !(team1RU.isEmpty() || team2RU.isEmpty() || team1EN.isEmpty() || team2EN.isEmpty() );
     }
 }

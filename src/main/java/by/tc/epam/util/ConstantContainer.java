@@ -52,7 +52,7 @@ public final class ConstantContainer {
     public static final String PAGE = "page";
     public static final String PAGE_COUNT = "pageCount";
     public static final String CHARACTERS_ENCODING = "characterEncoding";
-    public static final String EMAIL_REG_EXP = ".+@.+\\..+";
+    public static final String EMAIL_REG_EXP = ".+@.+[.].+";
     public static final String LOCALE = "locale";
     public static final String IS_UPDATE = "isUpdated";
     public static final String DEFAULT_LOCALE = "en";

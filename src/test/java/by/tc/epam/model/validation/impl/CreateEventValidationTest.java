@@ -18,8 +18,10 @@ public class CreateEventValidationTest {
 
         MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 
-        mockRequest.addParameter(ConstantContainer.TEAM1, "qwe");
-        mockRequest.addParameter(ConstantContainer.TEAM2, "qwe");
+        mockRequest.addParameter(ConstantContainer.TEAM1RU, "qwe");
+        mockRequest.addParameter(ConstantContainer.TEAM2RU, "qwe");
+        mockRequest.addParameter(ConstantContainer.TEAM1EN, "qwe");
+        mockRequest.addParameter(ConstantContainer.TEAM2EN, "qwe");
 
         boolean validationResult = validation.validate(mockRequest);
 
@@ -34,8 +36,10 @@ public class CreateEventValidationTest {
 
         MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 
-        mockRequest.addParameter(ConstantContainer.TEAM1, "");
-        mockRequest.addParameter(ConstantContainer.TEAM2, "qwe");
+        mockRequest.addParameter(ConstantContainer.TEAM1RU, "");
+        mockRequest.addParameter(ConstantContainer.TEAM2RU, "qwe");
+        mockRequest.addParameter(ConstantContainer.TEAM1EN, "qwe");
+        mockRequest.addParameter(ConstantContainer.TEAM2EN, "qwe");
 
         boolean validationResult = validation.validate(mockRequest);
 
@@ -52,6 +56,8 @@ public class CreateEventValidationTest {
 
         mockRequest.addParameter(ConstantContainer.TEAM1, "");
         mockRequest.addParameter(ConstantContainer.TEAM2, "");
+        mockRequest.addParameter(ConstantContainer.TEAM1EN, "");
+        mockRequest.addParameter(ConstantContainer.TEAM2EN, "");
 
         boolean validationResult = validation.validate(mockRequest);
 

@@ -68,6 +68,8 @@ public final class RequestContainer {
                 "                    where s.user_id = ?\n" +
                 "            order by e.time desc";
 
+
+
     }
 
     public static String getRequestForSelectEventsBySport(String locale){

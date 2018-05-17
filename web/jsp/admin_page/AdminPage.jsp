@@ -54,13 +54,13 @@
     <script type="text/javascript">
         var successMessage =
             {
-                "addedEntry":"${entryAddedSuccesfull}",
+                "addedEntry":"${entryAddedSuccesfull}"
             }
         ;
     </script>
 
     <c:if test="${sessionScope.isUpdated == true}">
-        <script src="/${urlPrefix}/script/UpdateAlert.js"></script>
+        <script src="${urlPrefix}/script/UpdateAlert.js"></script>
         <c:set value="false" var="isUpdated" scope="session"/>
     </c:if>
 

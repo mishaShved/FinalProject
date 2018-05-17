@@ -159,7 +159,8 @@ nav > div.container-fluid > div.icon-class > a:hover{
 
 .create-event-form {
     width: 35%;
-    margin: auto;
+    margin: auto ;
+    padding-bottom: 75px;
     padding-top: 75px;
 }
 

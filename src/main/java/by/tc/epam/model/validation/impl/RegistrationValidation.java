@@ -26,7 +26,7 @@ public class RegistrationValidation implements Validation{
 
 
         return !(name.length() < ConstantContainer.MIN_NAME_LENGTH ||
-                m.matches() ||
+                !m.matches() ||
                 password.length() < ConstantContainer.MIN_LENGTH_PASSWORD ||
                 password.length() > ConstantContainer.MAX_LENGTH_PASSWORD);
 
